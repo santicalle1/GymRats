@@ -750,6 +750,21 @@
 .btn05:hover {
     background-color: #0056b3;
 }
+.contenedor-productos {
+    display: flex;
+    flex-wrap: wrap;  /* Permite que las tarjetas pasen a la siguiente fila si no hay espacio */
+    gap: 20px;  /* Espacio entre tarjetas */
+    justify-content: space-between;  /* Distribuye las tarjetas uniformemente */
+}
+
+.card01 {
+    max-width: calc(50% - 10px);  /* Asume que quieres 2 tarjetas por fila. El cálculo considera el gap. */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Esto es opcional, solo para darle un toque visual */
+    box-sizing: border-box;  /* Asegura que el padding y el borde no aumenten el tamaño total de la tarjeta */
+}
+
+
+
 
 </style>
 </head>
@@ -811,19 +826,26 @@
   </div>
   </div>
 <!-- Tarjeta de producto -->
+<!-- Tarjeta de producto -->
 <CENTER><H1>PRODUCTOS EN OFERTA</H1></CENTER>
-<div class="card01">
-    <img src="img/creatina.png" alt="Imagen del Producto">
-    <div class="content02">
-        <h2 class="title03">Proteina Monohidratada</h2>
-        <p class="description04">Descripción breve del producto.</p>
-        <div class="price-container">
-                <p class="original-price">$22.000</p> <!-- Precio original tachado -->
-                <p class="new-price">$15.000</p> <!-- Nuevo precio -->
+<div class="contenedor-productos">
+    <?php foreach ($productos as $producto): ?>
+        <div class="card01">
+            <img src="<?= base_url($producto['imagen']) ?>" alt="Imagen del Producto">
+            <div class="content02">
+                <h2 class="title03"><?= esc($producto['nombre']) ?></h2>
+                <p class="description04"><?= esc($producto['descripcion']) ?></p>
+                <div class="price-container">
+                    <!-- Puedes agregar lógica aquí si tienes un precio original tachado, de lo contrario, solo muestra el precio. -->
+                    <p class="new-price">$<?= esc($producto['precio']) ?></p> 
+                </div>
+                <button class="btn05">Agregar al carrito</button>
             </div>
-        <button class="btn05">Agregar al carrito</button>
-    </div>
+        </div>
+    <?php endforeach; ?>
 </div>
+
+
 
     <footer class="pie-pagina">
       <div class="grupo-1">

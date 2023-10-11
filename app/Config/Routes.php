@@ -54,6 +54,8 @@ $routes->get('/panel_cliente', 'ClientPanel::profile');
 $routes->get('agregar_productos', 'ProductoController::agregar');
 $routes->get('producto/agregar', 'ProductoController::agregar');
 $routes->post('producto/agregar', 'ProductoController::agregar');
+$routes->get('tienda/detalles/(:num)', 'Tienda::detalles/$1');
+
 
 
 
