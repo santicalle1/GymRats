@@ -836,7 +836,7 @@
     <div class="box" id="contacto">
         <h2 style="color: black;">CONTÁCTANOS</h2>
         <div class="contacto">
-            <form action="enviar.php" method="post">
+        <form action="/contacto/enviar" method="post">
                 <input type="text" name="nombre" placeholder="Nombre" required>
                 <input type="email" name="correo" placeholder="Correo electrónico" required>
                 <textarea name="mensaje" placeholder="Mensaje" required></textarea>

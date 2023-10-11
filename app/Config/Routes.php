@@ -58,6 +58,9 @@ $routes->get('tienda/detalles/(:num)', 'Tienda::detalles/$1');
 
 
 
+$routes->get('/contacto', 'Contact::index');
+$routes->post('/contacto/enviar', 'Contact::enviar');
+
 
 // $routes->get('productos/agregar', 'Productos::agregar');
 //$routes->get('clientes', 'Clientes::listado');  // Asumiendo que tienes un método listado en un controlador de Clientes
