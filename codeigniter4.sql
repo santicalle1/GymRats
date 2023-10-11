@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-10-2023 a las 22:42:08
+-- Tiempo de generación: 11-10-2023 a las 21:28:06
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -58,7 +58,7 @@ CREATE TABLE `clientes` (
   `contrasena` varchar(255) NOT NULL,
   `usuario` varchar(20) NOT NULL,
   `direccion` varchar(255) NOT NULL,
-  `codigo_postal` int(11) NOT NULL,
+  `codigo_postal` varchar(10) NOT NULL,
   `telefono` varchar(20) NOT NULL,
   `tipo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -68,23 +68,10 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`id`, `nombre`, `email`, `contrasena`, `usuario`, `direccion`, `codigo_postal`, `telefono`, `tipo`) VALUES
-(2, 'Franco', 'Moni1@gmail.com', '$2y$10$msam2vEpjanJYuoiS1vyQOVitp/WXmurjKj47dhnFHy0VJo.yaRka', 'Franco', '333', 0, 'dd3ddeded', 0),
-(3, 'Santiago', 'Moni@gmail.com', '$2y$10$KM3r4TPHTsjP803st5VaFejNxYDttsJJ0g6DDGUkYzMPdxr69ctpK', 'Santiago', '', 0, '', 1),
-(4, 'Walter', 'jwkdqhqkdjqh@gmail.com', '$2y$10$4emkkn5MuaD3z5eJhRQ15uDV/hwUusyG7ymUN27gZfUNXqTb1I1au', 'Walter', '', 0, '', 0),
-(5, 'Santi', 'Moni@gmail.com', '$2y$10$BQgSyNbPr1iml7adA1h/AuTjsQkoQ3uGqyiVUBG2afAhkQ1bsnCGq', 'Santi', '', 0, '', 0),
-(6, 'Lucas', 'Tuviejaenbolas123@gmail.com', '$2y$10$q9.11ddf62LC2ndNKT1La.9qnYOqBgw9j5RKed.s2y0TySiMiJ5LG', 'Tuviejaenbolas123', '', 0, '', 0),
-(7, 'gegeg', 'Moni@gmail.com', '$2y$10$QRGLpde1CGC6.ry/qloUt.F9IRj5s5KyebsJoYm8UKqqqdNUfUTUS', 'Lucas', '', 0, '', 0),
-(8, 'Fe', 'Moni@gmail.com', '$2y$10$5lZpxIu5H/VJwbIX1Ec.3ePxCQ1Q2o.xeEwS5uo150f97G69uEGXK', 'F', '', 0, '', 0),
-(9, 'B', 'Rodrigo@gmail.com', '$2y$10$OaOKWnBJmzdve4xFMMzna.iUqXvF83gKs/XRCDnKtNR204AjGDNOK', 'Be', '', 0, '', 0),
-(10, 'h', 'tadeoboglione@alumnos.itr3.edu.ar', '$2y$10$N7pRuJ4YTvQtSpwryYdDju8Zb5EkwfhWdliWXC7DW497zJL.k0msW', 'BETE', '', 0, '', 0),
-(11, 'sssanti', 'papa@gmail.com', '$2y$10$S5IWkDCxJtf2CMn5iabIXe2tOBfSmML3/f6FbP91DKf85wcLqJ3Cu', 'sssanti', '', 0, '', 0),
-(12, 'Tadeo', 'Rodrigo@gmail.com', '$2y$10$FwdJle94VP7shr.hbaucWu5Y16g9SZQ8unhlsKuJm7XschE3aEXRu', 'Bt', '', 0, '', 0),
-(13, 'Santi', 'saa@gmail.com', '$2y$10$I7YeV9jGn7aNT7H1d5Ov8.F/iPbZBrqkgKVPLQ8Qzm00izfkxKp1m', 'password', '', 0, '', 0),
-(14, 'Nahuel', 'Palo@gmail.com', '$2y$10$VIsdqWuszR.GGCyeoZ9G/ucgGRHhzLqWlITEH1x3xCV1vXAoGqoVe', 'Palo', '', 0, '', 0),
-(15, 'Tadeo', 'Moni@gmail.com', '$2y$10$jc/WA5t4deOblDsvI82Tr.1SoyMNXSq8jToKSPicmogxgTWwSYxzG', 'J', '', 0, '', 0),
-(16, 'Tadeo', 'Moni@gmail.com', '$2y$10$YegVLNunQchrPiLko52Dze57PcFSY4vMHXGzh5ZVHOQQxpl1tOheW', 'Lele', '', 0, '', 0),
-(17, 'Monica', 'Moni@gmail.com', '$2y$10$bUBOHwanNqqb3DGfe9js0eK75jKbJYsWS9twh//mfM980OsLzQ0Ie', 'Monica', '', 0, '', 0),
-(18, 'Tadeo', 'tadeo270148@gmail.com', '$2y$10$w7jZBAS66Xmu0yHCXCZlLun0GoETIZ4J6rW7W0C2TFV7t0uDrpr36', 'Tadeo', '', 0, '', 1);
+(3, 'Santiago', 'Moni@gmail.com', '$2y$10$KM3r4TPHTsjP803st5VaFejNxYDttsJJ0g6DDGUkYzMPdxr69ctpK', 'Santiago', '', '0', '', 1),
+(18, 'Tadeo', 'tadeo270148@gmail.com', '$2y$10$w7jZBAS66Xmu0yHCXCZlLun0GoETIZ4J6rW7W0C2TFV7t0uDrpr36', 'Tadeo', '', '0', '', 1),
+(21, 'Claudia', 'claudia@gmail.com', '$2y$10$Clxo2GQxXIu64SkKpKhyOeJtcTpjPxma9cmtisAzyN1n7HAGkNyEG', 'Claudita', 'San Miguel 835', '5850', '+54 3571 565913', 0),
+(23, 'Walter', 'Walter@gmail.com', '$2y$10$9spEWIatOl91yzkUK5B.Q.XU2ZPnY4m6IpSscOmKnyiuAom8QfZcq', 'Walter', 'Las Heras 444', '5850', '+54 3571 678321', 0);
 
 -- --------------------------------------------------------
 
@@ -152,8 +139,18 @@ CREATE TABLE `producto` (
   `id_producto` int(11) NOT NULL,
   `nombre` varchar(255) NOT NULL,
   `precio` decimal(10,2) NOT NULL,
-  `stock` int(11) NOT NULL
+  `stock` int(11) NOT NULL,
+  `imagen` varchar(255) NOT NULL,
+  `descripcion` text DEFAULT NULL,
+  `categoria` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`id_producto`, `nombre`, `precio`, `stock`, `imagen`, `descripcion`, `categoria`) VALUES
+(41, 'creatina', 20000.00, 4, 'uploads/1697052202_26d9662e8d94fdd6f0c3.png', 'efeffeffe', 'oferta');
 
 -- --------------------------------------------------------
 
@@ -313,7 +310,13 @@ ALTER TABLE `usuario_profesor`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT de la tabla `producto`
+--
+ALTER TABLE `producto`
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- Restricciones para tablas volcadas

@@ -845,8 +845,6 @@
     <?php endforeach; ?>
 </div>
 
-
-
     <footer class="pie-pagina">
       <div class="grupo-1">
         <div class="box">
