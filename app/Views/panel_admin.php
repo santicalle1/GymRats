@@ -4,6 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Administrador</title>
+    <script>
+    var inactivityTimeout; // Variable para almacenar el temporizador de inactividad
+
+    // Función para reiniciar el temporizador de inactividad
+    function resetInactivityTimeout() {
+      clearTimeout(inactivityTimeout); // Limpiamos el temporizador anterior
+      inactivityTimeout = setTimeout(logout, 180000); // 60000 ms = 1 minuto
+    }
+
+    // Función para redirigir a la página de cierre de sesión
+    function logout() {
+      window.location.href = '<?= base_url("inicio/logout"); ?>';
+    }
+
+    // Inicializa el temporizador de inactividad
+    resetInactivityTimeout();
+
+    // Agrega eventos de detección de actividad del usuario
+    document.addEventListener('mousemove', resetInactivityTimeout);
+    document.addEventListener('keydown', resetInactivityTimeout);
+  </script>
     <style>
         *{
 
@@ -229,6 +250,25 @@ opacity:1;
         <span>Agregar Productos</span>
     </a>
 </li>
+<li>
+    <a href="<?= base_url('products_view') ?>">
+        <i class="fa fa-cog"></i>
+        <span>Modificar Productos</span>
+    </a>
+</li>
+<li>
+    <a href="<?= base_url('agregar_profesor') ?>">
+        <i class="fa fa-cog"></i>
+        <span>Agregar Profesores</span>
+    </a>
+</li>
+<li>
+    <a href="<?= base_url('modificar_profesor') ?>">
+        <i class="fa fa-cog"></i>
+        <span>Modificar Profesores</span>
+    </a>
+</li>
+
 
 
 <!----------table---->

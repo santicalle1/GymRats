@@ -37,7 +37,7 @@ $routes->post('register/do_register', 'Register::do_register'); // Ruta para el 
 $routes->get('terminos', 'Terminos::index');
 $routes->get('politica', 'Politica::index');
 $routes->get('tienda', 'Tienda::index');
-$routes->get('profesores', 'Profesores::index');
+$routes->get('profesores', 'ProfesoresController::index');
 $routes->get('redireccion/tienda', 'Redireccion::tienda');
 $routes->get('redireccion/profesores', 'Redireccion::profesores');
 $routes->get('redireccion/rutinas', 'Redireccion::rutinas');
@@ -55,11 +55,23 @@ $routes->get('agregar_productos', 'ProductoController::agregar');
 $routes->get('producto/agregar', 'ProductoController::agregar');
 $routes->post('producto/agregar', 'ProductoController::agregar');
 $routes->get('tienda/detalles/(:num)', 'Tienda::detalles/$1');
-
-
-
+$routes->get('tienda', 'Tienda::oferta');
+$routes->get('suplementos', 'Tienda::suplementos');
+$routes->get('objetosgym', 'Tienda::objetosgym');
+$routes->get('ropa', 'Tienda::merchandising');
 $routes->get('/contacto', 'Contact::index');
 $routes->post('/contacto/enviar', 'Contact::enviar');
+$routes->get('products_view', 'Productos::index'); // Muestra la lista de productos.
+$routes->get('products/edit/(:num)', 'Productos::edit/$1'); // Muestra el formulario de edición para un producto en particular.
+$routes->post('products/delete/(:num)', 'Productos::delete/$1'); // Elimina un producto específico.
+$routes->get('/agregar_profesor', 'ProfesoresController::addForm'); // Muestra el formulario para agregar profesor
+$routes->post('/profesores/create', 'ProfesoresController::create'); // Procesa el formulario y crea un profesor
+$routes->get('modificar_profesor', 'Profesores::modificar_profesor');
+$routes->post('update_profesor/(:num)', 'Profesores::update_profesor/$1');
+$routes->get('delete_profesor/(:num)', 'Profesores::delete_profesor/$1');
+$routes->get('editar_profesor/(:num)', 'Profesores::edit/$1');
+$routes->match(['get', 'post'], 'actualizar_profesor/(:num)', 'Profesores::update_profesor/$1');
+
 
 
 // $routes->get('productos/agregar', 'Productos::agregar');

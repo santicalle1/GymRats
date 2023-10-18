@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<body>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,6 +28,7 @@
   </script>
     <style>
         /* Estilo general */
+/* Estilo general */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f4f4f4;
@@ -35,12 +37,17 @@ body {
 }
 
 .container {
-    width: 60%;
+    width: 90%;  /* Aumentar el ancho un poco */
+    max-width: 1200px;  /* Establecer un ancho máximo */
     margin: 2em auto;
     background-color: #fff;
     padding: 2em;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;  /* Permite desplazarse horizontalmente si es necesario */
 }
+
+/*... restante del CSS ...*/
+
 
 table {
     width: 100%;
@@ -99,61 +106,68 @@ a.delete, button.delete {
 a.delete:hover, button.delete:hover {
     background-color: #f21c0d;  /* Un rojo más oscuro cuando pasas el cursor */
 }
+.back-button {
+            background-color: red; /* Cambiado a color rojo */
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: white; /* Cambiado el color del texto a blanco para mejor contraste con el rojo */
+            display: inline-block;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
 
+        .back-button:hover {
+            background-color: darkred; /* Oscurecido el rojo para el hover */
+        }
     </style>
 </head>
-<body>
+
+<div class="container"> <!-- Agregado para aplicar estilos del container -->
 <table>
     <tr>
-        <th>ID</th>
+        <th>ID Producto</th>
         <th>Nombre</th>
-        <th>Email</th>
-        <th>Usuario</th>
-        <th>Direccion</th>
-        <th>Codigo Postal</th>
-        <th>Telefono</th>
-        <th>Tipo de Usuario</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+        <th>Stock</th>
+        <th>Descuento</th>
+        <th>Imagen</th>
         <th>Acciones</th>
     </tr>
-</div>
-    <?php if (isset($items) && is_array($items) && count($items) > 0): ?>
-        <?php foreach ($items as $item): ?>
+    <a href="panel_admin" class="back-button">&larr; Volver</a>
+    <?php if (isset($products) && is_array($products) && count($products) > 0): ?>
+        <?php foreach ($products as $product): ?>
             <tr>
-                <td><?= esc($item['id']); ?></td>
-                <td><?= esc($item['nombre']); ?></td>
-                <td><?= esc($item['email']); ?></td>
-                <td  style="visibility:collapse; display:none;"><?= esc($item['contrasena']); ?></td>
-                <td><?= esc($item['usuario']); ?></td>
-                <td><?= esc($item['direccion']); ?></td>
-                <td><?= esc($item['codigo_postal']); ?></td>
-                <td><?= esc($item['telefono']); ?></td>
-                <td><?= esc($item['tipo']); ?></td>
+                <td><?= esc($product['id_producto']); ?></td>
+                <td><?= esc($product['nombre']); ?></td>
+                <td><?= esc($product['descripcion']); ?></td>
+                <td><?= esc($product['precio']); ?></td>
+                <td><?= esc($product['stock']); ?></td>
+                <td><?= esc($product['descuento']); ?>%</td>
+                <td><img src="<?= esc($product['imagen']); ?>" alt="<?= esc($product['nombre']); ?>" width="50"></td> <!-- Asegúrate de tener una columna imagen_url o similar en tu BD -->
                 <td>
-
-    <a href="<?= base_url("items_edit" . esc($item['id'])); ?>" class="edit">Editar</a>
-    <form method="post" action="<?= base_url('items/delete/' . esc($item['id'])); ?>" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este usuario?');">
-    <button type="submit" class="delete">Eliminar</button>
-</form>
-
-<script>
-    function confirmDelete(deleteUrl) {
-        if(confirm("¿Estás seguro de que deseas eliminar este usuario?")) {
-            window.location.href = deleteUrl;
-        }
-    }
-</script>
-</td>
-
+                <a href="<?= base_url("products/edit/" . esc($product['id_producto'])); ?>" class="edit">Editar</a>
+                    <form method="post" action="<?= base_url('products/delete/' . esc($product['id_producto'])); ?>" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este producto?');">
+                        <button type="submit" class="delete">Eliminar</button>
+                    </form>
+                </td>
             </tr>
         <?php endforeach; ?>
     <?php else: ?>
         <tr>
-            <td colspan="10">No hay mas Usuarios.</td>
+            <td colspan="7">No hay productos disponibles.</td>
         </tr>
     <?php endif; ?>
 </table>
+</div> <!-- Cierre del div con clase container -->
+<script>
+    function confirmDelete(deleteUrl) {
+        if(confirm("¿Estás seguro de que deseas eliminar este producto?")) {
+            window.location.href = deleteUrl;
+        }
+    }
+</script>
 </body>
 </html>
-
-
 

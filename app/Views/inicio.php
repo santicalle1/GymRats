@@ -688,6 +688,38 @@
 .bienvenida {
     background-color: #ff9f68;
 }
+.profesores-container {
+    text-align: center;
+}
+
+.profesores-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Agrega espacio entre los profesores */
+}
+
+.profesor img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profesor {
+    display: flex;
+    flex-direction: column; /* Esto hace que la imagen y el nombre del profesor se alineen verticalmente */
+    align-items: center; /* Centra los elementos horizontalmente */
+}
+
+.profesores-info {
+    margin-top: 20px; /* Añade un espacio entre los profesores y el encabezado/botón */
+}
+
+.btn-comprar {
+    display: inline-block;
+    margin-top: 10px; /* Espacio entre el párrafo y el botón */
+}
+
 
   </style>
 </head>
@@ -772,6 +804,34 @@
     </div>
   </div>
   </a></p>
+  <div class="profesores-container">
+    <div class="profesores-list">
+        <div class="profesor">
+            <img src="img/p1.jpg" alt="Profesor 1">
+            <p>Rodrigo Mendoza</p>
+        </div>
+        <div class="profesor">
+            <img src="img/p2.jpg" alt="Profesor 2">
+            <p>Valeria González</p>
+        </div>
+        <div class="profesor">
+            <img src="img/p3.jpg" alt="Profesor 3">
+            <p>Martín Vidal</p>
+        </div>
+        <div class="profesor">
+            <img src="img/p4.avif" alt="Profesor 4">
+            <p>Alejandro Sánchez</p>
+        </div>
+    </div>
+    <div class="profesores-info">
+        <h1><b>Nuestros Profesores</b></h1>
+        <p>Conoce a nuestros entrenadores profesionales.</p>
+        <a href="<?= base_url("/Redireccion/profesores"); ?>" class="btn-comprar" id="btn-conoce">Conócelos</a>
+    </div>
+</div>
+
+
+
   </div>
   </div>
   </div>

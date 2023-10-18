@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GymRats</title>
   <script>
-    
     var inactivityTimeout; // Variable para almacenar el temporizador de inactividad
 
     // Función para reiniciar el temporizador de inactividad
@@ -765,14 +764,6 @@
 }
 
 
-.red-text {
-    color: red;
-    text-decoration: line-through; /* Tacha el texto */
-}
-
-.green-text {
-    color: green;
-}
 
 
 </style>
@@ -835,30 +826,23 @@
   </div>
   </div>
 <!-- Tarjeta de producto -->
-<CENTER><H1>PRODUCTOS EN OFERTA</H1></CENTER>
 <div class="contenedor-productos">
-<?php foreach ($productos as $producto): ?>
-    <div class="card01">
-        <img src="<?= base_url($producto['imagen']) ?>" alt="Imagen del Producto">
-        <div class="content02">
-            <h2 class="title03"><?= esc($producto['nombre']) ?></h2>
-            <p class="description04"><?= esc($producto['descripcion']) ?></p>
-            <p class="title03">Stock: <?= esc($producto['stock']) ?></p>
-            <div class="price-container">
-            <?php if($producto['descuento']): ?>
-                <p class="red-text">Descuento: <?= $producto['descuento'] ?>%</p>
-                <p class="red-text">Precio Original: $<?= $producto['precio'] ?></p>
-                <p class="green-text">Precio Final: $<?= $producto['precio'] * (1 - ($producto['descuento'] / 100)) ?></p>
-            <?php else: ?>
-                <p>Precio: $<?= $producto['precio'] ?></p>
-            <?php endif; ?>
+    <?php foreach ($productos as $producto): ?>
+        <div class="card01">
+            <img src="<?= base_url($producto['imagen']) ?>" alt="Imagen del Producto">
+            <div class="content02">
+                <h2 class="title03"><?= esc($producto['nombre']) ?></h2>
+                <p class="description04"><?= esc($producto['descripcion']) ?></p>
+                <p class="title03">Stock: <?= esc($producto['stock']) ?></p>
+                <div class="price-container">
+                    <!-- Puedes agregar lógica aquí si tienes un precio original tachado, de lo contrario, solo muestra el precio. -->
+                    <p class="new-price">$<?= esc($producto['precio']) ?></p> 
+                </div>
+                <button class="btn05">Agregar al carrito</button>
             </div>
-            <button class="btn05">Agregar al carrito</button>
         </div>
-    </div>
-<?php endforeach; ?>
-
-
+    <?php endforeach; ?>
+</div>
 
     <footer class="pie-pagina">
       <div class="grupo-1">
@@ -913,3 +897,4 @@
 
 </body>
 </html>
+

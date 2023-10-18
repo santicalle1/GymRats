@@ -4,10 +4,217 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GymRatsTienda</title>
+    <title>Carrito</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-    <link rel="stylesheet" href="./css/main.css">
+    <script>
+    var inactivityTimeout; // Variable para almacenar el temporizador de inactividad
+
+    // Función para reiniciar el temporizador de inactividad
+    function resetInactivityTimeout() {
+      clearTimeout(inactivityTimeout); // Limpiamos el temporizador anterior
+      inactivityTimeout = setTimeout(logout, 180000); // 60000 ms = 1 minuto
+    }
+
+    // Función para redirigir a la página de cierre de sesión
+    function logout() {
+      window.location.href = '<?= base_url("inicio/logout"); ?>';
+    }
+
+    // Inicializa el temporizador de inactividad
+    resetInactivityTimeout();
+
+    // Agrega eventos de detección de actividad del usuario
+    document.addEventListener('mousemove', resetInactivityTimeout);
+    document.addEventListener('keydown', resetInactivityTimeout);
+  </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .header-mobile {
+            display: none; 
+            padding: 10px 20px;
+            background-color: #222;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-mobile .logo {
+            color: #1abc9c;
+            font-size: 24px;
+            text-decoration: none;
+        }
+
+        .header-mobile .open-menu {
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        aside {
+            width: 260px;
+            background-color: #333;
+            color: #eee;
+            padding: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        aside header {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+        }
+
+        aside .logo {
+            color: #1abc9c;
+            font-size: 24px;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+
+        aside nav ul {
+            list-style-type: none;
+        }
+
+        aside nav ul li {
+            margin: 10px 0;
+        }
+
+        .boton-menu {
+            text-decoration: none;
+            color: #1abc9c;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .boton-menu:hover {
+            background-color: #1abc9c;
+            color: #fff;
+        }
+
+        .boton-menu i {
+            margin-right: 8px;
+        }
+
+        aside footer {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+        }
+
+        .texto-footer {
+            font-size: 12px;
+            text-align: center;
+        }
+
+        main {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .titulo-principal {
+            text-align: center;
+            font-size: 28px;
+            color: #222;
+            margin-bottom: 20px;
+        }
+
+        .contenedor-carrito {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .carrito-vacio {
+            text-align: center;
+            font-size: 18px;
+            color: #888;
+        }
+
+        .carrito-acciones {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .carrito-acciones-vaciar {
+            background-color: #ccc;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .carrito-acciones-vaciar:hover {
+            background-color: #aaa;
+        }
+
+        .carrito-acciones-comprar {
+            background-color: #1abc9c;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .carrito-acciones-comprar:hover {
+            background-color: #149a7e;
+        }
+
+        .carrito-comprado {
+            text-align: center;
+            font-size: 18px;
+            color: #1abc9c;
+        }
+
+        /* Responsive Mobile */
+        @media screen and (max-width: 768px) {
+            .wrapper {
+                flex-direction: column;
+            }
+
+            .header-mobile {
+                display: flex;
+            }
+
+            aside {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                z-index: 999;
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+
+            body.show-menu aside {
+                transform: translateX(0);
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -19,9 +226,9 @@
             </button>
         </header>
         <aside>
-            <button class="close-menu" id="close-menu">
+            <!-- <button class="close-menu" id="close-menu">
                 <i class="bi bi-x"></i>
-            </button>
+            </button> -->
             <header>
                 <h1 class="logo">GymRats</h1>
             </header>

@@ -4,6 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Cliente</title>
+    <script>
+    var inactivityTimeout; // Variable para almacenar el temporizador de inactividad
+
+    // Función para reiniciar el temporizador de inactividad
+    function resetInactivityTimeout() {
+      clearTimeout(inactivityTimeout); // Limpiamos el temporizador anterior
+      inactivityTimeout = setTimeout(logout, 180000); // 60000 ms = 1 minuto
+    }
+
+    // Función para redirigir a la página de cierre de sesión
+    function logout() {
+      window.location.href = '<?= base_url("inicio/logout"); ?>';
+    }
+
+    // Inicializa el temporizador de inactividad
+    resetInactivityTimeout();
+
+    // Agrega eventos de detección de actividad del usuario
+    document.addEventListener('mousemove', resetInactivityTimeout);
+    document.addEventListener('keydown', resetInactivityTimeout);
+  </script>
     <style>
         body {
             font-family: 'Arial', sans-serif;
