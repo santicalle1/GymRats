@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-10-2023 a las 21:28:06
+-- Tiempo de generación: 17-10-2023 a las 02:53:11
 -- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Versión de PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -70,8 +70,8 @@ CREATE TABLE `clientes` (
 INSERT INTO `clientes` (`id`, `nombre`, `email`, `contrasena`, `usuario`, `direccion`, `codigo_postal`, `telefono`, `tipo`) VALUES
 (3, 'Santiago', 'Moni@gmail.com', '$2y$10$KM3r4TPHTsjP803st5VaFejNxYDttsJJ0g6DDGUkYzMPdxr69ctpK', 'Santiago', '', '0', '', 1),
 (18, 'Tadeo', 'tadeo270148@gmail.com', '$2y$10$w7jZBAS66Xmu0yHCXCZlLun0GoETIZ4J6rW7W0C2TFV7t0uDrpr36', 'Tadeo', '', '0', '', 1),
-(21, 'Claudia', 'claudia@gmail.com', '$2y$10$Clxo2GQxXIu64SkKpKhyOeJtcTpjPxma9cmtisAzyN1n7HAGkNyEG', 'Claudita', 'San Miguel 835', '5850', '+54 3571 565913', 0),
-(23, 'Walter', 'Walter@gmail.com', '$2y$10$9spEWIatOl91yzkUK5B.Q.XU2ZPnY4m6IpSscOmKnyiuAom8QfZcq', 'Walter', 'Las Heras 444', '5850', '+54 3571 678321', 0);
+(21, 'Claudia', 'claudia@gmail.com', '$2y$10$Clxo2GQxXIu64SkKpKhyOeJtcTpjPxma9cmtisAzyN1n7HAGkNyEG', 'Clauditaxs', 'San Miguel 835', '5850', '+54 3571 565913', 0),
+(22, 'Daniela', 'gomzdaniela.edfisica@gmail.com', '$2y$10$IMMzO3CC9lgTu9VZ4qqO8uWxKYWIoBxeutMocLqWPk9OpVx5CrHDW', 'DaniGym', 'Gral.Roca 566', '5850', '+54 3571 312601', 0);
 
 -- --------------------------------------------------------
 
@@ -142,15 +142,16 @@ CREATE TABLE `producto` (
   `stock` int(11) NOT NULL,
   `imagen` varchar(255) NOT NULL,
   `descripcion` text DEFAULT NULL,
-  `categoria` varchar(20) NOT NULL
+  `categoria` varchar(20) NOT NULL,
+  `descuento` decimal(5,2) DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `producto`
 --
 
-INSERT INTO `producto` (`id_producto`, `nombre`, `precio`, `stock`, `imagen`, `descripcion`, `categoria`) VALUES
-(41, 'creatina', 20000.00, 4, 'uploads/1697052202_26d9662e8d94fdd6f0c3.png', 'efeffeffe', 'oferta');
+INSERT INTO `producto` (`id_producto`, `nombre`, `precio`, `stock`, `imagen`, `descripcion`, `categoria`, `descuento`) VALUES
+(37, 'Claudia', 40000.00, 3, 'uploads/1697502650_6f79f2bddf5a9671ed5b.png', 'fefef', 'merchandising', 0.00);
 
 -- --------------------------------------------------------
 
@@ -167,8 +168,18 @@ CREATE TABLE `profesores` (
   `horarios` time NOT NULL,
   `telefono` varchar(20) NOT NULL,
   `mail` varchar(255) NOT NULL,
-  `salario` int(11) NOT NULL
+  `salario` int(11) NOT NULL,
+  `coste` decimal(10,2) NOT NULL,
+  `dificultad` varchar(50) NOT NULL,
+  `imagen` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `profesores`
+--
+
+INSERT INTO `profesores` (`id_profesor`, `nombre`, `especialidad`, `fecha_de_contrato`, `titulos`, `horarios`, `telefono`, `mail`, `salario`, `coste`, `dificultad`, `imagen`) VALUES
+(6, 'Tadeo', 'gggggggggg', '2023-10-16 00:00:00', 'lice', '00:00:00', '+54 3571 565913', 'tadeo270148@gmail.com', 1000, 0.55, 'ez', '');
 
 -- --------------------------------------------------------
 
@@ -210,10 +221,10 @@ CREATE TABLE `usuario_profesor` (
   `id_usuario_profesor` int(11) NOT NULL,
   `id` int(11) DEFAULT NULL,
   `id_profesor` int(11) DEFAULT NULL,
-  `nombre_rutina` varchar(30) DEFAULT NULL,
-  `duracion` time DEFAULT NULL,
-  `descripcion` varchar(100) DEFAULT NULL,
-  `dificultad` varchar(20) DEFAULT NULL
+  `nombre_rutina` varchar(255) DEFAULT NULL,
+  `duracion` varchar(255) DEFAULT NULL,
+  `descripcion` text DEFAULT NULL,
+  `dificultad` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -310,13 +321,25 @@ ALTER TABLE `usuario_profesor`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- AUTO_INCREMENT de la tabla `profesores`
+--
+ALTER TABLE `profesores`
+  MODIFY `id_profesor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario_profesor`
+--
+ALTER TABLE `usuario_profesor`
+  MODIFY `id_usuario_profesor` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas

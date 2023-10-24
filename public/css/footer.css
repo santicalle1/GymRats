@@ -1,0 +1,46 @@
+/* Estilos generales para el footer */
+.pie-pagina {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Estilos para el contenedor principal del footer */
+.grupo-1 {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Estilos para las secciones del footer */
+.box {
+    flex: 1;
+    padding: 10px;
+}
+
+/* Estilos para la imagen del logo en el footer */
+.box figure img {
+    width: 100px; /* Ajusta el tamaño de la imagen del logo */
+}
+
+/* Estilos para los títulos en el footer */
+h2 {
+    font-size: 18px;
+}
+
+/* Estilos para los iconos de redes sociales en el footer */
+.red-social a {
+    color: #fff;
+    font-size: 20px;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+/* Estilos para el copyright en el footer */
+footer small {
+    display: block;
+    margin-top: 20px;
+}

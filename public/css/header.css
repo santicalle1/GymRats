@@ -1,0 +1,113 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    padding: 20px;
+    color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.container-logo1 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.container-navbar {
+    background-color: #333;
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Alinea el menú a la izquierda */
+    align-items: center;
+
+}
+.container-login {
+    background-color: #333;
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end; /* Alinea el menú a la derecha */
+    align-items: center;
+}
+
+.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.menu a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.iniciar-button, .panel-button {
+    background-color: #7e8d7e;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.iniciar-button:hover, .panel-button:hover {
+    background-color: #5b5f5c;
+    text-decoration: none;
+}
+
+.iniciar-button:focus, .panel-button:focus {
+    outline: none;
+    text-decoration: none;
+}
+
+.iniciar-button:active, .panel-button:active {
+    background-color: #424642;
+    text-decoration: none;
+}
+
+/* Estilo para los botones que no son iniciar-button ni panel-button */
+.login-button {
+    background-color: #7e8d7e;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.login-button:hover {
+    background-color: #5b5f5c;
+    text-decoration: none;
+}
+
+.login-button:focus {
+    outline: none;
+    text-decoration: none;
+}
+
+.login-button:active {
+    background-color: #424642;
+    text-decoration: none;
+}
