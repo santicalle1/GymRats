@@ -27,6 +27,39 @@
     document.addEventListener('mousemove', resetInactivityTimeout);
     document.addEventListener('keydown', resetInactivityTimeout);
   </script>
+  <button id="scrollToTopButton" onclick="scrollToTop()">Ir Arriba</button>
+  <link rel="stylesheet" href="public/css/btnarriba.css">
+    <script>
+// Espera a que el contenido del DOM esté listo
+document.addEventListener('DOMContentLoaded', function() {
+    // Obtiene una referencia al botón "Ir Arriba"
+    var btnSubir = document.getElementById("scrollToTopButton");
+
+    // Agrega un controlador de eventos al botón
+    if (btnSubir) {
+        btnSubir.addEventListener("click", function () {
+            scrollToTop();
+        });
+    }
+
+    // Función para desplazamiento suave
+    function scrollToTop() {
+        var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+        var scrollSpeed = 10;
+
+        function smoothScroll() {
+            if (currentScroll > 0) {
+                window.scrollBy(0, -scrollSpeed);
+                currentScroll -= scrollSpeed;
+                setTimeout(smoothScroll, 10);
+            }
+        }
+
+        smoothScroll();
+    }
+});
+</script>
+
 <?php
 include(APPPATH . 'views/header.php');
 ?>
