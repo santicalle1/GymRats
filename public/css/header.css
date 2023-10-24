@@ -85,7 +85,9 @@ header {
     text-decoration: none;
 }
 
-/* Estilo para los botones que no son iniciar-button ni panel-button */
+.login-button, .iniciar-button{
+    margin-right: 200px;
+}
 .login-button {
     background-color: #7e8d7e;
     border: none;
@@ -131,3 +133,46 @@ header {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
+
+    /* Estilo del contenedor */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+
+    /* Estilo del contenido desplegable */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #1abc9c;
+        /* Fondo claro verde para el menú desplegable */
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        left: 90px;
+    }
+
+    .dropdown-content a {
+        color: #C8E6C9;
+        /* Color de texto verde oscuro para los enlaces */
+        padding: 14px 20px;
+        text-decoration: none;
+        display: block;
+
+    }
+
+    /* Muestra el menú desplegable al pasar el ratón por encima */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    /* Cambia el color de fondo del enlace al pasar el ratón por encima */
+    .dropdown-content a:hover {
+        background-color: #000080;
+        /* Color de fondo más claro al pasar el ratón por encima */
+    }
+    #login-button1 {
+        display: hide; /* Inicialmente, ocultar el botón */
+    }
