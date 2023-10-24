@@ -25,7 +25,7 @@
                 <a class="login-button" href="<?= base_url("/Redireccion/tienda"); ?>">Tienda</a>
                 <a class="login-button" href="<?= base_url("/Redireccion/rutinas"); ?>">Rutina</a>
                 <a class="login-button" href="<?= base_url("/Redireccion/profesores"); ?>">Profesores</a>
-                <a class="login-button" href="<?= base_url("#contacto"); ?>">Contactanos</a>
+                <a class="login-button" href="#contact" >Contactanos</a>
                 <a class="login-button" href="<?= base_url("/terminos"); ?>">Terminos Y Condiciones</a>
             </ul>
             <div class="container-login">

@@ -19,8 +19,7 @@
         </div>
         <div class="box">
             <h2>SOBRE NOSOTROS</h2>
-            <p>GymRats es una web apta para cualquier Fitness</p>
-            <p>En esta pagina encontraras los mejores productos relacionado con el gimnasio</p>
+            <p>En esta pagina encontraras los mejores productos relacionado al fitness</p>
         </div>
         <div class="box">
             <h2>SIGUENOS</h2>
