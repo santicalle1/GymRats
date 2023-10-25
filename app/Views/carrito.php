@@ -300,6 +300,24 @@
                 <p id="carrito-comprado" class="carrito-comprado disabled">Muchas gracias por tu compra. <i class="bi bi-emoji-laughing"></i></p>
 
             </div>
+            <table>
+    <thead>
+        <tr>
+            <th>Producto ID</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($productos as $producto): ?>
+            <tr>
+                <td><?= $producto['id_producto'] ?></td>
+                <td><?= $producto['cantidad'] ?></td>
+                <td><?= $producto['subtotal'] ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
         </main>
     </div>
     
