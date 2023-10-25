@@ -16,7 +16,19 @@ class Redireccion extends BaseController
             return redirect()->to(base_url('login'));
         }
     }
+    public function carrito()
+    {
+        $session = session();
+        $usuario = $session->get('usuario');
 
+        if ($usuario) {
+            // Si el usuario está logueado, redirigir a la vista de tienda
+            return redirect()->to(base_url('carrito'));
+        } else {
+            // Si no está logueado, redirigir a la página de inicio de sesión
+            return redirect()->to(base_url('login'));
+        }
+    }
     public function rutinas()
     {
         $session = session();
