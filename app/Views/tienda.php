@@ -134,7 +134,8 @@
                 <p>Precio: $<?= $producto['precio'] ?></p>
             <?php endif; ?>
             </div>
-            <button class="btn05">Agregar al carrito</button>
+            <a href="<?= base_url('/agregarAlCarrito/' . $producto['id_producto']) ?>" class="btn05">Agregar al carrito</a>
+
         </div>
     </div>
 <?php endforeach; ?>

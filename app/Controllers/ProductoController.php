@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\DetalleCompraModel;
 use App\Models\ProductoModel;
 
 class ProductoController extends BaseController
@@ -55,9 +56,26 @@ class ProductoController extends BaseController
         return view('agregar_productos');
     }
 
-    // ... Resto de tu código ...
+public function agregarAlCarrito($id_producto) {
+    $modelProductos = new ProductoModel();
+    $producto = $modelProductos->find($id_producto);
+    
+    // Aquí añadirías lógica para obtener el ID del usuario que está comprando (si estás manejando sesiones)
+    $idUsuario = $_SESSION['id']; // Ejemplo
+    
+    $detalle = [
+        'id_producto' => $id_producto,
+        'id' => $idUsuario,
+        'cantidad' => 1, // Puedes cambiar esto si permites que se añada más de uno
+        'subtotal' => $producto['precio'] * (1 - ($producto['descuento'] / 100))
+    ];
+    
+    $modelDetalleCompra = new DetalleCompraModel();
+    $modelDetalleCompra->insert($detalle);
+    
+    return redirect()->to(base_url('carrito'));
+}
 
-    // Métodos para manejar las vistas específicas de cada categoría:
 
    
 }
