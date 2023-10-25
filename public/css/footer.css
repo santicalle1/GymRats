@@ -19,12 +19,12 @@
 .box {
     flex: 1;
     padding: 10px;
+    text-align: center; /* Alinea el contenido al centro */
 }
 
 /* Estilos para la imagen del logo en el footer */
 .box figure img {
     width: 100px;
-    /* Ajusta el tamaño de la imagen del logo */
 }
 
 /* Estilos para los títulos en el footer */
@@ -46,9 +46,9 @@ footer small {
     margin-top: 20px;
 }
 
+/* Estilos para botones */
 .button-container {
     text-align: center;
-    /* Alinea el contenido en el centro horizontal */
 }
 
 .login-buton1 {
@@ -64,21 +64,15 @@ footer small {
 
 .login-buton1:hover {
     background-color: #5b5f5c;
-    text-decoration: none;
 }
 
-.login-buton1:focus {
+.login-buton1:focus,
+.login-buton1:active {
     outline: none;
     text-decoration: none;
 }
 
-.login-buton1:active {
-    background-color: #424642;
-    text-decoration: none;
-}
-
 /* Estilos para el formulario */
-/* Ajusta el ancho del contenedor del formulario */
 .form-container {
     display: flex;
     justify-content: center;
@@ -86,11 +80,8 @@ footer small {
     height: 100vh;
     background-color: #333;
     width: 100%;
-    /* Puedes ajustar este valor según tus necesidades */
     margin: 0 auto;
-    /* Centra el formulario horizontalmente */
 }
-
 
 form {
     background-color: #fff;
@@ -148,5 +139,4 @@ label {
 
 #scrollToTopButton:hover {
     background-color: #555;
-    /* Cambia el color de fondo al pasar el cursor sobre el botón */
 }

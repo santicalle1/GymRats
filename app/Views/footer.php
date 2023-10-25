@@ -33,7 +33,7 @@
         </div>
     </div>
     <div class="form-container">
-        <form id="contact" method="post" action="send_form.php">
+    <form id="contact-form" method="post" action="send_form.php">
             <label for="email">Email</label>
             <input type="text" name="email" class="input-field">
             
