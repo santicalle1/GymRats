@@ -27,8 +27,9 @@
             </div>
             <a class="login-button" href="<?= base_url("./Redireccion/carrito"); ?>">Carrito</a>
             <a class="login-button" href="<?= base_url("./Redireccion/rutinas"); ?>">Rutinas</a>
+            <a class="login-button" href="<?= base_url("./Redireccion/rutinas"); ?>">contacto</a>
             
-            <button id="scrollToBottomButton" style="display: none;" class="scroll-button">Contacto</button>
+            
 
             <?php
             $session = session();

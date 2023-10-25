@@ -121,9 +121,6 @@ include(APPPATH . 'views/header.php');
     <?php
       include(APPPATH . 'views/footer.php');
     ?>
-    <?php
-      include(APPPATH . 'views/contact.php');
-    ?>
     </footer>
     <script src="https://kit.fontawesome.com/81581fb069.js" crossorigin="anonymous">
       // Agrega un evento de clic al botón Comprar Ahora
