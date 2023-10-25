@@ -27,7 +27,7 @@
             </div>
             <a class="login-button" href="<?= base_url("./Redireccion/carrito"); ?>">Carrito</a>
             <a class="login-button" href="<?= base_url("./Redireccion/rutinas"); ?>">Rutinas</a>
-            <a class="login-button" href="<?= base_url("./Redireccion/rutinas"); ?>">contacto</a>
+            <a class="login-button" href="#contact-form">Contacto</a>
             
             
 
