@@ -17,7 +17,6 @@
         <ul class="menu">
             <a class="login-button" href="<?= base_url("./inicio"); ?>">Inicio</a>
             <a class="login-button" href="<?= base_url("./Redireccion/tienda"); ?>" id="tiendabutton">Tienda</a>
-            <a class="login-button" href="<?= base_url("./Redireccion/rutinas"); ?>">Rutinas</a>
             <div class="dropdown">
                 <a class="login-button dropdown-button" href="javascript:void(0)" id="productosButton">Categorias</a>
                 <div class="dropdown-content" id="dropdown1">
@@ -27,8 +26,10 @@
                 </div>
             </div>
             <a class="login-button" href="<?= base_url("./Redireccion/carrito"); ?>">Carrito</a>
-            <a class="login-button" href="<?= base_url("/terminos"); ?>">Terminos Y Condiciones</a>
+            <a class="login-button" href="<?= base_url("./Redireccion/rutinas"); ?>">Rutinas</a>
             
+            <button id="scrollToBottomButton" style="display: none;" class="scroll-button">Contacto</button>
+
             <?php
             $session = session();
             $usuario = $session->get('usuario');
@@ -36,7 +37,7 @@
             <?php if (!$usuario) : ?>
                 <a class="iniciar-button" href="<?= base_url("/login"); ?>">Iniciar Sesión</a>
             <?php else: ?>
-                <a class="panel-button" href="<?= base_url("/panel"); ?>">Mi Cuenta</a>
+                <a class="panel-button" href="<?= base_url("Redireccion/panel"); ?>">Mi Cuenta</a>
             <?php endif; ?>
             
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

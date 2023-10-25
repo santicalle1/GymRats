@@ -31,6 +31,7 @@
             </div>
         </div>
     </div>         
+    <a class="login-buton1" href="<?= base_url("/terminos"); ?>">Terminos Y Condiciones</a>
     <small>&copy; 2023 <b>GymRats</b> - Todos los Derechos Reservados.</small>
     </div>
     </footer>

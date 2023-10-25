@@ -44,3 +44,33 @@ footer small {
     display: block;
     margin-top: 20px;
 }
+.login-buton1{
+    margin-right: 200px;
+}
+
+.login-buton1 {
+    background-color: #7e8d7e;
+    border: none;
+    align-items: center;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.login-buton1:hover {
+    background-color: #5b5f5c;
+    text-decoration: none;
+}
+
+.login-buton1:focus {
+    outline: none;
+    text-decoration: none;
+}
+
+.login-buton1:active {
+    background-color: #424642;
+    text-decoration: none;
+}
