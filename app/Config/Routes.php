@@ -71,7 +71,10 @@ $routes->post('update_profesor/(:num)', 'Profesores::update_profesor/$1');
 $routes->get('delete_profesor/(:num)', 'Profesores::delete_profesor/$1');
 $routes->get('editar_profesor/(:num)', 'Profesores::edit/$1');
 $routes->match(['get', 'post'], 'actualizar_profesor/(:num)', 'Profesores::update_profesor/$1');
-$routes->get('/carrito/(:num)', 'ProductoController::agregarAlCarrito/$1');
+
+$routes->get('/agregarAlCarrito/(:num)', 'ProductoController::agregarAlCarrito/$1');
+$routes->get('/verCarrito', 'ProductoController::verCarrito');
+
 
 
 

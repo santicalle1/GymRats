@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\CompraModel;
 use App\Models\DetalleCompraModel;
 use App\Models\ProductoModel;
 
@@ -56,26 +57,83 @@ class ProductoController extends BaseController
         return view('agregar_productos');
     }
 
-public function agregarAlCarrito($id_producto) {
-    $modelProductos = new ProductoModel();
-    $producto = $modelProductos->find($id_producto);
-    
-    // Aquí añadirías lógica para obtener el ID del usuario que está comprando (si estás manejando sesiones)
-    $idUsuario = $_SESSION['id']; // Ejemplo
-    
-    $detalle = [
-        'id_producto' => $id_producto,
-        'id' => $idUsuario,
-        'cantidad' => 1, // Puedes cambiar esto si permites que se añada más de uno
-        'subtotal' => $producto['precio'] * (1 - ($producto['descuento'] / 100))
-    ];
-    
-    $modelDetalleCompra = new DetalleCompraModel();
-    $modelDetalleCompra->insert($detalle);
-    
-    return redirect()->to(base_url('carrito'));
+    public function agregarAlCarrito($id_producto) {
+        $modelProductos = new ProductoModel();
+        $producto = $modelProductos->find($id_producto);
+
+if (!$producto) {
+    // Producto no encontrado
+    return redirect()->back()->with('error', 'Producto no encontrado');
 }
 
+$session = \Config\Services::session();
+
+if ($session->has('id')) {
+    $idUsuario = $session->get('id');
+} else {
+    // Maneja la situación en que el ID del usuario no está definido
+    // Por ejemplo, redirige al usuario a la página de inicio de sesión
+    return redirect()->to(base_url('login'));
+}
+
+$detalleCompraModel = new DetalleCompraModel();
+
+$id_compra = 1;  // Valor temporal
+$id_metodo_pago = 1;  // Valor temporal
+$cantidad = 1;  
+$subtotal = $producto['precio'];  
+
+$data = [
+    'id_producto' => $id_producto,
+    'id_compra' => $id_compra,
+    'id' => $idUsuario,
+    'id_metodo_pago' => $id_metodo_pago,
+    'cantidad' => $cantidad,
+    'subtotal' => $subtotal
+];
+$detalleCompraModel->insert($data);
+
+
+        
+    
+        return redirect()->to(base_url('verCarrito'));
+    }
+    
+    public function verCarrito() {
+        $modelDetalleCompra = new DetalleCompraModel();
+        $productosCarrito = $modelDetalleCompra->where('id', $_SESSION['id'])->findAll();
+    
+        echo view('carrito', ['productos' => $productosCarrito]);
+    }
+    
+    public function realizarCompra() {
+        $session = \Config\Services::session();
+    
+        if (!$session->has('id')) {
+            // Si el usuario no está registrado, redirígelo a la página de inicio de sesión
+            return redirect()->to(base_url('login'));
+        }
+    
+        $idUsuario = $session->get('id');
+        
+        // Aquí puedes agregar lógica para calcular el total, por ejemplo, sumar todos los subtotales en el carrito.
+        $total = 1;
+    
+        $compraModel = new CompraModel();
+        $compraData = [
+            'fecha' => date("Y-m-d H:i:s"),
+            'total' => $total,
+            'metodo_pago' => 'Ejemplo', // Ajusta esto según tu necesidad
+            'id' => $idUsuario,
+            'estado' => 1 // Ejemplo de estado
+        ];
+    
+        $id_compra = $compraModel->insert($compraData);
+    
+        // Aquí podrías redirigir al usuario a una página de confirmación, o cualquier otro flujo que desees.
+        return redirect()->to(base_url('confirmacionCompra'));
+    }
+    
 
    
 }

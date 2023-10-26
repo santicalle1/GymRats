@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-10-2023 a las 02:53:11
+-- Tiempo de generación: 25-10-2023 a las 22:21:12
 -- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.0.28
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -71,7 +71,8 @@ INSERT INTO `clientes` (`id`, `nombre`, `email`, `contrasena`, `usuario`, `direc
 (3, 'Santiago', 'Moni@gmail.com', '$2y$10$KM3r4TPHTsjP803st5VaFejNxYDttsJJ0g6DDGUkYzMPdxr69ctpK', 'Santiago', '', '0', '', 1),
 (18, 'Tadeo', 'tadeo270148@gmail.com', '$2y$10$w7jZBAS66Xmu0yHCXCZlLun0GoETIZ4J6rW7W0C2TFV7t0uDrpr36', 'Tadeo', '', '0', '', 1),
 (21, 'Claudia', 'claudia@gmail.com', '$2y$10$Clxo2GQxXIu64SkKpKhyOeJtcTpjPxma9cmtisAzyN1n7HAGkNyEG', 'Clauditaxs', 'San Miguel 835', '5850', '+54 3571 565913', 0),
-(22, 'Daniela', 'gomzdaniela.edfisica@gmail.com', '$2y$10$IMMzO3CC9lgTu9VZ4qqO8uWxKYWIoBxeutMocLqWPk9OpVx5CrHDW', 'DaniGym', 'Gral.Roca 566', '5850', '+54 3571 312601', 0);
+(22, 'Daniela', 'gomzdaniela.edfisica@gmail.com', '$2y$10$IMMzO3CC9lgTu9VZ4qqO8uWxKYWIoBxeutMocLqWPk9OpVx5CrHDW', 'DaniGym', 'Gral.Roca 566', '5850', '+54 3571 312601', 0),
+(23, 'Rodrigo', 'rodolfito@alumnos.itr3.edu.ar', '$2y$10$TkzLEh.5Q4ryg9sOzYNPbe9Kv1XoCTYAGbxuGb8H/hch5/mIvVm9e', 'rodolfito', 'Las Heras 346', '5850', '+54 3571 773450', 0);
 
 -- --------------------------------------------------------
 
@@ -83,8 +84,8 @@ CREATE TABLE `compras` (
   `id_compra` int(11) NOT NULL,
   `fecha` datetime NOT NULL,
   `total` decimal(10,2) NOT NULL,
-  `metodo_pago` varchar(255) NOT NULL,
-  `id_cliente` int(11) NOT NULL,
+  `metodo_pago` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `estado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -96,12 +97,12 @@ CREATE TABLE `compras` (
 
 CREATE TABLE `detalledecompra` (
   `id_detalle` int(11) NOT NULL,
-  `id_producto` int(11) DEFAULT NULL,
-  `id_compra` int(11) DEFAULT NULL,
-  `id` int(11) DEFAULT NULL,
-  `id_metodo_pago` int(11) DEFAULT NULL,
-  `cantidad` int(11) DEFAULT NULL,
-  `subtotal` decimal(10,2) DEFAULT NULL
+  `id_producto` int(11) NOT NULL,
+  `id_compra` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
+  `id_metodo_pago` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `subtotal` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -151,7 +152,9 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`id_producto`, `nombre`, `precio`, `stock`, `imagen`, `descripcion`, `categoria`, `descuento`) VALUES
-(37, 'Claudia', 40000.00, 3, 'uploads/1697502650_6f79f2bddf5a9671ed5b.png', 'fefef', 'merchandising', 0.00);
+(37, 'Creatina', 40000.00, 3, 'uploads/1697502650_6f79f2bddf5a9671ed5b.png', 'fefefeeeeeeeeeeeeeeeeeee', 'merchandising', 0.00),
+(38, ' 2 Mancuernas 5kg', 6300.00, 4, 'uploads/1697571613_59891424ab9b2b38dbb9.jpg', 'es para flacos', 'oferta', 10.00),
+(39, 'yyyyyyyyyyyyyyyyyyyyyyyy', 23232.00, 2, 'uploads/1697574628_b5659a3d3aac20376649.png', 'hhhhhhhhhhhhhhhhhhhhhhhhh', 'oferta', 0.00);
 
 -- --------------------------------------------------------
 
@@ -179,7 +182,7 @@ CREATE TABLE `profesores` (
 --
 
 INSERT INTO `profesores` (`id_profesor`, `nombre`, `especialidad`, `fecha_de_contrato`, `titulos`, `horarios`, `telefono`, `mail`, `salario`, `coste`, `dificultad`, `imagen`) VALUES
-(6, 'Tadeo', 'gggggggggg', '2023-10-16 00:00:00', 'lice', '00:00:00', '+54 3571 565913', 'tadeo270148@gmail.com', 1000, 0.55, 'ez', '');
+(6, 'Tadeo', 'gggggggggg', '2023-10-06 00:00:00', 'licenciado en palas', '00:00:00', '+54 3571 565913', 'tadeo270148@gmail.com', 1000, 0.55, 'ez', '');
 
 -- --------------------------------------------------------
 
@@ -254,7 +257,9 @@ ALTER TABLE `clientes`
 -- Indices de la tabla `compras`
 --
 ALTER TABLE `compras`
-  ADD PRIMARY KEY (`id_compra`);
+  ADD PRIMARY KEY (`id_compra`),
+  ADD KEY `id` (`id`),
+  ADD KEY `metodo_pago` (`metodo_pago`);
 
 --
 -- Indices de la tabla `detalledecompra`
@@ -321,19 +326,31 @@ ALTER TABLE `usuario_profesor`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT de la tabla `compras`
+--
+ALTER TABLE `compras`
+  MODIFY `id_compra` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `detalledecompra`
+--
+ALTER TABLE `detalledecompra`
+  MODIFY `id_detalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de la tabla `profesores`
 --
 ALTER TABLE `profesores`
-  MODIFY `id_profesor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_profesor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario_profesor`
@@ -352,13 +369,20 @@ ALTER TABLE `ciudad`
   ADD CONSTRAINT `ciudad_ibfk_1` FOREIGN KEY (`id_provincia`) REFERENCES `provincia` (`id_provincia`);
 
 --
+-- Filtros para la tabla `compras`
+--
+ALTER TABLE `compras`
+  ADD CONSTRAINT `compras_ibfk_1` FOREIGN KEY (`id`) REFERENCES `clientes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `compras_ibfk_2` FOREIGN KEY (`metodo_pago`) REFERENCES `metodo_pago` (`id_metodo_pago`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `detalledecompra`
 --
 ALTER TABLE `detalledecompra`
-  ADD CONSTRAINT `detalledecompra_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`),
-  ADD CONSTRAINT `detalledecompra_ibfk_2` FOREIGN KEY (`id_compra`) REFERENCES `compras` (`id_compra`),
-  ADD CONSTRAINT `detalledecompra_ibfk_3` FOREIGN KEY (`id`) REFERENCES `clientes` (`id`),
-  ADD CONSTRAINT `detalledecompra_ibfk_4` FOREIGN KEY (`id_metodo_pago`) REFERENCES `metodo_pago` (`id_metodo_pago`);
+  ADD CONSTRAINT `detalledecompra_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `detalledecompra_ibfk_2` FOREIGN KEY (`id_compra`) REFERENCES `compras` (`id_compra`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `detalledecompra_ibfk_3` FOREIGN KEY (`id`) REFERENCES `clientes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `detalledecompra_ibfk_4` FOREIGN KEY (`id_metodo_pago`) REFERENCES `metodo_pago` (`id_metodo_pago`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `direccion`
