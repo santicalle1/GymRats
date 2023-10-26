@@ -72,71 +72,73 @@ footer small {
     text-decoration: none;
 }
 
-/* Estilos para el formulario */
-.form-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #333;
-    width: 100%;
-    margin: 0 auto;
-}
+    /* Estilos para el formulario */
+    .form-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #333;
+        width: 100%;
+        margin: 0 auto;
+    }
 
-form {
-    background-color: #fff;
-    border-radius: 4px;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+    form {
+        display: flex;
+        flex-direction: column; /* Apila los elementos verticalmente */
+        align-items: center; /* Centra horizontalmente */
+        background-color: #fff;
+        border-radius: 4px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-/* Estilos para etiquetas y campos de entrada */
-label {
-    display: block;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 10px;
-}
+    /* Estilos para etiquetas y campos de entrada */
+    label {
+        display: block;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 10px;
+    }
 
-.input-field {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    color: #333;
-    resize: none;
-}
+    .input-field {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        color: #333;
+    }
 
-/* Estilos para el botón de envío */
-.submit-button {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 10px;
-}
+    /* Estilos para el botón de envío */
+    .submit-button {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
 
-.submit-button:hover {
-    background-color: #555;
-}
+    .submit-button:hover {
+        background-color: #555;
+    }
 
-/* Estilos para el botón "Ir Arriba" */
-#scrollToTopButton {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #000;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
+    /* Estilos para el botón "Ir Arriba" */
+    #scrollToTopButton {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #000;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
 
-#scrollToTopButton:hover {
-    background-color: #555;
-}
+    #scrollToTopButton:hover {
+        background-color: #555;
+    }

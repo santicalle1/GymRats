@@ -32,6 +32,7 @@
             </div>
         </div>
     </div>
+    <!-- conteiner contact form -->
     <div class="form-container">
     <form id="contact-form" method="post" action="send_form.php">
             <label for="email">Email</label>
