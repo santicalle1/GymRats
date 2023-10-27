@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GymRats</title>
+  <link rel="stylesheet" type="text/css" href="<?= base_url('css/body.css'); ?>">
   <script>
     var inactivityTimeout; // Variable para almacenar el temporizador de inactividad
 
@@ -32,16 +33,11 @@ include(APPPATH . 'views/header.php');
 ?>
 
 </head>
-
 <body>
-<link rel="stylesheet" href="css/body.css">
 <?php
         $session = session();
         $usuario = $session->get('usuario');
         ?>
-      </div>
-    </div>
-    </div>
   <div class="dj-banner">
     <div class="dj-bg">
       <img src="img/creatina.png" alt="" height="400px">
@@ -52,7 +48,6 @@ include(APPPATH . 'views/header.php');
       </div>
     </div>
   </div>
-  </a></p>
   <div class="profesores-container">
     <div class="profesores-list">
         <div class="profesor">
@@ -72,20 +67,12 @@ include(APPPATH . 'views/header.php');
             <p>Alejandro Sánchez</p>
         </div>
     </div>
+  </div>
     <div class="profesores-info">
         <h1><b>Nuestros Profesores</b></h1>
         <p>Conoce a nuestros entrenadores profesionales.</p>
         <a href="<?= base_url("/Redireccion/profesores"); ?>" class="btn-comprar" id="btn-conoce">Conócelos</a>
     </div>
-</div>
-
-
-
-  </div>
-  </div>
-  </div>
-
-
   <main class="main-content">
     <section class="container container-features">
       <div class="card-feature">
