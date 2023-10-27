@@ -15,12 +15,6 @@
       clearTimeout(inactivityTimeout); // Limpiamos el temporizador anterior
       inactivityTimeout = setTimeout(logout, 180000); // 60000 ms = 1 minuto
     }
-
-    // Función para redirigir a la página de cierre de sesión
-    function logout() {
-      window.location.href = '<?= base_url("inicio/logout"); ?>';
-    }
-
     // Inicializa el temporizador de inactividad
     resetInactivityTimeout();
 

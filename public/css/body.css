@@ -1,199 +1,209 @@
-/* Estilos generales */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f7f7f7;
-}
+    /* Estilos generales */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f7f7f7;
+        overflow-x: hidden;
+    }
 
-/* Estilos para el header */
-.dj-banner {
-    background-image: url('img/creatina.png');
-    background-size: cover;
-    color: #fff;
-    text-align: center;
-    padding: 100px 0;
-}
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
 
-.dj-text h1 {
-    font-size: 36px;
-    font-weight: bold;
-    margin-top: 20px;
-}
+    .dj-banner {
+        margin-top: -20px;
+        /* Disminuye el margen superior */
+        margin-right: 0px;
+        position: relative;
+    }
 
-.dj-text p {
-    font-size: 16px;
-    color: #fff;
-    margin-top: 20px;
-}
+    .dj-banner .dj-bg {
+        background-image: url(/images/bg-img-banner.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        width: 100%;
+        background-color: #000;
+    }
 
-/* Estilos para la sección de profesores */
-.profesores-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px;
-    gap: 20px;
-}
+    .dj-banner .dj-bg img {
+        display: block;
+        margin: 20px auto;
+        padding: 20px 0;
+    }
 
-.profesores-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
+    .dj-banner .dj-text {
+        text-align: center;
+        padding-bottom: 20px;
+    }
 
-.profesor img {
-    max-width: 100%;
-    height: auto;
-}
+    @media screen and (min-width:768px) {
+        .dj-banner .dj-bg img {
+            margin-right: 100px;
+        }
 
-.profesor p {
-    font-size: 16px;
-    text-align: center;
-}
+        .dj-banner .dj-text {
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            transform: translate(-10%, -50%);
+            width: 50%;
+            text-align: left;
+            color: #FFFFFF;
+        }
 
-.profesores-info {
-    text-align: center;
-}
+        .dj-banner .dj-text h1 {
+            font-size: calc(2*1.5vw);
+        }
 
-.profesores-info h1 {
-    font-size: 36px;
-    font-weight: bold;
-    margin-top: 20px;
-}
+        .dj-banner .dj-text p {
+            font-size: calc(1.2*1.5vw);
+        }
+    }
 
-.profesores-info p {
-    font-size: 16px;
-    color: #777;
-    margin-top: 20px;
-}
+    .btn-comprar {
+        display: inline-block;
+        padding: 10px 0;
+        /* Añade espacio adicional arriba y abajo */
+        background-color: #ce2032;
+        border: 2px solid #ce2032;
+        border-radius: 5px;
+        color: white;
+        width: 152px;
+        text-align: center;
+        font-size: 16px;
+        line-height: 24px;
+        /* Ajusta la altura del botón */
+        text-decoration: none;
+    }
 
-/* Estilos para la sección de características */
-.container-features {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    margin-top: 40px;
-}
 
-.card-feature {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+    /* Estilos para la sección de características */
+    .container-features {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 40px;
+    }
 
-.card-feature i {
-    font-size: 48px;
-    color: #1abc9c;
-}
+    .card-feature {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-.card-feature span {
-    font-size: 20px;
-    font-weight: bold;
-    margin-top: 10px;
-}
+    .card-feature i {
+        font-size: 48px;
+        color: #1abc9c;
+    }
 
-.card-feature p {
-    font-size: 16px;
-    color: #777;
-}
+    .card-feature span {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 10px;
+    }
 
-/* Estilos para el footer */
-footer {
-    background-color: #333;
-    color: #fff;
-    padding: 40px 0;
-}
+    .card-feature p {
+        font-size: 16px;
+        color: #777;
+    }
 
-.container-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-}
+    /* Estilos para la sección de mejores categorías */
+    .top-categories {
+        margin-top: 40px;
+    }
 
-.menu-footer {
-    flex: 1;
-    margin-right: 20px;
-}
+    .container-categories {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin-top: 20px;
+    }
 
-.title-footer {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
+    .card-category {
+        background-color: #fff;
+        text-align: center;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+    }
 
-.contact-info ul {
-    list-style: none;
-    padding: 0;
-}
+    .card-category:hover {
+        transform: translateY(-5px);
+    }
 
-.contact-info ul li {
-    margin-bottom: 10px;
-}
+    .card-category p {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 10px 0;
+    }
 
-.social-icons {
-    margin-top: 20px;
-}
-
-.social-icons span {
-    font-size: 24px;
-    margin-right: 10px;
-    cursor: pointer;
-    transition: color 0.3s;
-}
-
-.social-icons span:hover {
-    color: #1abc9c;
-}
-
-.information,
-.my-account,
-.newsletter {
-    flex: 1;
-    margin-right: 20px;
-}
-
-.my-account ul {
-    list-style: none;
-    padding: 0;
-}
-
-.my-account ul li {
-    margin-bottom: 10px;
-}
-
-.content {
-    margin-top: 20px;
-}
-
-.content p {
-    font-size: 16px;
-    color: #ccc;
-}
-
-.content input[type="email"] {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    margin-top: 10px;
-}
-
-.content button {
-    background-color: #1abc9c;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-weight: bold;
-    margin-top: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.content button:hover {
-    background-color: #149a7e;
-}
+    .card-category span {
+        font-size: 18px;
+        color: #1abc9c;
+    }
+    .profesores-container {
+        text-align: center;
+    }
+    
+    .profesores-list {
+        display: flex;
+        justify-content: center;
+        gap: 20px; /* Agrega espacio entre los profesores */
+    }
+    
+    .profesor img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    
+    .profesor {
+        display: flex;
+        flex-direction: column; /* Esto hace que la imagen y el nombre del profesor se alineen verticalmente */
+        align-items: center; /* Centra los elementos horizontalmente */
+    }
+    
+    .profesores-info {
+        margin-top: 20px; /* Añade un espacio entre los profesores y el encabezado/botón */
+    }
+    
+    .btn-comprar {
+        display: inline-block;
+        margin-top: 10px; /* Espacio entre el párrafo y el botón */
+    }
+    .profesores-info {
+        text-align: center;
+        margin-top: 20px;
+    }
+    
+    .profesores-info h1 {
+        font-weight: bold;
+    }
+    
+    .profesores-info p {
+        font-size: 16px;
+        color: #333; /* Cambia el color de texto según tus preferencias */
+        margin: 10px 0;
+    }
+    
+    .profesores-info .btn-comprar {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #ce2032; /* Cambia el color de fondo según tus preferencias */
+        border: 2px solid #ce2032; /* Cambia el color del borde según tus preferencias */
+        border-radius: 5px;
+        color: white; /* Cambia el color del texto según tus preferencias */
+        font-size: 18px; /* Ajusta el tamaño de fuente según tus preferencias */
+        text-decoration: none;
+        margin-top: 20px; /* Ajusta el espacio entre el párrafo y el botón según tus preferencias */
+    }
+    

@@ -39,8 +39,8 @@
                 <a class="iniciar-button" href="<?= base_url("/login"); ?>">Iniciar Sesión</a>
             <?php else: ?>
                 <a class="panel-button" href="<?= base_url("Redireccion/panel"); ?>">Mi Cuenta</a>
+                <a class="panel-button" href="<? base_url("./inicio/logout"); ?>" >Salir</a>
             <?php endif; ?>
-            
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
             <script>
     // Obtiene el botón "Productos"
