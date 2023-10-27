@@ -1,4 +1,3 @@
-/* Tu CSS adaptado */
 body {
     margin: 0;
     padding: 0;
@@ -112,7 +111,7 @@ header {
     display: inline-block;
 }
 
-/* Estilo del contenido desplegable */
+s
 .dropdown-content {
     display: none;
     position: absolute;
@@ -130,12 +129,12 @@ header {
     display: block;
 }
 
-/* Muestra el menú desplegable al pasar el ratón por encima */
+
 .dropdown:hover .dropdown-content {
     display: block;
 }
 
-/* Cambia el color de fondo del enlace al pasar el ratón por encima */
+
 .dropdown-content a:hover {
     background-color: #333;
 }
