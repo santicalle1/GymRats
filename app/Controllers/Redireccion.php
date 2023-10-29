@@ -75,7 +75,6 @@ class Redireccion extends BaseController
             } 
             return redirect()->to(base_url('panel_cliente'));
 
-                      
         } else {
             // Si no está logueado, redirigir a la página de inicio de sesión
             return redirect()->to(base_url('login'));
