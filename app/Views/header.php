@@ -16,7 +16,7 @@
     <div class="container-navbar">
         <ul class="menu">
             <a class="login-button" href="<?= base_url("./inicio"); ?>">Inicio</a>
-            <a class="login-button" href="<?= base_url("./Redireccion/tienda"); ?>" id="tiendabutton">Tienda</a>
+            <a class="login-button" href="<?= base_url("./Redireccion/tienda?pagina_destino=tienda"); ?>" id="tiendabutton">Tienda</a>
             <div class="dropdown">
                 <a class="login-button dropdown-button" href="javascript:void(0)" id="productosButton">Categorias</a>
                 <div class="dropdown-content" id="dropdown1">
@@ -25,8 +25,8 @@
                     <a href="<?= base_url("/ropa"); ?>">Merchandising</a>
                 </div>
             </div>
-            <a class="login-button" href="<?= base_url("./Redireccion/carrito"); ?>">Carrito</a>
-            <a class="login-button" href="<?= base_url("./Redireccion/rutinas"); ?>">Rutinas</a>
+            <a class="login-button" href="<?= base_url("./Redireccion/carrito?pagina_destino=carrito"); ?>">Carrito</a>
+            <a class="login-button" href="<?= base_url("./Redireccion/rutinas?pagina_destino=rutinas"); ?>">Rutinas</a>
             <a class="login-button" href="#contact-form">Contacto</a>
             
             
@@ -39,7 +39,7 @@
                 <a class="iniciar-button" href="<?= base_url("/login"); ?>">Iniciar Sesión</a>
             <?php else: ?>
                 <a class="panel-button" href="<?= base_url("Redireccion/panel"); ?>">Mi Cuenta</a>
-                <a class="panel-button" href="<? base_url("./inicio/logout"); ?>" >Salir</a>
+                <a class="panel-button" href="<?= base_url("./inicio/logout"); ?>" >Salir</a>
             <?php endif; ?>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
             <script>
