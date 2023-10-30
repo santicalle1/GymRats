@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-10-2023 a las 22:21:12
+-- Tiempo de generación: 30-10-2023 a las 03:53:47
 -- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Versión de PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,6 +31,28 @@ CREATE TABLE `calle` (
   `id_calle` int(11) NOT NULL,
   `calle` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `carrito`
+--
+
+CREATE TABLE `carrito` (
+  `id_carrito` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
+  `id_producto` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL DEFAULT 1,
+  `fecha_agregado` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `carrito`
+--
+
+INSERT INTO `carrito` (`id_carrito`, `id`, `id_producto`, `cantidad`, `fecha_agregado`) VALUES
+(34, 23, 38, 1, '2023-10-30 00:09:35'),
+(61, 18, 37, 1, '2023-10-30 05:45:34');
 
 -- --------------------------------------------------------
 
@@ -84,7 +106,7 @@ CREATE TABLE `compras` (
   `id_compra` int(11) NOT NULL,
   `fecha` datetime NOT NULL,
   `total` decimal(10,2) NOT NULL,
-  `metodo_pago` int(11) NOT NULL,
+  `id_metodo_pago` int(11) NOT NULL,
   `id` int(11) NOT NULL,
   `estado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -100,9 +122,8 @@ CREATE TABLE `detalledecompra` (
   `id_producto` int(11) NOT NULL,
   `id_compra` int(11) NOT NULL,
   `id` int(11) NOT NULL,
-  `id_metodo_pago` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
-  `subtotal` decimal(10,2) NOT NULL
+  `precio_unitario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -241,6 +262,12 @@ ALTER TABLE `calle`
   ADD PRIMARY KEY (`id_calle`);
 
 --
+-- Indices de la tabla `carrito`
+--
+ALTER TABLE `carrito`
+  ADD PRIMARY KEY (`id_carrito`);
+
+--
 -- Indices de la tabla `ciudad`
 --
 ALTER TABLE `ciudad`
@@ -259,7 +286,7 @@ ALTER TABLE `clientes`
 ALTER TABLE `compras`
   ADD PRIMARY KEY (`id_compra`),
   ADD KEY `id` (`id`),
-  ADD KEY `metodo_pago` (`metodo_pago`);
+  ADD KEY `metodo_pago` (`id_metodo_pago`);
 
 --
 -- Indices de la tabla `detalledecompra`
@@ -267,9 +294,8 @@ ALTER TABLE `compras`
 ALTER TABLE `detalledecompra`
   ADD PRIMARY KEY (`id_detalle`),
   ADD KEY `id_producto` (`id_producto`),
-  ADD KEY `id_compra` (`id_compra`),
   ADD KEY `id` (`id`),
-  ADD KEY `id_metodo_pago` (`id_metodo_pago`);
+  ADD KEY `fk_id_compra_new` (`id_compra`);
 
 --
 -- Indices de la tabla `direccion`
@@ -323,6 +349,12 @@ ALTER TABLE `usuario_profesor`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `carrito`
+--
+ALTER TABLE `carrito`
+  MODIFY `id_carrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+
+--
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
@@ -338,7 +370,7 @@ ALTER TABLE `compras`
 -- AUTO_INCREMENT de la tabla `detalledecompra`
 --
 ALTER TABLE `detalledecompra`
-  MODIFY `id_detalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_detalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
@@ -357,47 +389,6 @@ ALTER TABLE `profesores`
 --
 ALTER TABLE `usuario_profesor`
   MODIFY `id_usuario_profesor` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `ciudad`
---
-ALTER TABLE `ciudad`
-  ADD CONSTRAINT `ciudad_ibfk_1` FOREIGN KEY (`id_provincia`) REFERENCES `provincia` (`id_provincia`);
-
---
--- Filtros para la tabla `compras`
---
-ALTER TABLE `compras`
-  ADD CONSTRAINT `compras_ibfk_1` FOREIGN KEY (`id`) REFERENCES `clientes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `compras_ibfk_2` FOREIGN KEY (`metodo_pago`) REFERENCES `metodo_pago` (`id_metodo_pago`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `detalledecompra`
---
-ALTER TABLE `detalledecompra`
-  ADD CONSTRAINT `detalledecompra_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `detalledecompra_ibfk_2` FOREIGN KEY (`id_compra`) REFERENCES `compras` (`id_compra`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `detalledecompra_ibfk_3` FOREIGN KEY (`id`) REFERENCES `clientes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `detalledecompra_ibfk_4` FOREIGN KEY (`id_metodo_pago`) REFERENCES `metodo_pago` (`id_metodo_pago`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `direccion`
---
-ALTER TABLE `direccion`
-  ADD CONSTRAINT `direccion_ibfk_1` FOREIGN KEY (`id`) REFERENCES `clientes` (`id`),
-  ADD CONSTRAINT `direccion_ibfk_2` FOREIGN KEY (`id_ciudad`) REFERENCES `ciudad` (`id_ciudad`),
-  ADD CONSTRAINT `direccion_ibfk_3` FOREIGN KEY (`id_calle`) REFERENCES `calle` (`id_calle`);
-
---
--- Filtros para la tabla `usuario_profesor`
---
-ALTER TABLE `usuario_profesor`
-  ADD CONSTRAINT `usuario_profesor_ibfk_1` FOREIGN KEY (`id`) REFERENCES `clientes` (`id`),
-  ADD CONSTRAINT `usuario_profesor_ibfk_2` FOREIGN KEY (`id_profesor`) REFERENCES `profesores` (`id_profesor`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

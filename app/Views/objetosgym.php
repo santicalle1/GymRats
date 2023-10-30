@@ -764,6 +764,44 @@
 }
 
 
+.form-agregar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.form-agregar label {
+    font-weight: bold;
+    color: black;
+}
+
+.form-agregar .input-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.form-agregar input[type="number"] {
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-agregar button {
+    background-color: #28a745; /* Color verde */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+    align-self: center;
+}
+
+.form-agregar button:hover {
+    background-color: #218838; /* Un tono de verde un poco más oscuro para el hover */
+}
 
 
 </style>
@@ -838,10 +876,24 @@
                     <!-- Puedes agregar lógica aquí si tienes un precio original tachado, de lo contrario, solo muestra el precio. -->
                     <p class="new-price">$<?= esc($producto['precio']) ?></p> 
                 </div>
-                <button class="btn05">Agregar al carrito</button>
-            </div>
+                <?php if (isset($producto['id_producto'])): ?>
+    <form action="<?= base_url('/agregarAlCarrito') ?>" method="post" class="form-agregar">
+        <input type="hidden" name="id_producto" value="<?= esc($producto['id_producto']) ?>">
+
+        <div class="input-group">
+            <label for="cantidad-<?= esc($producto['id_producto']) ?>">Cantidad:</label>
+            <input type="number" name="cantidad" id="cantidad-<?= esc($producto['id_producto']) ?>" value="1" min="1" max="<?= esc($producto['stock']) ?>">
         </div>
-    <?php endforeach; ?>
+
+        <button type="submit">
+            Agregar al Carrito
+        </button>
+    </form>
+<?php endif; ?>
+
+        </div>
+    </div>
+<?php endforeach; ?>
 </div>
 
     <footer class="pie-pagina">

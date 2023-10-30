@@ -44,7 +44,7 @@ $routes->get('redireccion/rutinas', 'Redireccion::rutinas');
 $routes->get('redireccion/panel', 'Panel::panel_admin');
 $routes->get('redireccion/panel', 'Panel::panel_cliente');
 $routes->get('inicio/logout', 'Inicio::logout');
-$routes->get('carrito', 'Carrito::index');
+$routes->get('carrito', 'CarritoController::index');
 $routes->get('panel_admin', 'Panel::panel');
 $routes->get('items_view', 'Items::index');
 $routes->get('items_edit(:num)', 'Items::edit/$1');
@@ -71,9 +71,17 @@ $routes->post('update_profesor/(:num)', 'Profesores::update_profesor/$1');
 $routes->get('delete_profesor/(:num)', 'Profesores::delete_profesor/$1');
 $routes->get('editar_profesor/(:num)', 'Profesores::edit/$1');
 $routes->match(['get', 'post'], 'actualizar_profesor/(:num)', 'Profesores::update_profesor/$1');
+$routes->get('/tienda/(:segment)', 'ProductoController::verProductos/$1'); // Vista de productos por categoría
+$routes->get('/carrito', 'ProductoController::carrito'); // Vista del carrito
+$routes->post('/agregarAlCarrito', 'CarritoController::agregarAlCarrito');  // <- Asegúrate de que esto esté así
+$routes->post('/eliminarProducto', 'CarritoController::eliminarProducto');
 
-$routes->get('/agregarAlCarrito/(:num)', 'ProductoController::agregarAlCarrito/$1');
-$routes->get('/verCarrito', 'ProductoController::verCarrito');
+$routes->post('/vaciarCarrito', 'CarritoController::vaciarCarrito');
+
+
+
+
+
 
 
 

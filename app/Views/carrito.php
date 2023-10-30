@@ -7,6 +7,8 @@
     <title>Carrito</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
+
     <script>
     var inactivityTimeout; // Variable para almacenar el temporizador de inactividad
 
@@ -27,203 +29,324 @@
     // Agrega eventos de detección de actividad del usuario
     document.addEventListener('mousemove', resetInactivityTimeout);
     document.addEventListener('keydown', resetInactivityTimeout);
+
+    // Función para quitar un producto del carrito
+function removeProductFromCart(id) {
+    // Aquí debes realizar la lógica para quitar el producto con el ID específico
+    console.log('Eliminar producto con ID: ' + id);
+    // Suponiendo que tienes una API o método para eliminar el producto
+    // fetch(`/api/removeFromCart/${id}`, { method: 'DELETE' })
+    // .then(response => response.json())
+    // .then(data => {
+    //     if(data.success) {
+    //         // Refrescar la página o actualizar la vista del carrito
+    //         location.reload();
+    //     }
+    // });
+}
+
+// Función para vaciar todo el carrito
+function clearCart() {
+    // Aquí debes realizar la lógica para vaciar todo el carrito
+    console.log('Vaciar carrito');
+    // Suponiendo que tienes una API o método para vaciar el carrito
+    // fetch(`/api/clearCart`, { method: 'DELETE' })
+    // .then(response => response.json())
+    // .then(data => {
+    //     if(data.success) {
+    //         // Refrescar la página o actualizar la vista del carrito
+    //         location.reload();
+    //     }
+    // });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const btnsRemove = document.querySelectorAll('.btn-remove');
+    for(let btn of btnsRemove) {
+        btn.addEventListener('click', function() {
+            let id = this.dataset.id;
+            removeProductFromCart(id);
+        });
+    }
+
+    // Botón para vaciar el carrito
+    document.getElementById('carrito-acciones-vaciar').addEventListener('click', function() {
+        clearCart();
+    });
+
+    // Aquí puedes agregar la lógica para el botón "Comprar ahora" y PayPal
+    // Por ejemplo, podrías utilizar la API de PayPal aquí para procesar la compra.
+});
+
+
   </script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
+  <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
 
-        .wrapper {
-            display: flex;
-            min-height: 100vh;
-        }
+    body {
+        font-family: 'Poppins', sans-serif;
+    }
 
-        .header-mobile {
-            display: none; 
-            padding: 10px 20px;
-            background-color: #222;
-            align-items: center;
-            justify-content: space-between;
-        }
+    .wrapper {
+        display: flex;
+        height: 100vh;
+    }
 
-        .header-mobile .logo {
-            color: #1abc9c;
-            font-size: 24px;
-            text-decoration: none;
-        }
+    /* Header Mobile */
+    .header-mobile {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: #333;
+        color: #f2f2f2;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        z-index: 1000;
+    }
 
-        .header-mobile .open-menu {
-            background: transparent;
-            border: none;
-            color: #fff;
-            font-size: 24px;
-            cursor: pointer;
-        }
+    .logo {
+        color: #1abc9c;
+        text-decoration: none;
+    }
 
-        aside {
-            width: 260px;
-            background-color: #333;
-            color: #eee;
-            padding: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
+    .open-menu i {
+        font-size: 24px;
+        color: #f2f2f2;
+        cursor: pointer;
+    }
 
-        aside header {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-        }
+    /* Sidebar */
+    aside {
+        width: 280px;
+        background-color: #1abc9c;
+        padding: 20px;
+        color: white;
+        position: fixed;
+        top: 60px;
+        bottom: 0;
+        overflow-y: auto;
+    }
 
-        aside .logo {
-            color: #1abc9c;
-            font-size: 24px;
-            text-decoration: none;
-            margin-left: 15px;
-        }
+    /* Main Content */
+    main {
+        flex: 1;
+        margin-left: 280px;
+        padding: 40px;
+        margin-top: 60px;
+    }
 
-        aside nav ul {
-            list-style-type: none;
-        }
+    nav ul {
+        list-style-type: none;
+    }
 
-        aside nav ul li {
-            margin: 10px 0;
-        }
+    .boton-menu {
+        color: white;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+    }
 
-        .boton-menu {
-            text-decoration: none;
-            color: #1abc9c;
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
+    .boton-menu i {
+        font-size: 24px;
+        margin-right: 10px;
+    }
 
-        .boton-menu:hover {
-            background-color: #1abc9c;
-            color: #fff;
-        }
+    .titulo-principal {
+        text-align: center;
+        font-size: 32px;
+        margin-bottom: 30px;
+        color: #333;
+    }
 
-        .boton-menu i {
-            margin-right: 8px;
-        }
+    .contenedor-carrito {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+        position: relative;
+    }
 
-        aside footer {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            right: 10px;
-        }
+    #carrito-productos {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
 
-        .texto-footer {
-            font-size: 12px;
-            text-align: center;
-        }
+    .content02 {
+        margin-top: 20px;
+    }
 
-        main {
-            flex: 1;
-            padding: 20px;
-        }
+    .title03 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
 
-        .titulo-principal {
-            text-align: center;
-            font-size: 28px;
-            color: #222;
-            margin-bottom: 20px;
-        }
+    .red-text {
+        color: #e74c3c;
+    }
 
-        .contenedor-carrito {
-            background-color: #fff;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+    .green-text {
+        color: #2ecc71;
+    }
 
-        .carrito-vacio {
-            text-align: center;
-            font-size: 18px;
-            color: #888;
+    button[type="submit"], a {
+        display: block;
+        background-color: #1abc9c;
+        color: white;
+        padding: 15px;
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+        margin-top: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button[type="submit"]:hover, a:hover {
+        background-color: #149a7e;
+    }
+
+    .card01 {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        width: calc(33.33% - 20px);
+        position: relative;
+    }
+
+    /* Botón "Quitar Producto" */
+    button[type="submit"] {
+        background-color: #f44336;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 8px 12px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #d32f2f;
+    }
+
+    .total-carrito {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        font-weight: bold;
+    }
+
+    /* Responsive Styling */
+    @media screen and (max-width: 768px) {
+        .card01 {
+            width: 100%;
         }
 
         .carrito-acciones {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
+    display: flex;
+    justify-content: space-between; /* Esto separará los dos botones */
+}
+
+.carrito-acciones form {
+    display: flex;
+    align-items: center; /* Alinea verticalmente los elementos en el centro */
+}
+
+.carrito-acciones button, .carrito-acciones a {
+    flex: 1; /* Esto hará que cada botón ocupe la misma cantidad de espacio */
+    margin: 0 5px; /* Espacio entre los botones */
+}
+
+
+
+        .card01 img {
+            max-width: 100%;
+            height: auto;
         }
+    }
 
-        .carrito-acciones-vaciar {
-            background-color: #ccc;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            padding: 8px 12px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+    /* Additional styles as suggested */
+    .texto-footer {
+        margin-top: 20px;
+        text-align: center;
+    }
 
-        .carrito-acciones-vaciar:hover {
-            background-color: #aaa;
-        }
+    aside {
+        padding-bottom: 20px;
+    }
 
-        .carrito-acciones-comprar {
-            background-color: #1abc9c;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            padding: 10px 20px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+    p {
+        margin-bottom: 20px;
+        background-color: #f2f2f2;
+        padding: 10px;
+        border-radius: 5px;
+    }
 
-        .carrito-acciones-comprar:hover {
-            background-color: #149a7e;
-        }
+    .mensaje-exito {
+        background-color: #2ecc71;
+        color: white;
+    }
 
-        .carrito-comprado {
-            text-align: center;
-            font-size: 18px;
-            color: #1abc9c;
-        }
+    .mensaje-error {
+        background-color: #e74c3c;
+        color: white;
+    }
 
-        /* Responsive Mobile */
-        @media screen and (max-width: 768px) {
-            .wrapper {
-                flex-direction: column;
-            }
+    .boton-menu:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+    /* ... (Tus otros estilos) ... */
 
-            .header-mobile {
-                display: flex;
-            }
+/* Para el botón de "Comprar Ahora" */
+a[href^="https://www.sandbox.paypal.com/checkoutnow?"] {
+    display: inline-block;
+    background-color: #1abc9c;
+    color: white;
+    padding: 8px 15px; /* Diámetro más pequeño */
+    border-radius: 4px;
+    text-decoration: none; /* Remover subrayado */
+    margin-left: 10px; /* Espaciado entre este botón y el botón "Vaciar carrito" */
+    transition: background-color 0.3s;
+}
 
-            aside {
-                position: absolute;
-                top: 0;
-                left: 0;
-                height: 100%;
-                z-index: 999;
-                transform: translateX(-100%);
-                transition: transform 0.3s;
-            }
+a[href^="https://www.sandbox.paypal.com/checkoutnow?"]:hover {
+    background-color: #149a7e;
+}
 
-            body.show-menu aside {
-                transform: translateX(0);
-            }
-        }
-    </style>
+/* Para quitar el subrayado de "Carrito" y "Seguir comprando" */
+a {
+    text-decoration: none;
+}
+
+/* Para el color del texto del footer */
+footer .texto-footer {
+    color: #1abc9c;
+}
+
+</style>
+
+
+
 </head>
 <body>
 
     <div class="wrapper">
         <header class="header-mobile">
             <h1 class="logo">GymRatsTienda</h1>
-            <button class="open-menu" id="open-menu">
-                <i class="bi bi-list"></i>
-            </button>
         </header>
         <aside>
             <!-- <button class="close-menu" id="close-menu">
@@ -248,6 +371,7 @@
             </nav>
 <!-- paypal -->
 <body>
+<!-- ... -->
 <div id="paypal-button-container">
 
 </div>
@@ -269,58 +393,83 @@
     }
 }).render('#paypal-button-container');
 </script>
-</body>
+
 <!-- paypal -->
             <footer>
                 <p class="texto-footer">© 2023 GymRats</p>
             </footer>
         </aside>
+
         <main>
+            <?php if (session()->has('mensaje')): ?>
+                <p><?= session('mensaje') ?></p>
+            <?php endif; ?>
+
             <h2 class="titulo-principal">Carrito</h2>
             <div class="contenedor-carrito">
-                <p id="carrito-vacio" class="carrito-vacio">Tu carrito está vacío. <i class="bi bi-emoji-frown"></i></p>
+    <?php if (isset($productos) && count($productos) > 0): ?>
 
-                <div id="carrito-productos" class="carrito-productos disabled">
-                    <!-- Esto se va a completar con el JS -->
-                </div>
+        <!-- Muestra los productos en el carrito -->
+        <div id="carrito-productos">
+            <?php 
+                $total = 0;  // Variable para calcular el total de la compra
 
-                <div id="carrito-acciones" class="carrito-acciones disabled">
-                    <div class="carrito-acciones-izquierda">
-                        <button id="carrito-acciones-vaciar" class="carrito-acciones-vaciar">Vaciar carrito</button>
-                    </div>
-                    <div class="carrito-acciones-derecha">
-                        <div class="carrito-acciones-total">
-                            <p>Total:</p>
-                            <p id="total">$3000</p>
+                foreach ($productos as $producto): 
+                    $cantidad = $producto['cantidad']; // Suponiendo que tienes una clave 'cantidad_elegida'
+                    $precioFinal = ($producto['descuento']) ? $producto['precio'] * (1 - ($producto['descuento'] / 100)) : $producto['precio'];
+                    $totalProducto = $cantidad * $precioFinal;
+                    $total += $totalProducto;
+            ?>
+
+<div class="card01">
+                <img src="<?= base_url($producto['imagen']) ?>" alt="Imagen del Producto" width="100">
+                <div class="content02">
+                        <h2 class="title03"><?= esc($producto['nombre']) ?></h2>
+                        <p>Cantidad: <?= esc($cantidad) ?></p>
+                        <div class="price-container">
+                            <?php if($producto['descuento']): ?>
+                                <p class="red-text">Descuento: <?= $producto['descuento'] ?>%</p>
+                                <p class="red-text">Precio Original: $<?= $producto['precio'] ?></p>
+                                <p class="green-text">Precio Final: $<?= $precioFinal ?></p>
+                            <?php else: ?>
+                                <p>Precio: $<?= $producto['precio'] ?></p>
+                            <?php endif; ?>
+                            <p>Total Producto: $<?= $totalProducto ?></p>
                         </div>
-                        <button id="carrito-acciones-comprar" class="carrito-acciones-comprar">Comprar ahora</button>
                     </div>
+
+                    <!-- Botón para eliminar producto individualmente -->
+                    <form method="POST" action="<?= base_url('/eliminarProducto') ?>" style="margin-top: 10px;">
+                        <input type="hidden" name="id_producto" value="<?= $producto['id_producto'] ?>">
+                        <button type="submit">Quitar Producto</button>
+                    </form>
                 </div>
 
-                <p id="carrito-comprado" class="carrito-comprado disabled">Muchas gracias por tu compra. <i class="bi bi-emoji-laughing"></i></p>
+            <?php endforeach; ?>
 
+            <!-- Mostrar el precio total del carrito -->
+            <div class="total-carrito">
+                <strong>Total Carrito: $<?= $total ?></strong>
             </div>
-            <table>
-    <thead>
-        <tr>
-            <th>Producto ID</th>
-            <th>Cantidad</th>
-            <th>Subtotal</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($productos as $producto): ?>
-            <tr>
-                <td><?= $producto['id_producto'] ?></td>
-                <td><?= $producto['cantidad'] ?></td>
-                <td><?= $producto['subtotal'] ?></td>
-            </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
-        </main>
+     
+        <div class="carrito-acciones">
+    <form method="POST" action="<?= base_url('/vaciarCarrito') ?>">
+        <button type="submit">Vaciar carrito</button>
+        <a href="https://www.sandbox.paypal.com/checkoutnow?sessionID=uid_5801ee0709_mja6ntk6ntc&buttonSessionID=uid_b8d1d17df9_mje6mtg6mdm&stickinessID=uid_07466efb90_mja6mzc6mzq&smokeHash=&fundingSource=paypal&buyerCountry=AR&locale.x=es_ES&commit=true&clientID=AUAdq8u-Z7OXMdzHDYgxOG6GxBpQGD8vJxHOn_GgRiTbLNZdQImfjM-TDg_iwRCLdwvRkb63dH77Cxd-&env=sandbox&sdkMeta=eyJ1cmwiOiJodHRwczovL3d3dy5wYXlwYWwuY29tL3Nkay9qcz9jbGllbnQtaWQ9QVVBZHE4dS1aN09YTWR6SERZZ3hPRzZHeEJwUUdEOHZKeEhPbl9HZ1JpVGJMTlpkUUltZmpNLVREZ19pd1JDTGR3dlJrYjYzZEg3N0N4ZC0mY3VycmVuY3k9VVNEIiwiYXR0cnMiOnsiZGF0YS11aWQiOiJ1aWRfenpyZnFrcmRqcnJibnJ5aXNlamxqZnJkY2NscHpmIn19&xcomponent=1&version=5.0.406&token=3AJ28658TK838071H">Comprar ahora</a>
+    </form>
+</div>
+
+        </div>
+    <?php else: ?>
+        <p>Tu carrito está vacío.</p>
+    <?php endif; ?>
+</div>
+    
+</main>
+
     </div>
     
+ 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./js/carrito.js"></script>
