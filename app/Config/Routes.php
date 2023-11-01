@@ -75,20 +75,15 @@ $routes->get('/tienda/(:segment)', 'ProductoController::verProductos/$1'); // Vi
 $routes->get('/carrito', 'ProductoController::carrito'); // Vista del carrito
 $routes->post('/agregarAlCarrito', 'CarritoController::agregarAlCarrito');  // <- Asegúrate de que esto esté así
 $routes->post('/eliminarProducto', 'CarritoController::eliminarProducto');
-
 $routes->post('/vaciarCarrito', 'CarritoController::vaciarCarrito');
+$routes->get('mensajes', 'Mensajes::index');
+$routes->get('mensajes/eliminar/(:num)', 'Mensajes::eliminar/$1');
 
 
 
 
 
 
-
-
-
-
-// $routes->get('productos/agregar', 'Productos::agregar');
-//$routes->get('clientes', 'Clientes::listado');  // Asumiendo que tienes un método listado en un controlador de Clientes
 
 
 

@@ -142,3 +142,13 @@ footer small {
     #scrollToTopButton:hover {
         background-color: #555;
     }
+
+    .success-message {
+        background-color: #4CAF50; /* Fondo verde */
+        color: white; /* Texto en blanco */
+        padding: 10px; /* Espaciado interior */
+        border-radius: 5px; /* Bordes redondeados */
+        margin-top: 10px; /* Espaciado superior */
+        text-align: center; /* Alineación de texto al centro */
+    }
+    

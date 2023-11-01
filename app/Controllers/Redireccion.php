@@ -1,6 +1,8 @@
 <?php
 namespace App\Controllers;
 
+use App\Models\ContactModel;
+
 class Redireccion extends BaseController
 {
     public function tienda()
@@ -43,6 +45,8 @@ class Redireccion extends BaseController
         }
     }
 
+    
+
     public function profesores()
     {
         $session = session();
@@ -56,6 +60,7 @@ class Redireccion extends BaseController
             return redirect()->to(base_url('login'));
         }
     }
+    
     public function panel()
     {
         $session = session();

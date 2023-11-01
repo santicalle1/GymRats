@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="<?= base_url('css/footer.css'); ?>">
-    <script src="openpgp.min.js" type="text/javascript"></script>
+    <!-- <script src="openpgp.min.js" type="text/javascript"></script> -->
 
 </head>
 <body>
@@ -32,20 +32,30 @@
             </div>
         </div>
     </div>
+
+
+
     <!-- conteiner contact form -->
     <div class="form-container">
-    <form id="contact-form" method="post" action="send_form.php">
-            <label for="email">Email</label>
-            <input type="text" name="email" class="input-field">
-            
-            <label for="subject">Motivo</label>
-            <input type="text" name="subject" class="input-field">
-            
-            <label for="message">Mensaje</label>
-            <textarea id="message" name="message" class="input-field"></textarea>
-            
-            <input type="submit" class="submit-button">
-        </form>
+    <form id="contact-form" method="post" action="<?= site_url('mensajes/guardarMensaje'); ?>">
+        <label for="email">Email</label>
+        <input type="text" required name="email" class="input-field">
+
+        <label for="subject">Motivo</label>
+        <input type="text" required name="subject" class="input-field">
+
+        <label for="message">Mensaje</label>
+        <textarea id="message" required name="message" class="input-field"></textarea>
+
+        <input type="submit" class="submit-button" value="Enviar">
+    </form>
+    <?php if (session()->has('success')): ?>
+    <div class="success-message">
+        <?= session('success') ?>
+    </div>
+<?php endif; ?>
+
+
         <button id="scrollToTopButton" onclick="scrollToTop()">Ir Arriba</button>
         <link rel="stylesheet" href="public/css/contact.css">
         <script>
@@ -89,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </div>
 
-    <script>
+    <!-- <script>
         document.addEventListener('DOMContentLoaded', function () {
             if (window.crypto && window.crypto.getRandomValues) {
                 var message = document.getElementById("message");
@@ -123,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         }
-    </script>
+    </script> -->
     <a class="login-buton1" href="<?= base_url("/terminos"); ?>">Terminos Y Condiciones</a>
     <small>&copy; 2023 <b>GymRats</b> - Todos los Derechos Reservados.</small>
     </div>

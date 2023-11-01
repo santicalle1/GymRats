@@ -268,6 +268,12 @@ opacity:1;
         <span>Modificar Profesores</span>
     </a>
 </li>
+<li>
+    <a href="<?= base_url('mensajes') ?>">
+        <i class="fa fa-cog"></i>
+        <span>Mensajes</span>
+    </a>
+</li>
 
 
 
