@@ -48,12 +48,14 @@
         <textarea id="message" required name="message" class="input-field"></textarea>
 
         <input type="submit" class="submit-button" value="Enviar">
-    </form>
-    <?php if (session()->has('success')): ?>
+
+        <?php if (session()->has('success')): ?>
     <div class="success-message">
         <?= session('success') ?>
     </div>
 <?php endif; ?>
+    </form>
+    
 
 
         <button id="scrollToTopButton" onclick="scrollToTop()">Ir Arriba</button>

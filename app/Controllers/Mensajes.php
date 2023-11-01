@@ -30,7 +30,7 @@ class Mensajes extends Controller
             session()->setFlashdata('success', '¡El mensaje se ha enviado exitosamente!');
         }
 
-        return redirect()->to(base_url('inicio'));
+        return redirect()->to(base_url('#contact-form'));
     }
 
     public function eliminar($id)
