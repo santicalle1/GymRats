@@ -78,6 +78,8 @@ $routes->post('/eliminarProducto', 'CarritoController::eliminarProducto');
 $routes->post('/vaciarCarrito', 'CarritoController::vaciarCarrito');
 $routes->get('mensajes', 'Mensajes::index');
 $routes->get('mensajes/eliminar/(:num)', 'Mensajes::eliminar/$1');
+$routes->get('compras', 'Compras::index');
+
 
 
 

@@ -371,30 +371,7 @@ footer .texto-footer {
             </nav>
 <!-- paypal -->
 <body>
-<!-- ... -->
-<div id="paypal-button-container">
 
-</div>
-<script src="https://www.paypal.com/sdk/js?client-id=AUAdq8u-Z7OXMdzHDYgxOG6GxBpQGD8vJxHOn_GgRiTbLNZdQImfjM-TDg_iwRCLdwvRkb63dH77Cxd-&currency=USD"></script>
-<script>
-    paypal.Buttons({
-    style:{
-        color:'blue',
-        shape: 'pill'
-    },
-    createOrder: function(data, actions){
-        return actions.order.create({
-        purchase_units: [{
-            amount: {
-            value: 100
-        }
-        }]
-    })
-    }
-}).render('#paypal-button-container');
-</script>
-
-<!-- paypal -->
             <footer>
                 <p class="texto-footer">© 2023 GymRats</p>
             </footer>
@@ -452,7 +429,7 @@ footer .texto-footer {
                 <strong>Total Carrito: $<?= $total ?></strong>
                 <div class="carrito-acciones">
     <form method="POST" action="<?= base_url('/vaciarCarrito') ?>">
-        <a href="https://www.sandbox.paypal.com/checkoutnow?sessionID=uid_5801ee0709_mja6ntk6ntc&buttonSessionID=uid_b8d1d17df9_mje6mtg6mdm&stickinessID=uid_07466efb90_mja6mzc6mzq&smokeHash=&fundingSource=paypal&buyerCountry=AR&locale.x=es_ES&commit=true&clientID=AUAdq8u-Z7OXMdzHDYgxOG6GxBpQGD8vJxHOn_GgRiTbLNZdQImfjM-TDg_iwRCLdwvRkb63dH77Cxd-&env=sandbox&sdkMeta=eyJ1cmwiOiJodHRwczovL3d3dy5wYXlwYWwuY29tL3Nkay9qcz9jbGllbnQtaWQ9QVVBZHE4dS1aN09YTWR6SERZZ3hPRzZHeEJwUUdEOHZKeEhPbl9HZ1JpVGJMTlpkUUltZmpNLVREZ19pd1JDTGR3dlJrYjYzZEg3N0N4ZC0mY3VycmVuY3k9VVNEIiwiYXR0cnMiOnsiZGF0YS11aWQiOiJ1aWRfenpyZnFrcmRqcnJibnJ5aXNlamxqZnJkY2NscHpmIn19&xcomponent=1&version=5.0.406&token=3AJ28658TK838071H">Comprar ahora</a>
+        <a href="compras">Comprar ahora</a>
     </form>
 </div>
     </div>
