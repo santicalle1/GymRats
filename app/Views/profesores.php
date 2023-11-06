@@ -840,25 +840,54 @@
   <script src="script.js"></script>
 
   <div class="contenedor-profesores">
-<?php foreach ($profesores as $profesor): ?>
-    <div class="card01">
-        <img src="<?= base_url($profesor['imagen']) ?>" alt="Imagen del Profesor">
-        <div class="content02">
-            <h2 class="title03"><?= esc($profesor['nombre']) ?></h2>
-            <p class="description04"><?= esc($profesor['titulos']) ?></p>
-            <p class="prof-detail"><strong>Dificultad:</strong> <?= esc($profesor['dificultad']) ?></p>
-<p class="prof-detail"><strong>Horario:</strong> <?= esc($profesor['horarios']) ?></p>
-<p class="prof-detail"><strong>Coste:</strong> $<?= esc($profesor['coste']) ?></p>
+    <?php foreach ($profesores as $profesor): ?>
+        <div class="card01">
+            <img src="<?= base_url($profesor['imagen']) ?>" alt="Imagen del Profesor">
+            <div class="content02">
+                <h2 class="title03"><?= esc($profesor['nombre']) ?></h2>
+                <p class="description04"><?= esc($profesor['titulos']) ?></p>
+                <p class="prof-detail"><strong>Dificultad:</strong> <?= esc($profesor['dificultad']) ?></p>
+                <p class="prof-detail"><strong>Horario:</strong> <?= esc($profesor['horarios']) ?></p>
+                <p class="prof-detail"><strong>Coste:</strong> $<?= esc($profesor['coste']) ?></p>
+                
+                <!-- Container for the PayPal button -->
+                <div id="paypal-button-container-<?= $profesor['id_profesor'] ?>"></div>
 
+                <!-- Include the PayPal JavaScript SDK -->
+                <script src="https://www.paypal.com/sdk/js?client-id=AZQBCaHQ4lHq6OI-mMRoxPv8nHioysdo_lnwAWuXxHgD31c5-3Nvw-fs0_WTL_-ghOvt8WeoipePRltE"></script>
 
-            <button class="btn05">Contactar</button>
+                <!-- Generate a unique script for each professor -->
+                <script>
+                    paypal.Buttons({
+                        style: {
+                            shape: 'pill',
+                            color: 'blue',
+                            layout: 'vertical',
+                            label: 'pay',
+                        },
+                        createOrder: function(data, actions) {
+                            return actions.order.create({
+                                purchase_units: [{
+                                    amount: {
+                                        value: "<?= $profesor['coste'] ?>" // Use the cost from the current professor
+                                    }
+                                }]
+                            });
+                        },
+                        onCancel: function(data) {
+                            alert('Pago cancelado');
+                        },
+                        onApprove: function(data, actions) {
+                            actions.order.capture().then(function(details) {
+                                window.location.href = "<?= base_url('inicio') ?>";
+                            });
+                        }
+                    }).render('#paypal-button-container-<?= $profesor['id_profesor'] ?>');
+                </script>
+            </div>
         </div>
-    </div>
-<?php endforeach; ?>
+    <?php endforeach; ?>
 </div>
-
-
-
 
   </div>
   </div>
