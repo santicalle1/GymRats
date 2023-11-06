@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-10-2023 a las 20:49:45
+-- Tiempo de generación: 06-11-2023 a las 22:49:42
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -52,8 +52,8 @@ CREATE TABLE `carrito` (
 
 INSERT INTO `carrito` (`id_carrito`, `id`, `id_producto`, `cantidad`, `fecha_agregado`) VALUES
 (34, 23, 38, 1, '2023-10-30 00:09:35'),
-(70, 18, 38, 1, '2023-10-31 00:03:11'),
-(71, 24, 37, 2, '2023-10-31 00:51:38');
+(71, 24, 37, 2, '2023-10-31 00:51:38'),
+(74, 18, 41, 2, '2023-11-04 01:04:55');
 
 -- --------------------------------------------------------
 
@@ -109,7 +109,11 @@ CREATE TABLE `compras` (
   `total` decimal(10,2) NOT NULL,
   `id_metodo_pago` int(11) NOT NULL,
   `id` int(11) NOT NULL,
-  `estado` tinyint(1) NOT NULL
+  `estado` tinyint(1) NOT NULL,
+  `id_envio` int(11) NOT NULL,
+  `id_calle` int(11) NOT NULL,
+  `id_ciudad` int(11) NOT NULL,
+  `numero_calle` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -124,6 +128,19 @@ CREATE TABLE `contacto` (
   `motivo` varchar(50) NOT NULL,
   `mensaje` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `contacto`
+--
+
+INSERT INTO `contacto` (`id_contacto`, `email`, `motivo`, `mensaje`) VALUES
+(31, 'tadeoboglione@alumnos.itr3.edu.ar', 'ass', 'fef'),
+(32, 'Moni@gmail.com', 'ass', 'dd'),
+(33, 'Rodrigo@gmail.com', 'v', 'v'),
+(34, 'tadeoboglione@alumnos.itr3.edu.ar', 'fefe', 'f'),
+(35, 'Moni1@gmail.com', 'ass', '3d'),
+(36, 'Moni@gmail.com', 'f', 'eee'),
+(37, 'Moni@gmail.com', 'f', 'f');
 
 -- --------------------------------------------------------
 
@@ -189,7 +206,8 @@ CREATE TABLE `producto` (
 INSERT INTO `producto` (`id_producto`, `nombre`, `precio`, `stock`, `imagen`, `descripcion`, `categoria`, `descuento`) VALUES
 (37, 'Creatina', 40000.00, 3, 'uploads/1697502650_6f79f2bddf5a9671ed5b.png', 'fefefeeeeeeeeeeeeeeeeeee', 'merchandising', 0.00),
 (38, ' 2 Mancuernas 5kg', 6300.00, 4, 'uploads/1697571613_59891424ab9b2b38dbb9.jpg', 'es para flacos', 'oferta', 10.00),
-(39, 'yyyyyyyyyyyyyyyyyyyyyyyy', 23232.00, 2, 'uploads/1697574628_b5659a3d3aac20376649.png', 'hhhhhhhhhhhhhhhhhhhhhhhhh', 'oferta', 0.00);
+(39, 'yyyyyyyyyyyyyyyyyyyyyyyy', 23232.00, 2, 'uploads/1697574628_b5659a3d3aac20376649.png', 'hhhhhhhhhhhhhhhhhhhhhhhhh', 'oferta', 0.00),
+(41, 'creatina monohidratada', 100000.00, 2, 'uploads/1699049073_693f5dff938760d2f41d.webp', 'es para el gordo', 'suplementos', 0.00);
 
 -- --------------------------------------------------------
 
@@ -217,7 +235,8 @@ CREATE TABLE `profesores` (
 --
 
 INSERT INTO `profesores` (`id_profesor`, `nombre`, `especialidad`, `fecha_de_contrato`, `titulos`, `horarios`, `telefono`, `mail`, `salario`, `coste`, `dificultad`, `imagen`) VALUES
-(6, 'Tadeo', 'gggggggggg', '2023-10-06 00:00:00', 'licenciado en palas', '00:00:00', '+54 3571 565913', 'tadeo270148@gmail.com', 1000, 0.55, 'ez', '');
+(10, 'Tadeo', 'Profe', '2023-11-23 00:00:00', 'h', '00:00:00', '+54 3571 678321', 'tadeo@gmail.com', 0, 0.03, 'ezz', 'uploads/1699307128_13070999a33a6db6d63c.jpg'),
+(11, 'Franco', 'Profe', '2023-11-30 00:00:00', 'f', '00:00:00', '+54 3571 773450', 'tadeo@gmail.com', 0, 0.06, 'ezz', 'uploads/1699307180_6216d2c2c469a8d0f062.avif');
 
 -- --------------------------------------------------------
 
@@ -300,7 +319,10 @@ ALTER TABLE `clientes`
 ALTER TABLE `compras`
   ADD PRIMARY KEY (`id_compra`),
   ADD KEY `id` (`id`),
-  ADD KEY `metodo_pago` (`id_metodo_pago`);
+  ADD KEY `metodo_pago` (`id_metodo_pago`),
+  ADD KEY `id_envio` (`id_envio`),
+  ADD KEY `id_calle` (`id_calle`),
+  ADD KEY `id_ciudad` (`id_ciudad`);
 
 --
 -- Indices de la tabla `contacto`
@@ -372,7 +394,7 @@ ALTER TABLE `usuario_profesor`
 -- AUTO_INCREMENT de la tabla `carrito`
 --
 ALTER TABLE `carrito`
-  MODIFY `id_carrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id_carrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
@@ -390,7 +412,7 @@ ALTER TABLE `compras`
 -- AUTO_INCREMENT de la tabla `contacto`
 --
 ALTER TABLE `contacto`
-  MODIFY `id_contacto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_contacto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de la tabla `detalledecompra`
@@ -402,19 +424,31 @@ ALTER TABLE `detalledecompra`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT de la tabla `profesores`
 --
 ALTER TABLE `profesores`
-  MODIFY `id_profesor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_profesor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario_profesor`
 --
 ALTER TABLE `usuario_profesor`
   MODIFY `id_usuario_profesor` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `compras`
+--
+ALTER TABLE `compras`
+  ADD CONSTRAINT `compras_ibfk_1` FOREIGN KEY (`id_envio`) REFERENCES `direccion` (`id_envio`),
+  ADD CONSTRAINT `compras_ibfk_2` FOREIGN KEY (`id_calle`) REFERENCES `calle` (`id_calle`),
+  ADD CONSTRAINT `compras_ibfk_3` FOREIGN KEY (`id_ciudad`) REFERENCES `ciudad` (`id_ciudad`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
