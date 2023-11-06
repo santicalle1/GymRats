@@ -26,19 +26,17 @@ class Login extends BaseController
             $session->set('tipo', $usuarioEncontrado['tipo']);
             $session->set('id', $usuarioEncontrado['id']);
     
-            // Redirigir al usuario a la página deseada
-            $pagina_destino = $this->request->getGet('pagina_destino'); // Obtén la página de destino de la URL
-            if ($pagina_destino) {
-                return redirect()->to(base_url($pagina_destino));
-            } else {
-                // Si no se especifica una página de destino, redirige a la página de inicio por defecto
-                return redirect()->to(base_url('inicio'));
-            }
+            $session = session();
+            $url_destino = $session->get('url_destino');
+
+        if ($url_destino) {
+            // Si hay una URL de destino guardada, redirigir al usuario allí
+            $session->remove('url_destino'); // Limpiar la URL de destino
+            return redirect()->to(base_url($url_destino));
         } else {
-            return redirect()->to(base_url('login'))->with('mensaje', 'Credenciales incorrectas');
-            // Credenciales incorrectas, mantener al usuario en la vista de login
+            // Si no hay URL de destino, redirigir a alguna página por defecto ('inicio' por ejemplo)
+            return redirect()->to(base_url('inicio'));
         }
     }
-    
 }
 

@@ -5,7 +5,7 @@ use App\Models\ContactModel;
 
 class Redireccion extends BaseController
 {
-    public function tienda()
+    public function tienda($url)
     {
         $session = session();
         $usuario = $session->get('usuario');
@@ -14,11 +14,14 @@ class Redireccion extends BaseController
             // Si el usuario está logueado, redirigir a la vista de tienda
             return redirect()->to(base_url('tienda'));
         } else {
-            // Si no está logueado, redirigir a la página de inicio de sesión
+            // Si no está logueado, guardar la URL de destino en la sesión
+            $session->set('url_destino', $url);
+
+            // Redirigir a la página de inicio de sesión
             return redirect()->to(base_url('login'));
         }
-    }
-    public function carrito()
+}
+    public function carrito($url)
     {
         $session = session();
         $usuario = $session->get('usuario');
@@ -31,7 +34,7 @@ class Redireccion extends BaseController
             return redirect()->to(base_url('login'));
         }
     }
-    public function rutinas()
+    public function rutinas($url)
     {
         $session = session();
         $usuario = $session->get('usuario');
@@ -47,7 +50,7 @@ class Redireccion extends BaseController
 
     
 
-    public function profesores()
+    public function profesores($url)
     {
         $session = session();
         $usuario = $session->get('usuario');
@@ -61,7 +64,7 @@ class Redireccion extends BaseController
         }
     }
     
-    public function panel()
+    public function panel($url)
     {
         $session = session();
         $usuario = $session->get('usuario');
