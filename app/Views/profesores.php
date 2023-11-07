@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GymRats</title>
+  <script src="https://www.paypal.com/sdk/js?client-id=AZQBCaHQ4lHq6OI-mMRoxPv8nHioysdo_lnwAWuXxHgD31c5-3Nvw-fs0_WTL_-ghOvt8WeoipePRltE"></script>
   <script>
     var inactivityTimeout; // Variable para almacenar el temporizador de inactividad
 
@@ -184,6 +185,11 @@
       .container {
         padding: 0 10px;
       }
+      @media screen and (max-width: 768px) {
+    .card01 {
+        max-width: calc(50% - 10px); /* Muestra dos tarjetas por fila en dispositivos móviles */
+    }
+}
 
       .menu {
         flex-direction: column;
@@ -697,41 +703,17 @@
     background-color: #000080; /* Color de fondo más claro al pasar el ratón por encima */
 }
 /* Estilos de la tarjeta de producto */
-.card01 {
-    width: 200px;
-    height: auto;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    background-color: #FFF;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 10px;  /* Espacio interno para no pegar el contenido a los bordes */
-    box-sizing: border-box;  /* Asegura que el padding y el borde no aumenten el tamaño total de la tarjeta */
-}
 
 
-.card01 img {
-    width: 100%;  /* Ocupa todo el ancho disponible del contenedor padre */
-    height: 150px;  /* Altura deseada */
-    object-fit: cover;  /* La imagen cubre el espacio sin distorsionarse */
-    margin-bottom: 10px;  /* Espacio entre la imagen y el contenido siguiente */
-}
 
 
-.content02 {
-    padding: 15px;
-}
 
-.title03 {
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: black; /* Cambiar el color del título a negro */
-}
 
-.description04 {
-    color: #777;
-    margin-bottom: 15px;
-}
+
+
+
+
+
 .original-price {
     color: red; /* Mantiene el color rojo */
     text-decoration: line-through; /* Tacha el texto */
@@ -765,11 +747,7 @@
     justify-content: space-between;  /* Distribuye las tarjetas uniformemente */
 }
 
-.card01 {
-    max-width: calc(50% - 10px);  /* Asume que quieres 2 tarjetas por fila. El cálculo considera el gap. */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Esto es opcional, solo para darle un toque visual */
-    box-sizing: border-box;  /* Asegura que el padding y el borde no aumenten el tamaño total de la tarjeta */
-}
+
 
 
 .details {
@@ -782,10 +760,52 @@
     gap: 20px;  /* Espacio entre tarjetas */
     justify-content: space-between;  /* Distribuye las tarjetas uniformemente */
 }
-.prof-detail {
-    font-weight: bold;
-    color: black; 
+.contenedor-profesores {
+      display: flex;
+      flex-wrap: wrap;  /* Permite que las tarjetas pasen a la siguiente fila si no hay espacio */
+      gap: 20px;  /* Espacio entre tarjetas */
+      justify-content: space-between;  /* Distribuye las tarjetas uniformemente */
+    }
+
+    /* Estilo para las tarjetas de profesores */
+    .card01 {
+      max-width: calc(50% - 10px);  /* Asume que quieres 2 tarjetas por fila. El cálculo considera el gap. */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Esto es opcional, solo para darle un toque visual */
+      box-sizing: border-box;  /* Asegura que el padding y el borde no aumenten el tamaño total de la tarjeta */
+    }
+    .card01 {
+  max-width: calc(50% - 10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
+
+.card01 img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.content02 {
+  padding: 15px;
+}
+
+.title03 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.description04 {
+  color: #777;
+  margin-bottom: 15px;
+}
+
+.prof-detail {
+  font-weight: bold;
+  color: black;
+}
+
 
 </style>
 </head>
@@ -840,57 +860,42 @@
   <script src="script.js"></script>
 
   <div class="contenedor-profesores">
-    <?php foreach ($profesores as $profesor): ?>
-        <div class="card01">
-            <img src="<?= base_url($profesor['imagen']) ?>" alt="Imagen del Profesor">
-            <div class="content02">
-                <h2 class="title03"><?= esc($profesor['nombre']) ?></h2>
-                <p class="description04"><?= esc($profesor['titulos']) ?></p>
-                <p class="prof-detail"><strong>Dificultad:</strong> <?= esc($profesor['dificultad']) ?></p>
-                <p class="prof-detail"><strong>Horario:</strong> <?= esc($profesor['horarios']) ?></p>
-                <p class="prof-detail"><strong>Coste:</strong> $<?= esc($profesor['coste']) ?></p>
-                
-                <!-- Container for the PayPal button -->
-                <div id="paypal-button-container-<?= $profesor['id_profesor'] ?>"></div>
-
-                <!-- Include the PayPal JavaScript SDK -->
-                <script src="https://www.paypal.com/sdk/js?client-id=AZQBCaHQ4lHq6OI-mMRoxPv8nHioysdo_lnwAWuXxHgD31c5-3Nvw-fs0_WTL_-ghOvt8WeoipePRltE"></script>
-
-                <!-- Generate a unique script for each professor -->
-                <script>
-                    paypal.Buttons({
-                        style: {
-                            shape: 'pill',
-                            color: 'blue',
-                            layout: 'vertical',
-                            label: 'pay',
-                        },
-                        createOrder: function(data, actions) {
-                            return actions.order.create({
-                                purchase_units: [{
-                                    amount: {
-                                        value: "<?= $profesor['coste'] ?>" // Use the cost from the current professor
-                                    }
-                                }]
-                            });
-                        },
-                        onCancel: function(data) {
-                            alert('Pago cancelado');
-                        },
-                        onApprove: function(data, actions) {
-                            actions.order.capture().then(function(details) {
-                                window.location.href = "<?= base_url('inicio') ?>";
-                            });
-                        }
-                    }).render('#paypal-button-container-<?= $profesor['id_profesor'] ?>');
-                </script>
-            </div>
-        </div>
-    <?php endforeach; ?>
+  <?php foreach ($profesores as $profesor): ?>
+    <div class="card01">
+  <img src="<?= base_url($profesor['imagen']) ?>" alt="Imagen del Profesor">
+  <div class="content02">
+    <h2 class="title03"><?= esc($profesor['nombre']) ?></h2>
+    <p class="description04"><?= esc($profesor['titulos']) ?></p>
+    <p class="prof-detail"><strong>Dificultad:</strong> <?= esc($profesor['dificultad']) ?></p>
+    <p class="prof-detail"><strong>Horario:</strong> <?= esc($profesor['horarios']) ?></p>
+    <p class="prof-detail"><strong>Coste:</strong> $<?= esc($profesor['coste']) ?></p>
+    <div id="paypal-button-container-<?= $profesor['id_profesor'] ?>"></div>
+  </div>
 </div>
 
-  </div>
-  </div>
+            </div>
+            <script>
+                paypal.Buttons({
+                    createOrder: function(data, actions) {
+                        return actions.order.create({
+                            purchase_units: [{
+                                amount: {
+                                    value: "<?= $profesor['coste'] ?>"
+                                }
+                            }]
+                        });
+                    },
+                    onApprove: function(data, actions) {
+                        actions.order.capture().then(function(details) {
+                            window.location.href = "<?= base_url('inicio') ?>";
+                        });
+                    }
+                }).render('#paypal-button-container-<?= $profesor['id_profesor'] ?>');
+            </script>
+       </div>
+    </div>
+  <?php endforeach; ?>
+</div>
   </div>
   </div>
 

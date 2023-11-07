@@ -1,23 +1,34 @@
-<div id="paypal-button-container">
+<script src="https://www.paypal.com/sdk/js?client-id=AZQBCaHQ4lHq6OI-mMRoxPv8nHioysdo_lnwAWuXxHgD31c5-3Nvw-fs0_WTL_-ghOvt8WeoipePRltE"></script>
 
-</div>
-<script src="https://www.paypal.com/sdk/js?client-id=AUAdq8u-Z7OXMdzHDYgxOG6GxBpQGD8vJxHOn_GgRiTbLNZdQImfjM-TDg_iwRCLdwvRkb63dH77Cxd-&currency=USD"></script>
+<div id="paypal-button-conteiner"></div>
 <script>
     paypal.Buttons({
-    style:{
-        color:'blue',
-        shape: 'pill'
-    },
-    createOrder: function(data, actions){
-        return actions.order.create({
-        purchase_units: [{
-            amount: {
-            value: 100
+        style: {
+            shape: 'pill',
+            color: 'blue',
+            layout: 'vertical',
+            label: 'pay',   
+        },
+        createOrder: function(data, actions) {
+            // Aquí puedes obtener el valor dinámico de totalC y asignarlo a 'value'
+
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: "40" // Convierte el valor a cadena
+                    }
+                }]
+            });
+        },
+        onCancel: function(data) {
+            alert('Pago cancelado');
+        },
+        onApprove: function(data, actions) {
+            actions.order.capture().then(function(details) {
+                window.location.href = "<?= base_url('inicio') ?>";
+            });
         }
-        }]
-    })
-    }
-}).render('#paypal-button-container');
+    }).render('#paypal-button-conteiner');
 </script>
 
 <!DOCTYPE html>
