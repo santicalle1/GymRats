@@ -6,6 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GymRats</title>
+<<<<<<< HEAD
+=======
+  <link rel="stylesheet" type="text/css" href="<?= base_url('css/'); ?>">
+>>>>>>> ba57468b1756d36e6bd7e3aa2815d5a778731d30
   <script src="https://www.paypal.com/sdk/js?client-id=AZQBCaHQ4lHq6OI-mMRoxPv8nHioysdo_lnwAWuXxHgD31c5-3Nvw-fs0_WTL_-ghOvt8WeoipePRltE"></script>
   <script>
     var inactivityTimeout; // Variable para almacenar el temporizador de inactividad
@@ -28,6 +32,7 @@
     document.addEventListener('mousemove', resetInactivityTimeout);
     document.addEventListener('keydown', resetInactivityTimeout);
   </script>
+<<<<<<< HEAD
 
 <style>
     /* Estilos generales */
@@ -808,10 +813,16 @@
 
 
 </style>
+=======
+>>>>>>> ba57468b1756d36e6bd7e3aa2815d5a778731d30
 </head>
+<?php 
+include(APPPATH . 'view/header.php') 
+?>
 
 <body>
 
+<<<<<<< HEAD
   <header>
     <div class="container-hero">
       <div class="container hero">
@@ -860,6 +871,10 @@
   <script src="script.js"></script>
 
   <div class="contenedor-profesores">
+=======
+  
+<div class="contenedor-profesores">
+>>>>>>> ba57468b1756d36e6bd7e3aa2815d5a778731d30
   <?php foreach ($profesores as $profesor): ?>
     <div class="card01">
   <img src="<?= base_url($profesor['imagen']) ?>" alt="Imagen del Profesor">
@@ -892,6 +907,7 @@
                     }
                 }).render('#paypal-button-container-<?= $profesor['id_profesor'] ?>');
             </script>
+<<<<<<< HEAD
        </div>
     </div>
   <?php endforeach; ?>
@@ -922,14 +938,17 @@
             <a href="#" class="fa fa-youtube"></a>
           </div>
         </div>
+=======
+>>>>>>> ba57468b1756d36e6bd7e3aa2815d5a778731d30
       </div>
     </div>
+  <?php endforeach; ?>
 </div>
-
-
-        <small>&copy; 2023 <b>GymRats</b> - Todos los Derechos Reservados.</small>
-      </div>
-    </footer>
+  </div>
+  </div>
+  <?php 
+include(APPPATH . 'view/footer.php') 
+?>
     <script src="https://kit.fontawesome.com/81581fb069.js" crossorigin="anonymous">
       // Agrega un evento de clic al botón Comprar Ahora
       document.getElementById('btn-comprar').addEventListener('click', function(event) {
