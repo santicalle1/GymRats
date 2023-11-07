@@ -33,45 +33,41 @@
     include( 'header.php') 
   ?>
 </head>
-  <div class="contenedor-profesores">
-  <?php foreach ($profesores as $profesor): ?>
+
+<div class="contenedor-profesores">
+    <?php foreach ($profesores as $profesor): ?>
     <div class="card01">
-  <img src="<?= base_url($profesor['imagen']) ?>" alt="Imagen del Profesor">
-  <div class="content02">
-    <h2 class="title03"><?= esc($profesor['nombre']) ?></h2>
-    <p class="description04"><?= esc($profesor['titulos']) ?></p>
-    <p class="prof-detail"><strong>Dificultad:</strong> <?= esc($profesor['dificultad']) ?></p>
-    <p class="prof-detail"><strong>Horario:</strong> <?= esc($profesor['horarios']) ?></p>
-    <p class="prof-detail"><strong>Coste:</strong> $<?= esc($profesor['coste']) ?></p>
-    <div id="paypal-button-container-<?= $profesor['id_profesor'] ?>"></div>
-  </div>
+        <img src="<?= base_url($profesor['imagen']) ?>" alt="Imagen del Profesor">
+        <div class="content02">
+            <h2 class="title03"><?= esc($profesor['nombre']) ?></h2>
+            <p class="description04"><?= esc($profesor['titulos']) ?></p>
+            <p class="prof-detail"><strong>Dificultad:</strong> <?= esc($profesor['dificultad']) ?></p>
+            <p class="prof-detail"><strong>Horario:</strong> <?= esc($profesor['horarios']) ?></p>
+            <p class="prof-detail"><strong>Coste:</strong> $<?= esc($profesor['coste']) ?></p>
+            <div id="paypal-button-container-<?= $profesor['id_profesor'] ?>"></div>
+        </div>
+    </div>
+    <script>
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: "<?= $profesor['coste'] ?>"
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                actions.order.capture().then(function(details) {
+                    window.location.href = "<?= base_url('inicio') ?>";
+                });
+            }
+        }).render('#paypal-button-container-<?= $profesor['id_profesor'] ?>');
+    </script>
+    <?php endforeach; ?>
 </div>
 
-            </div>
-            <script>
-                paypal.Buttons({
-                    createOrder: function(data, actions) {
-                        return actions.order.create({
-                            purchase_units: [{
-                                amount: {
-                                    value: "<?= $profesor['coste'] ?>"
-                                }
-                            }]
-                        });
-                    },
-                    onApprove: function(data, actions) {
-                        actions.order.capture().then(function(details) {
-                            window.location.href = "<?= base_url('inicio') ?>";
-                        });
-                    }
-                }).render('#paypal-button-container-<?= $profesor['id_profesor'] ?>');
-            </script>
-       </div>
-    </div>
-  <?php endforeach; ?>
-</div>
-  </div>
-  </div>
 
   <?php
     include('footer.php');

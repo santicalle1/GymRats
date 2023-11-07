@@ -225,30 +225,30 @@ document.addEventListener('DOMContentLoaded', function() {
         position: relative;
     }
 
-    /* Botón "Quitar Producto" */
     button[type="submit"] {
-        background-color: #f44336;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        padding: 8px 12px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    
-        bottom: 10px;
-        left: 10px;
-    }
+    background-color: #f44336; /* Cambia el color del botón "Quitar Producto" a rojo */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 
-    button[type="submit"]:hover {
-        background-color: #d32f2f;
-    }
+button[type="submit"]:hover {
+    background-color: #d32f2f; /* Cambia el color del botón "Quitar Producto" a un tono más oscuro de rojo al pasar el ratón */
+}
 
-    .total-carrito {
-        position: absolute;
-        bottom: 20px;
-        right: 20px;
-        font-weight: bold;
-    }
+.total-carrito {
+    margin-top: 20px; /* Aumenta el margen superior para separar los botones del contenido anterior */
+    text-align: center; /* Centra los botones horizontalmente */
+}
+
+.total-carrito strong {
+    display: block; /* Hace que "Total Carrito" sea un bloque separado del resto */
+    font-weight: bold;
+    margin-bottom: 10px;
+}
 
     /* Responsive Styling */
     @media screen and (max-width: 768px) {
@@ -385,7 +385,7 @@ footer .texto-footer {
             <h2 class="titulo-principal">Carrito</h2>
             <div class="contenedor-carrito">
     <?php if (isset($productos) && count($productos) > 0): ?>
-
+    
         <!-- Muestra los productos en el carrito -->
         <div id="carrito-productos">
             <?php 
@@ -424,7 +424,10 @@ footer .texto-footer {
 
             <?php endforeach; ?>
 
+
+            
             <!-- Mostrar el precio total del carrito -->
+            
             <div class="total-carrito">
                 <strong>Total Carrito: $<?= $total ?></strong>
                 <div class="carrito-acciones">
@@ -436,8 +439,7 @@ footer .texto-footer {
     </div>
 </div>
     </div>
-    
-        </div>
+    </div>
     <?php else: ?>
         <p>Tu carrito está vacío.</p>
     <?php endif; ?>
