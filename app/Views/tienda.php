@@ -33,7 +33,7 @@
 
 </head>
 <?php 
-include(APPPATH . 'view/header.php') 
+include('header.php') 
 ?>
 
 <body>
@@ -76,7 +76,7 @@ include(APPPATH . 'view/header.php')
 </div>
 
 <?php 
-include(APPPATH . 'view/footer.php') 
+include('footer.php') 
 ?>
     <script src="https://kit.fontawesome.com/81581fb069.js" crossorigin="anonymous">
       // Agrega un evento de clic al botón Comprar Ahora

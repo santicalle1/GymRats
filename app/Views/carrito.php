@@ -234,7 +234,7 @@ document.addEventListener('DOMContentLoaded', function() {
         padding: 8px 12px;
         cursor: pointer;
         transition: background-color 0.3s;
-        position: absolute;
+    
         bottom: 10px;
         left: 10px;
     }
@@ -429,11 +429,14 @@ footer .texto-footer {
                 <strong>Total Carrito: $<?= $total ?></strong>
                 <div class="carrito-acciones">
     <form method="POST" action="<?= base_url('/vaciarCarrito') ?>">
-        <a href="compras">Comprar ahora</a>
+    <button type="submit">Vaciar carrito</button>
     </form>
+    <div>
+        <a href="compras">Comprar ahora</a>
+    </div>
 </div>
     </div>
-    <button type="submit">Vaciar carrito</button>
+    
         </div>
     <?php else: ?>
         <p>Tu carrito está vacío.</p>

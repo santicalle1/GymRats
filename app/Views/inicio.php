@@ -22,11 +22,13 @@
     document.addEventListener('mousemove', resetInactivityTimeout);
     document.addEventListener('keydown', resetInactivityTimeout);
   </script>
-<?php
-include(APPPATH . 'views/header.php');
-?>
+  </head>
+  
+    <?php
+      require('header.php');
+    ?>
 
-</head>
+
 <body>
 <?php
         $session = session();
@@ -100,7 +102,7 @@ include(APPPATH . 'views/header.php');
     </section>
     <footer>
     <?php
-      include(APPPATH . 'views/footer.php');
+      include('footer.php');
     ?>
     </footer>
     <script src="https://kit.fontawesome.com/81581fb069.js" crossorigin="anonymous">

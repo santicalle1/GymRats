@@ -18,20 +18,16 @@
             <a class="login-button" href="<?= base_url("./inicio"); ?>">Inicio</a>
             <a class="login-button" href="<?= base_url("./Redireccion/tienda"); ?>" id="tiendabutton">Tienda</a>
             <div class="dropdown">
-                <a class="login-button dropdown-button" href="javascript:void(0)" id="productosButton">Categorias</a>
+                <a class="login-button dropdown-button" href="javascript:void(0)" id="productosButton">Tienda</a>
                 <div class="dropdown-content" id="dropdown1">
                     <a href="<?= base_url("/suplementos"); ?>">Suplementos</a>
                     <a href="<?= base_url("/objetosgym"); ?>">Objetos de Gimnasio</a>
                     <a href="<?= base_url("/ropa"); ?>">Merchandising</a>
                 </div>
             </div>
-<<<<<<< HEAD
-            <a class="login-button" href="<?= base_url("./Redireccion/carrito?pagina_destino=carrito"); ?>">Carrito</a>
-            <a class="login-button" href="<?= base_url("./Redireccion/Profesores"); ?>">Profesores</a>
-=======
             <a class="login-button" href="<?= base_url("./Redireccion/carrito"); ?>">Carrito</a>
->>>>>>> ba57468b1756d36e6bd7e3aa2815d5a778731d30
             <a class="login-button" href="<?= base_url("./Redireccion/rutinas"); ?>">Rutinas</a>
+            <a class="login-button" href="<?= base_url("./Redireccion/profesores"); ?>">Profesores</a>
             <a class="login-button" href="#contact-form">Contacto</a>
             
             
@@ -52,12 +48,16 @@
     const productosButton = document.getElementById("productosButton");
     // Obtiene el botón "Tienda"
     const tiendaButton = document.getElementById("tiendabutton");
+    // Agrega un evento de clic al botón "Productos" para redirigir a "Tienda"
+    productosButton.addEventListener("click", function() {
+        window.location.href = "<?= base_url("./Redireccion/tienda"); ?>";
+    });
 
     // Obtiene la URL actual
     const currentURL = window.location.href;
 
     // Comprueba si la URL es exactamente igual a "/tienda" (para la página "tienda")
-    if (currentURL.endsWith("/tienda")) {
+    if (currentURL.includes("/tienda") || currentURL.includes("/objetosgym") || currentURL.includes("/ropa") || currentURL.includes("/suplementos")) {
         // Muestra el botón "Productos" si estás en la página "tienda"
         productosButton.style.display = "block";
         // Oculta el botón "Tienda" en la página "tienda"
