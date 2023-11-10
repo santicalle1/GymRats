@@ -48,23 +48,36 @@
         </div>
     </div>
     <script>
-        paypal.Buttons({
-            createOrder: function(data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: "<?= $profesor['coste'] ?>"
-                        }
-                    }]
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: "<?= $profesor['coste'] ?>"
+                    }
+                }]
+            });
+        },
+        onApprove: function(data, actions) {
+            actions.order.capture().then(function(details) {
+                // Hace una solicitud para procesar la compra en el servidor
+                // Aquí debes incluir el id_profesor para identificar al profesor específico
+                fetch('<?= base_url("Compras/procesarCompra/{$profesor['id_profesor']}") ?>', {
+                    method: 'GET',
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Redirige a la vista de mis profesores
+                    window.location.href = "<?= base_url('mis_profesores') ?>";
+                })
+                .catch(error => {
+                    console.error('Error al procesar la compra:', error);
+                    // Manejar el error según sea necesario
                 });
-            },
-            onApprove: function(data, actions) {
-                actions.order.capture().then(function(details) {
-                    window.location.href = "<?= base_url('inicio') ?>";
-                });
-            }
-        }).render('#paypal-button-container-<?= $profesor['id_profesor'] ?>');
-    </script>
+            });
+        }
+    }).render('#paypal-button-container-<?= $profesor['id_profesor'] ?>');
+</script>
     <?php endforeach; ?>
 </div>
 
