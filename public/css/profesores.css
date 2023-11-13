@@ -1,0 +1,58 @@
+/* Estilos para el contenedor de profesores */
+.contenedor-profesores {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Estilos para cada tarjeta de profesor */
+.card01 {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 300px;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Estilos para la imagen del profesor */
+.card01 img {
+  max-width: 100%;
+  border-radius: 50%;
+}
+
+/* Estilos para el título del profesor */
+.title03 {
+  font-size: 1.5rem;
+  margin: 10px 0;
+}
+
+/* Estilos para la descripción/títulos del profesor */
+.description04 {
+  font-size: 1rem;
+  color: #555;
+  margin: 5px 0;
+}
+
+/* Estilos para los detalles del profesor (Dificultad, Horario, Coste) */
+.prof-detail {
+  font-size: 0.9rem;
+  margin: 5px 0;
+}
+
+/* Estilos para el botón "Contactar" */
+.btn05 {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btn05:hover {
+  background-color: #0056b3;
+}

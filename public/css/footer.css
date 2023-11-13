@@ -1,0 +1,154 @@
+/* Estilos generales para el footer */
+.pie-pagina {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Estilos para el contenedor principal del footer */
+.grupo-1 {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Estilos para las secciones del footer */
+.box {
+    flex: 1;
+    padding: 10px;
+    text-align: center; /* Alinea el contenido al centro */
+}
+
+/* Estilos para la imagen del logo en el footer */
+.box figure img {
+    width: 100px;
+}
+
+/* Estilos para los títulos en el footer */
+h2 {
+    font-size: 18px;
+}
+
+/* Estilos para los iconos de redes sociales en el footer */
+.red-social a {
+    color: #fff;
+    font-size: 20px;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+/* Estilos para el copyright en el footer */
+footer small {
+    display: block;
+    margin-top: 20px;
+}
+
+/* Estilos para botones */
+.button-container {
+    text-align: center;
+}
+
+.login-buton1 {
+    background-color: #7e8d7e;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.login-buton1:hover {
+    background-color: #5b5f5c;
+}
+
+.login-buton1:focus,
+.login-buton1:active {
+    outline: none;
+    text-decoration: none;
+}
+
+    /* Estilos para el formulario */
+    .form-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #333;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column; /* Apila los elementos verticalmente */
+        align-items: center; /* Centra horizontalmente */
+        background-color: #fff;
+        border-radius: 4px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Estilos para etiquetas y campos de entrada */
+    label {
+        display: block;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .input-field {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        color: #333;
+    }
+
+    /* Estilos para el botón de envío */
+    .submit-button {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .submit-button:hover {
+        background-color: #555;
+    }
+
+    /* Estilos para el botón "Ir Arriba" */
+    #scrollToTopButton {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #000;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    #scrollToTopButton:hover {
+        background-color: #555;
+    }
+
+    .success-message {
+        background-color: #4CAF50; /* Fondo verde */
+        color: white; /* Texto en blanco */
+        padding: 10px; /* Espaciado interior */
+        border-radius: 5px; /* Bordes redondeados */
+        margin-top: 10px; /* Espaciado superior */
+        text-align: center; /* Alineación de texto al centro */
+    }
+    
