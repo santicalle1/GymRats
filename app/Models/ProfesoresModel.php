@@ -25,7 +25,7 @@ class ProfesoresModel extends Model
     {
         // Aquí implementa la lógica para obtener la lista de profesores comprados por el usuario
         // Puedes hacer una consulta a la base de datos u obtener los datos de donde los almacenes
-        // Aquí un ejemplo básico:
-        return $this->where('id_profesor', $id)->findAll();
+        
+        return $this->where('id_profesor', $id)->find();
     }
 }

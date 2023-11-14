@@ -77,7 +77,8 @@
                     .then(response => response.json())
                     .then(data => {
                         // Redirige a la vista de mis profesores con los detalles necesarios
-                        window.location.href = "<?= base_url('mis_profesores') ?>";
+                       
+                        window.location.href = "<?= base_url("ProfesoresController/unprofe/{$profesor['id_profesor']}") ?>";
 
                     })
                     .catch(error => {
@@ -85,11 +86,15 @@
                         // Manejar el error según sea necesario
                     });
             });
+            window.location.href = "<?= base_url("ProfesoresController/unprofe/{$profesor['id_profesor']}") ?>";
         }
     }).render('#paypal-button-container-<?= $profesor['id_profesor'] ?>').then(function() {
         // document.querySelector('#paypal-button-container-<?= $profesor['id_profesor'] ?> .paypal-button').click(); // Comentamos esta línea
     });
+    
+
 </script>
+
 
             </div>
         <?php endforeach; ?>

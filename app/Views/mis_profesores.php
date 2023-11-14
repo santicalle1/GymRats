@@ -17,12 +17,12 @@
 
     <!-- Aquí puedes mostrar la lista de profesores comprados -->
     <?php if (isset($misProfesores) && is_array($misProfesores)): ?>
-    <?php foreach ($misProfesores as $profesor): ?>
+    <?php foreach ($profesor as $profe): ?>
         <div class="profesor">
-            <h3><?= esc($profesor['nombre']) ?></h3>
-            <p><strong>Dificultad:</strong> <?= esc($profesor['dificultad']) ?></p>
-            <p><strong>Horario:</strong> <?= esc($profesor['horarios']) ?></p>
-            <p><strong>Coste:</strong> $<?= esc($profesor['coste']) ?></p>
+            <h3><?= esc($profe['nombre']) ?></h3>
+            <p><strong>Dificultad:</strong> <?= esc($profe['dificultad']) ?></p>
+            <p><strong>Horario:</strong> <?= esc($profe['horarios']) ?></p>
+            <p><strong>Coste:</strong> $<?= esc($profe['coste']) ?></p>
             <!-- Agrega más detalles según tus necesidades -->
         </div>
     <?php endforeach; ?>

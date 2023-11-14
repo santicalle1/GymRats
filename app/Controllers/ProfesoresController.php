@@ -56,12 +56,16 @@ class ProfesoresController extends Controller {
         if (!$id) {
             return redirect()->to('/login')->with('error', 'Por favor, inicie sesión primero.');
         }
-    
-        // Aquí deberías agregar lógica para eliminar al profesor del conjunto general y agregarlo al conjunto de "mis profesores"
-        // ...
-    
+    }
+
+    public function unprofe($id_profesor) { 
+        $model = new ProfesoresModel();
+        $data['profesor'] = $model->obtenerMisProfesores($id_profesor);
+        var_dump($data);
+        return view('mis_profesores', $data);
         // Redirige a la vista de mis profesores con un mensaje de éxito y el ID del profesor comprado
-        return redirect()->to('/mis_profesores')->with('success', 'Compra exitosa')->with('id_profesor', $id_profesor);
+       // return redirect()->to('/mis_profesores')->with('success', 'Compra exitosa')->with('id_profesor', $id_profesor);
+       
     }
     
 
