@@ -77,7 +77,6 @@
                     .then(response => response.json())
                     .then(data => {
                         // Redirige a la vista de mis profesores con los detalles necesarios
-                       
                         window.location.href = "<?= base_url("ProfesoresController/unprofe/{$profesor['id_profesor']}") ?>";
 
                     })
