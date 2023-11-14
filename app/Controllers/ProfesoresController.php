@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Controllers;
 
@@ -6,13 +6,16 @@ use App\Models\ProductoModel;
 use App\Models\ProfesoresModel;
 use CodeIgniter\Controller;
 
-class ProfesoresController extends Controller {
+class ProfesoresController extends Controller
+{
 
-    public function addForm() {
+    public function addForm()
+    {
         return view('profesores_view');
     }
 
-    public function create() {
+    public function create()
+    {
         $model = new ProfesoresModel();
 
         // Procesando la imagen
@@ -41,13 +44,36 @@ class ProfesoresController extends Controller {
 
         $model->insert($data);
 
-        return redirect()->to(base_url('/profesores')); 
+        return redirect()->to(base_url('/profesores'));
     }
 
-    public function index() {
+    public function index()
+    {
         $model = new ProfesoresModel();
         $data['profesores'] = $model->findAll();
         return view('profesores', $data);
     }
-}
+    public function procesarCompra($id_profesor)
+    {
+        // Verifica si el usuario ha iniciado sesión
+        $id = session()->get('id');
 
+        if (!$id) {
+            return redirect()->to('/login')->with('error', 'Por favor, inicie sesión primero.');
+        }
+    }
+
+    public function unprofe($id_profesor)
+    {
+        $model = new ProfesoresModel();
+        $data['profesor'] = $model->obtenerMisProfesores($id_profesor);
+        var_dump($data);
+        return view('mis_profesores', $data);
+        // Redirige a la vista de mis profesores con un mensaje de éxito y el ID del profesor comprado
+        // return redirect()->to('/mis_profesores')->with('success', 'Compra exitosa')->with('id_profesor', $id_profesor);
+
+    }
+
+
+
+}
