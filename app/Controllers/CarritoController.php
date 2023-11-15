@@ -34,13 +34,24 @@ class CarritoController extends BaseController
             return redirect()->back()->with('error', 'La cantidad no puede estar vacía.');
         }
     
+        $model = new CarritoModel();
+
+        // Verificamos si el producto ya está en el carrito del usuario
+        $productoEnCarrito = $model->where('id', $userId)
+                                   ->where('id_producto', $id_producto)
+                                   ->first();
+    
+        if ($productoEnCarrito) {
+            // Producto ya en el carrito, puedes mostrar un mensaje de error o realizar otra acción
+            return redirect()->back()->with('error', 'Este producto ya está en tu carrito.');
+        }
+
         $data = [
             'id' => $userId,
             'id_producto' => $id_producto,
             'cantidad' => $cantidad
         ];
     
-        $model = new CarritoModel();
         $result = $model->agregarAlCarrito($data);
     
         if($result) {
@@ -75,6 +86,18 @@ class CarritoController extends BaseController
         return redirect()->to('/carrito');
     }
     
-    
+    public function updateCantidad($idCarrito)
+    {
+        $data = []; // Aquí debes realizar la lógica para actualizar la cantidad en la base de datos
+        // Supongamos que ya has actualizado la cantidad y ahora quieres devolver la nueva información del producto
+        return $this->response->setJSON(['success' => true, 'data' => $data]);
+    }
+
+    public function confirmarCarrito(){
+        $Total= $this->request->getPost('TOTAL');
+        //echo($Total);
+        return view ('/compras',['TOTAL' => $Total]);
+
+    }
 
 }

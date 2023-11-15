@@ -164,6 +164,8 @@ $routes->get('carrito', 'CarritoController::index'); // Página del carrito
 $routes->post('/agregarAlCarrito', 'CarritoController::agregarAlCarrito'); // Agregar producto al carrito
 $routes->post('/eliminarProducto', 'CarritoController::eliminarProducto'); // Eliminar producto del carrito
 $routes->post('/vaciarCarrito', 'CarritoController::vaciarCarrito'); // Vaciar el carrito
+$routes->post('/carrito/updateCantidad/(:num)', 'CarritoController::updateCantidad/$1'); //Actualiza la cantidad en el carrito
+$routes->post('/confirmarCarrito','CarritoController::confirmarCarrito');
 
 // Rutas relacionadas con el panel de administrador
 $routes->get('panel_admin', 'Panel::panel'); // Panel de administrador
