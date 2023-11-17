@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.body {
+    display: flex;
+}
+
+.client-panel {
+    width: 400px;
+    height: 600px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto; /* Centra el panel horizontalmente */
+}
+
+h2 {
+    color: #333;
+}
+
+p {
+    margin: 10px 0;
+}
+
+strong {
+    color: #555;
+}
+
+.client-panel p {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.client-panel p:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.header {
+    padding: 15px 30px;
+    background-color: darkcyan;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h2 {
+    font-size: 20px;
+    color: white;
+}
+
+.side-bar-left {
+    width: 250px;
+    min-height: 100vh;
+    transition: 500ms width;
+    background-color: darkslategrey;
+}
+
+.side-bar-left ul {
+    margin-left: 15px;
+    list-style: none;
+}
+
+.side-bar-left ul li {
+    padding: 15px;
+    text-overflow: ellipsis;
+    transition: 500ms background;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.side-bar-left ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.side-bar-left ul li:hover {
+    background-color: orangered;
+}
+
+.side-bar-left ul li a i {
+    display: inline-block;
+    padding: 15px;
+    cursor: pointer;
+    color: orange;
+}
+
+.u-name {
+    padding: 15px;
+    color: white;
+}
+
+.u-name b {
+    color: greenyellow;
+    padding: 10px;
+}
+
+#checkbox {
+    display: none;
+}
+
+#checkbox:checked ~ .body .side-bar-left {
+    width: 100px;
+}
+
+#checkbox:checked ~ .body .side-bar-left .user-p {
+    visibility: hidden;
+}
+
+#checkbox:checked ~ .body .side-bar-left a span {
+    display: none;
+}
+
+.section-1 {
+    flex: 1; /* Usa todo el espacio restante */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.paginacion {
+    border: 1px solid darkred;
+    background-color: black;
+    padding: 10px;
+    color: white;
+    display: inline-block;
+    text-decoration: none;
+    opacity: 0.8;
+}
+
+.paginacion:hover {
+    opacity: 1;
+}

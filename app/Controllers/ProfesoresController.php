@@ -54,26 +54,18 @@ class ProfesoresController extends Controller
         return view('profesores', $data);
     }
     public function procesarCompra($id_profesor)
-    {
-        // Verifica si el usuario ha iniciado sesión
-        $id = session()->get('id');
+{
+    // Lógica para procesar la compra
 
-        if (!$id) {
-            return redirect()->to('/login')->with('error', 'Por favor, inicie sesión primero.');
-        }
-    }
+    // Obtén los detalles del profesor
+    /*$model = new ProfesoresModel();
+    $data['profesor'] = $model->find($id_profesor); // Cambiado de obtenerMisProfesores a find
 
-    public function unprofe($id_profesor)
-    {
-        $model = new ProfesoresModel();
-        $data['profesor'] = $model->obtenerMisProfesores($id_profesor);
-        var_dump($data);
-        return view('mis_profesores', $data);
-        // Redirige a la vista de mis profesores con un mensaje de éxito y el ID del profesor comprado
-        // return redirect()->to('/mis_profesores')->with('success', 'Compra exitosa')->with('id_profesor', $id_profesor);
+    // Puedes realizar otras acciones relacionadas con la compra aquí
 
-    }
-
-
+    // Carga la vista panel_cliente con los datos del profesor
+    return view('panel_cliente', $data);*/
+    echo "hola";
+}
 
 }

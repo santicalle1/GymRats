@@ -48,14 +48,14 @@ abstract class BaseController extends Controller
         // For example, you can perform the login check here.
 
         $session = session();
-         $usuario = $session->get('usuario');
-         $tipo = $session->get('tipo');
-         $id = $session->get('id');
-         
-         if (!$usuario) {
-             // Si el usuario no ha iniciado sesión, redirige a la página de inicio de sesión.
-             return redirect()->to(base_url('login'));
-         }
+        $usuario = $session->get('usuario');
+        $tipo = $session->get('tipo');
+        $id = $session->get('id');
+
+        if (!$usuario) {
+            // Si el usuario no ha iniciado sesión, redirige a la página de inicio de sesión.
+            return redirect()->to(base_url('login'));
+        }
     }
 }
 
