@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GymRats</title>
   <link rel="stylesheet" type="text/css" href="<?= base_url('css/tienda.css'); ?>">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
     
     var inactivityTimeout; // Variable para almacenar el temporizador de inactividad
@@ -56,7 +57,7 @@ include('header.php')
             <?php endif; ?>
             </div>
             <?php if (isset($producto['id_producto'])): ?>
-    <form action="<?= base_url('/agregarAlCarrito') ?>" method="post" class="form-agregar">
+    <form action="<?= base_url('/agregarAlCarrito') ?>" method="post" class="form-agregar" onsubmit="return verificarAgregarAlCarrito(<?= esc($producto['id_producto']) ?>)">
         <input type="hidden" name="id_producto" value="<?= esc($producto['id_producto']) ?>">
 
         <div class="input-group">
@@ -69,12 +70,32 @@ include('header.php')
         </button>
     </form>
 <?php endif; ?>
-
         </div>
     </div>
 <?php endforeach; ?>
 </div>
+<script>
+    function verificarAgregarAlCarrito(idProducto) {
+        // Aquí puedes agregar lógica adicional para verificar si el producto ya está en el carrito
+        // Por ejemplo, podrías hacer una solicitud AJAX al servidor para verificar esto
 
+        // Supongamos que ya realizaste la verificación y obtuviste el resultado en la variable 'productoEnCarrito'
+        var productoEnCarrito = false; // Deberías obtener este valor de tu lógica de verificación
+
+        if (productoEnCarrito) {
+            // El producto ya está en el carrito, muestra un mensaje de alerta
+            Swal.fire({
+                icon: 'warning',
+                title: 'Producto duplicado',
+                text: 'Este producto ya está en tu carrito.',
+            });
+            return false; // Evita que el formulario se envíe
+        } else {
+            // El producto no está en el carrito, permite que el formulario se envíe
+            return true;
+        }
+    }
+</script>
 <?php 
 include('footer.php') 
 ?>

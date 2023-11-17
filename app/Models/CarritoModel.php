@@ -37,21 +37,25 @@ class CarritoModel extends Model
     }
     
     public function obtenerProductosCarrito($id)
-{
-    return $this->db->table($this->table) // Esto se refiere a la tabla 'carrito'
+    {
+        return $this->db->table($this->table)
                 ->join('producto', 'carrito.id_producto = producto.id_producto')
                 ->where('carrito.id', $id)
                 ->get()
                 ->getResultArray();
-}
-public function eliminarProductoDelCarrito($id, $id_producto) {
-    return $this->where('id', $id)->where('id_producto', $id_producto)->delete();
-}
+    }
 
+    public function eliminarProductoDelCarrito($id, $id_producto) {
+        return $this->where('id', $id)->where('id_producto', $id_producto)->delete();
+    }
 
-public function vaciarProductosDelCarrito($id) {
-    return $this->where('id', $id)->delete();
+    public function vaciarProductosDelCarrito($id) {
+        return $this->where('id', $id)->delete();
+    }
+
+    public function updateCarrito($id_carrito, $data)
+    {
+        return $this->update(['id_carrito' => $id_carrito], $data);
+    }
+    
 }
-
-}
-

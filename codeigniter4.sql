@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-11-2023 a las 22:49:42
+-- Tiempo de generación: 15-11-2023 a las 01:03:14
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -20,6 +20,18 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `codeigniter4`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `barrio`
+--
+
+CREATE TABLE `barrio` (
+  `id_barrio` int(11) NOT NULL,
+  `nombre` varchar(30) DEFAULT NULL,
+  `id_ciudad` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -51,9 +63,8 @@ CREATE TABLE `carrito` (
 --
 
 INSERT INTO `carrito` (`id_carrito`, `id`, `id_producto`, `cantidad`, `fecha_agregado`) VALUES
-(34, 23, 38, 1, '2023-10-30 00:09:35'),
-(71, 24, 37, 2, '2023-10-31 00:51:38'),
-(74, 18, 41, 2, '2023-11-04 01:04:55');
+(110, 18, 45, 3, '2023-11-15 02:52:49'),
+(111, 18, 44, 1, '2023-11-15 02:58:53');
 
 -- --------------------------------------------------------
 
@@ -95,7 +106,8 @@ INSERT INTO `clientes` (`id`, `nombre`, `email`, `contrasena`, `usuario`, `direc
 (18, 'Tadeo', 'tadeo270148@gmail.com', '$2y$10$w7jZBAS66Xmu0yHCXCZlLun0GoETIZ4J6rW7W0C2TFV7t0uDrpr36', 'Tadeo', '', '0', '', 1),
 (21, 'Claudia', 'claudia@gmail.com', '$2y$10$Clxo2GQxXIu64SkKpKhyOeJtcTpjPxma9cmtisAzyN1n7HAGkNyEG', 'Clauditaxs', 'San Miguel 835', '5850', '+54 3571 565913', 0),
 (22, 'Daniela', 'gomzdaniela.edfisica@gmail.com', '$2y$10$IMMzO3CC9lgTu9VZ4qqO8uWxKYWIoBxeutMocLqWPk9OpVx5CrHDW', 'DaniGym', 'Gral.Roca 566', '5850', '+54 3571 312601', 0),
-(23, 'Rodrigo', 'rodolfito@alumnos.itr3.edu.ar', '$2y$10$TkzLEh.5Q4ryg9sOzYNPbe9Kv1XoCTYAGbxuGb8H/hch5/mIvVm9e', 'rodolfito', 'Las Heras 346', '5850', '+54 3571 773450', 0);
+(23, 'Rodrigo', 'rodolfito@alumnos.itr3.edu.ar', '$2y$10$TkzLEh.5Q4ryg9sOzYNPbe9Kv1XoCTYAGbxuGb8H/hch5/mIvVm9e', 'rodolfito', 'Las Heras 346', '5850', '+54 3571 773450', 0),
+(25, 'Nahuel', 'nahuel@gmail.com', '$2y$10$9uGDA3kis483yY.Ho/5K0usTtVXYu57xaXBelHSW3cJUpExs92NZe', 'Nahuel', 'Suipacha 504', '5850', '3571 111111', 0);
 
 -- --------------------------------------------------------
 
@@ -168,7 +180,10 @@ CREATE TABLE `direccion` (
   `id` int(11) DEFAULT NULL,
   `id_ciudad` int(11) DEFAULT NULL,
   `id_calle` int(11) DEFAULT NULL,
-  `numero_calle` varchar(10) DEFAULT NULL
+  `numero_calle` varchar(10) DEFAULT NULL,
+  `codigo_postal` varchar(10) DEFAULT NULL,
+  `id_barrio` int(11) NOT NULL,
+  `descripcion_casa` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -204,10 +219,8 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`id_producto`, `nombre`, `precio`, `stock`, `imagen`, `descripcion`, `categoria`, `descuento`) VALUES
-(37, 'Creatina', 40000.00, 3, 'uploads/1697502650_6f79f2bddf5a9671ed5b.png', 'fefefeeeeeeeeeeeeeeeeeee', 'merchandising', 0.00),
-(38, ' 2 Mancuernas 5kg', 6300.00, 4, 'uploads/1697571613_59891424ab9b2b38dbb9.jpg', 'es para flacos', 'oferta', 10.00),
-(39, 'yyyyyyyyyyyyyyyyyyyyyyyy', 23232.00, 2, 'uploads/1697574628_b5659a3d3aac20376649.png', 'hhhhhhhhhhhhhhhhhhhhhhhhh', 'oferta', 0.00),
-(41, 'creatina monohidratada', 100000.00, 2, 'uploads/1699049073_693f5dff938760d2f41d.webp', 'es para el gordo', 'suplementos', 0.00);
+(44, 'Tadeo', 33333.00, 33, 'uploads/1699392170_25c3e55336a05bc1a67e.png', 'gferg', 'gimnasio', 0.00),
+(45, 'creatina', 12000.00, 3, 'uploads/1699996106_3c4e8fbb72a2507acf48.avif', 'jjj', 'oferta', 40.00);
 
 -- --------------------------------------------------------
 
@@ -236,7 +249,8 @@ CREATE TABLE `profesores` (
 
 INSERT INTO `profesores` (`id_profesor`, `nombre`, `especialidad`, `fecha_de_contrato`, `titulos`, `horarios`, `telefono`, `mail`, `salario`, `coste`, `dificultad`, `imagen`) VALUES
 (10, 'Tadeo', 'Profe', '2023-11-23 00:00:00', 'h', '00:00:00', '+54 3571 678321', 'tadeo@gmail.com', 0, 0.03, 'ezz', 'uploads/1699307128_13070999a33a6db6d63c.jpg'),
-(11, 'Franco', 'Profe', '2023-11-30 00:00:00', 'f', '00:00:00', '+54 3571 773450', 'tadeo@gmail.com', 0, 0.06, 'ezz', 'uploads/1699307180_6216d2c2c469a8d0f062.avif');
+(11, 'Franco', 'Profe', '2023-11-30 00:00:00', 'f', '00:00:00', '+54 3571 773450', 'tadeo@gmail.com', 0, 0.06, 'ezz', 'uploads/1699307180_6216d2c2c469a8d0f062.avif'),
+(12, 'Franco', 'Profe', '2023-11-16 00:00:00', 'g', '00:00:00', '+54 3571 773450', 'tadeo@gmail.com', 0, 33.03, 'ff', 'uploads/1699385261_0207838ef8af7905b6ac.avif');
 
 -- --------------------------------------------------------
 
@@ -287,6 +301,12 @@ CREATE TABLE `usuario_profesor` (
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `barrio`
+--
+ALTER TABLE `barrio`
+  ADD PRIMARY KEY (`id_barrio`);
 
 --
 -- Indices de la tabla `calle`
@@ -346,7 +366,8 @@ ALTER TABLE `direccion`
   ADD PRIMARY KEY (`id_envio`),
   ADD KEY `id` (`id`),
   ADD KEY `id_ciudad` (`id_ciudad`),
-  ADD KEY `id_calle` (`id_calle`);
+  ADD KEY `id_calle` (`id_calle`),
+  ADD KEY `id_barrio` (`id_barrio`);
 
 --
 -- Indices de la tabla `metodo_pago`
@@ -391,16 +412,22 @@ ALTER TABLE `usuario_profesor`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `barrio`
+--
+ALTER TABLE `barrio`
+  MODIFY `id_barrio` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `carrito`
 --
 ALTER TABLE `carrito`
-  MODIFY `id_carrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id_carrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `compras`
@@ -424,13 +451,13 @@ ALTER TABLE `detalledecompra`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT de la tabla `profesores`
 --
 ALTER TABLE `profesores`
-  MODIFY `id_profesor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_profesor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario_profesor`
@@ -443,12 +470,24 @@ ALTER TABLE `usuario_profesor`
 --
 
 --
+-- Filtros para la tabla `barrio`
+--
+ALTER TABLE `barrio`
+  ADD CONSTRAINT `barrio_ibfk_1` FOREIGN KEY (`id_ciudad`) REFERENCES `ciudad` (`id_ciudad`);
+
+--
 -- Filtros para la tabla `compras`
 --
 ALTER TABLE `compras`
   ADD CONSTRAINT `compras_ibfk_1` FOREIGN KEY (`id_envio`) REFERENCES `direccion` (`id_envio`),
   ADD CONSTRAINT `compras_ibfk_2` FOREIGN KEY (`id_calle`) REFERENCES `calle` (`id_calle`),
   ADD CONSTRAINT `compras_ibfk_3` FOREIGN KEY (`id_ciudad`) REFERENCES `ciudad` (`id_ciudad`);
+
+--
+-- Filtros para la tabla `direccion`
+--
+ALTER TABLE `direccion`
+  ADD CONSTRAINT `direccion_ibfk_1` FOREIGN KEY (`id_barrio`) REFERENCES `barrio` (`id_barrio`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
