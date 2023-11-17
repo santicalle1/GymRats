@@ -55,14 +55,10 @@ $routes->get('redireccion/panel', 'Panel::panel_cliente'); // Redirección al pa
 $routes->get('inicio/logout', 'Inicio::logout'); // Cierre de sesión
 $routes->get('carrito', 'CarritoController::index'); // Página del carrito
 $routes->post('/agregarAlCarrito', 'CarritoController::agregarAlCarrito'); // Agregar producto al carrito
-$routes->post('/eliminarProducto', 'CarritoController::eliminarProducto'); // Eliminar producto del carrito
-<<<<<<< HEAD
-
-=======
+$routes->post('/eliminarProducto', 'CarritoController::eliminarProducto'); 
 $routes->post('/vaciarCarrito', 'CarritoController::vaciarCarrito'); // Vaciar el carrito
-$routes->post('/carrito/updateCantidad/(:num)', 'CarritoController::updateCantidad/$1'); //Actualiza la cantidad en el carrito
-$routes->post('/confirmarCarrito','CarritoController::confirmarCarrito');
->>>>>>> ee14f8de3b46a130c6219e7d22ddf7c6a6c7baca
+$routes->post('updateCantidad/(:num)', 'CarritoController::updateCantidad/$1'); //Actualiza la cantidad en el carrito
+$routes->post('/confirmarCarrito','CarritoController::confirmarCarrito');// Eliminar producto del carrito
 
 // Rutas relacionadas con el panel de administrador
 $routes->get('panel_admin', 'Panel::panel'); // Panel de administrador

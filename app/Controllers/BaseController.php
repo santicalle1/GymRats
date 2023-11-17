@@ -39,23 +39,25 @@ abstract class BaseController extends Controller
     /**
      * @return void
      */
-    public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
-    {
-        // Do Not Edit This Line
-        parent::initController($request, $response, $logger);
+//     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
+//     {
+//         // Do Not Edit This Line
+//         parent::initController($request, $response, $logger);
 
-        // Preload any models, libraries, etc, here.
-        // For example, you can perform the login check here.
+//         // Preload any models, libraries, etc, here.
+//         // For example, you can perform the login check here.
 
-        $session = session();
-        $usuario = $session->get('usuario');
-        $tipo = $session->get('tipo');
-        $id = $session->get('id');
+//         $session = session();
+//         $session->set('usuario', 'tipo', 'id');
+//         $usuario = $session->get('usuario');
+//         $tipo = $session->get('tipo');
+//         $id = $session->get('id');
+        
 
-        if (!$usuario) {
-            // Si el usuario no ha iniciado sesión, redirige a la página de inicio de sesión.
-            return redirect()->to(base_url('login'));
-        }
+
+//         if (!$usuario) {
+//             // Si el usuario no ha iniciado sesión, redirige a la página de inicio de sesión.
+//             return redirect()->to(base_url('login'));
+//         }
+//     }
     }
-}
-

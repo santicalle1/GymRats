@@ -7,21 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GymRats</title>
   <link rel="stylesheet" type="text/css" href="<?= base_url('css/body.css'); ?>">
-  <script>
-    var inactivityTimeout; // Variable para almacenar el temporizador de inactividad
-
-    // Función para reiniciar el temporizador de inactividad
-    function resetInactivityTimeout() {
-      clearTimeout(inactivityTimeout); // Limpiamos el temporizador anterior
-      inactivityTimeout = setTimeout(logout, 180000); // 60000 ms = 1 minuto
-    }
-    // Inicializa el temporizador de inactividad
-    resetInactivityTimeout();
-
-    // Agrega eventos de detección de actividad del usuario
-    document.addEventListener('mousemove', resetInactivityTimeout);
-    document.addEventListener('keydown', resetInactivityTimeout);
-  </script>
   </head>
   
     <?php
@@ -32,6 +17,7 @@
 <body>
 <?php
         $session = session();
+        $session->set(['_ci_vars' => ['time' => time(), 'ttl' => 15]]);
         $usuario = $session->get('usuario');
         ?>
   <div class="dj-banner">
@@ -105,26 +91,6 @@
       include('footer.php');
     ?>
     </footer>
-    <script src="https://kit.fontawesome.com/81581fb069.js" crossorigin="anonymous">
-      // Agrega un evento de clic al botón Comprar Ahora
-      document.getElementById('btn-comprar').addEventListener('click', function(event) {
-        // Evita que el enlace se abra por defecto
-        event.preventDefault();
-
-        // Verifica si la variable de sesión user_id está definida en PHP
-        // Si está definida, significa que el usuario está autenticado
-        // Si no está definida, el usuario no está autenticado
-        <?php if (isset($_SESSION['user_id'])) : ?>
-          // El usuario está autenticado, redirige a la vista de tienda
-          window.location.href = '<?= base_url("/tienda"); ?>';
-        <?php else : ?>
-          // El usuario no está autenticado, redirige a la página de inicio de sesión
-          window.location.href = '<?= base_url("/login"); ?>';
-        <?php endif; ?>
-      });
-    </script>
-
-
 </body>
 
 </html>

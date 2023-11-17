@@ -65,15 +65,16 @@
                                 <h2 class="title03"><?= esc($producto['nombre']) ?></h2>
                                 <p>Cantidad: <?= esc($cantidad) ?></p>
                                 <div class="price-container">
-                                    <?php if ($producto['descuento']): ?>
-                                        <p class="red-text">Descuento: <?= $producto['descuento'] ?>%</p>
-                                        <p class="red-text">Precio Original: $<?= $producto['precio'] ?></p>
-                                        <p class="green-text">Precio Final: $<?= $precioFinal ?></p>
-                                    <?php else: ?>
-                                        <p>Precio: $<?= $producto['precio'] ?></p>
-                                    <?php endif; ?>
-                                    <p>Total Producto: $<?= $totalProducto ?></p>
-                                </div>
+    <?php if ($producto['descuento']): ?>
+        <p class="red-text">Descuento: <?= $producto['descuento'] ?>%</p>
+        <p class="red-text">Precio Original: $<?= $producto['precio'] ?></p>
+        <p class="green-text">Precio Final: $<?= $precioFinal ?></p>
+    <?php else: ?>
+        <p>Precio: $<?= $producto['precio'] ?></p>
+    <?php endif; ?>
+    <p class="total-producto-<?= esc($producto['id_carrito']) ?>">Total Producto: $<?= $totalProducto ?></p>
+</div>
+
                             </div>
 
                             <form method="POST" action="<?= base_url('/eliminarProducto') ?>" style="margin-top: 10px;">
@@ -81,16 +82,18 @@
                                 <button type="submit">Quitar Producto</button>
                             </form>
 
-                            <form id="form-<?= esc($producto['id_carrito']) ?>" class="update-form" method="post" action="<?= base_url('/updateCantidad/' . esc($producto['id_carrito'])) ?>">
-                                <?= csrf_field() ?>
-                                <input type="hidden" name="id_carrito" value="<?= esc($producto['id_carrito']) ?>">
-                                <div class="input-group">
-                                    <label for="cantidad-<?= esc($producto['id_carrito']) ?>">Cantidad:</label>
-                                    <input type="number" name="cantidad" id="cantidad-<?= esc($producto['id_carrito']) ?>" value="<?= esc($producto['cantidad']) ?>" min="1" max="<?= esc($producto['stock']) ?>">
-                                </div>
-                                <button type="submit" class="update-button">Actualizar Cantidad</button>
-                            </form>
-                            <div id="message-<?= esc($producto['id_carrito']) ?>" class="message-container"></div>
+                            <form class="update-form" method="post" action="<?= base_url('/updateCantidad/' . esc($producto['id_carrito'])) ?>">
+    <?= csrf_field() ?>
+    <input type="hidden" name="id_carrito" value="<?= esc($producto['id_carrito']) ?>">
+    <div class="input-group">
+        <label for="cantidad-<?= esc($producto['id_carrito']) ?>">Cantidad:</label>
+        <input type="number" name="cantidad" class="cantidad-input" value="<?= esc($producto['cantidad']) ?>" min="1" max="<?= esc($producto['stock']) ?>">
+    </div>
+    <button type="submit" class="update-button">Actualizar Cantidad</button>
+</form>
+
+<div class="message-container"></div>
+
 
                             <?php if (session()->has('success') && session('success') == 'Cantidad actualizada exitosamente.'): ?>
                                 <p class="success-message">
@@ -111,7 +114,7 @@
                                 </form>
                                 <form method="POST" action="<?= base_url('/confirmarCarrito') ?>">
                                 <input name="TOTAL" id="TOTAL" value="<?= $total ?>" hidden />
-                                    <button type="submit" style="background-color: green; color: #ffffff;">Comprar ahora</button>
+                                    <button type="submit">Comprar ahora</button>
                                 </form>
                             </div>
                         </div>
@@ -122,49 +125,90 @@
             </div>
         </main>
     </div>
+    <!-- Asegúrate de que jQuery esté incluido antes de tu script -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const container = document.querySelector('.contenedor-carrito');
 
-            container.addEventListener('click', function (event) {
-                const target = event.target;
+<script>
+    $(document).ready(function () {
+        $('.update-button').on('click', function (event) {
+            event.preventDefault();
 
-                if (target.classList.contains('update-button')) {
-                    event.preventDefault();
-                    updateCartItem(target.closest('.update-form'));
+            const form = $(this).closest('.update-form');
+            const formData = form.serialize();
+
+            $.ajax({
+                url: form.attr('action'),
+                method: 'POST',
+                data: formData,
+                dataType: 'json',
+                success: function (data) {
+                    if (data.success) {
+                        const cantidadInput = form.find('.cantidad-input');
+                        const totalProductoContainer = form.find('.total-producto');
+                        const totalCarritoElement = $('#total-carrito');
+
+                        cantidadInput.val(data.data.cantidad);
+                        totalProductoContainer.text(`Total Producto: $${data.data.totalProducto}`);
+                        totalCarritoElement.text(`Total Carrito: $${data.data.totalCarrito}`);
+
+                        const messageContainer = form.siblings('.message-container');
+                        messageContainer.html(`<p class="success-message">Cantidad actualizada exitosamente. Nueva cantidad: ${data.data.cantidad}, Nuevo total: $${data.data.totalProducto}</p>`);
+                    } else {
+                        const messageContainer = form.siblings('.message-container');
+                        messageContainer.html(`<p class="error-message">${data.message}</p>`);
+                    }
+                },
+                error: function (error) {
+                    console.error('Error:', error);
                 }
             });
-
-            function updateCartItem(form) {
-                const formData = new FormData(form);
-
-                fetch(form.action, {
-                        method: 'POST',
-                        body: formData
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        const messageContainer = document.getElementById('message-' + formData.get('id_carrito'));
-
-                        if (data.success) {
-                            const cantidadInput = document.getElementById('cantidad-' + formData.get('id_carrito'));
-                            const totalProducto = data.data.totalProducto;
-                            const totalCarrito = data.data.totalCarrito;
-
-                            cantidadInput.value = data.data.cantidad;
-                            messageContainer.innerHTML = `<p class="success-message">Cantidad actualizada exitosamente. Nueva cantidad: ${data.data.cantidad}, Nuevo total: $${totalProducto}</p>`;
-
-                            const totalCarritoElement = document.getElementById('total-carrito');
-                            totalCarritoElement.innerHTML = `Total Carrito: $${totalCarrito}`;
-                        } else {
-                            messageContainer.innerHTML = `<p class="error-message">${data.message}</p>`;
-                        }
-                    })
-                    .catch(error => console.error('Error:', error));
-            }
         });
-    </script>
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('.update-button').on('click', function (event) {
+            event.preventDefault();
+
+            const form = $(this).closest('.update-form');
+            const formData = form.serialize();
+
+            $.ajax({
+                url: form.attr('action'),
+                method: 'POST',
+                data: formData,
+                dataType: 'json',
+                success: function (data) {
+                    if (data.success) {
+                        const cantidadInput = form.find('.cantidad-input');
+                        const totalProductoContainer = form.find('.total-producto');
+                        const totalCarritoElement = $('.total-carrito strong');
+
+                        // Actualiza solo el valor del input
+                        cantidadInput.val(data.data.cantidad);
+
+                        // Actualiza el texto en el contenedor del total del producto
+                        totalProductoContainer.text(`Total Producto: $${data.data.totalProducto}`);
+
+                        // Actualiza el texto en el contenedor del total del carrito
+                        totalCarritoElement.text(`Total Carrito: $${data.data.totalCarrito}`);
+
+                        const messageContainer = form.siblings('.message-container');
+                        messageContainer.html(`<p class="success-message">Cantidad actualizada exitosamente. Nueva cantidad: ${data.data.cantidad}, Nuevo total: $${data.data.totalProducto}</p>`);
+                    } else {
+                        const messageContainer = form.siblings('.message-container');
+                        messageContainer.html(`<p class="error-message">${data.message}</p>`);
+                    }
+                },
+                error: function (error) {
+                    console.error('Error:', error);
+                }
+            });
+        });
+    });
+</script>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use App\Models\Usuarios;
 
+
 class Login extends BaseController
 {
     public function index()
@@ -24,6 +25,8 @@ class Login extends BaseController
             $session->set('usuario', $usuarioEncontrado['usuario']);
             $session->set('tipo', $usuarioEncontrado['tipo']);
             $session->set('id', $usuarioEncontrado['id']);
+
+            
     
             // Redirigir al usuario a la página deseada
             $pagina_destino = $this->request->getGet('pagina_destino'); // Obtén la página de destino de la URL

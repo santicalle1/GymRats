@@ -88,16 +88,39 @@ class CarritoController extends BaseController
     
     public function updateCantidad($idCarrito)
     {
-        $data = []; // Aquí debes realizar la lógica para actualizar la cantidad en la base de datos
-        // Supongamos que ya has actualizado la cantidad y ahora quieres devolver la nueva información del producto
-        return $this->response->setJSON(['success' => true, 'data' => $data]);
-    }
-
+        $newCantidad = $this->request->getPost('cantidad');
+        
+        // Lógica para actualizar la cantidad en la base de datos
+        $model = new CarritoModel();
+        $data = [
+            'cantidad' => $newCantidad,
+        ];
+        
+        $model->updateCarrito($idCarrito, $data);
+        
+        // Obtenemos los datos actualizados
+        $productoActualizado = $model->find($idCarrito);
+        
+        // Calculamos el nuevo total del producto
+        $precioFinal = ($productoActualizado['descuento']) ? $productoActualizado['precio'] * (1 - ($productoActualizado['descuento'] / 100)) : $productoActualizado['precio'];
+        $totalProducto = $productoActualizado['cantidad'] * $precioFinal;
+        
+        // Obtenemos el nuevo total del carrito
+        $totalCarrito = $model->where('id', session()->get('id'))->sum('cantidad * precio_final');
+        
+        return $this->response->setJSON([
+            'success' => true,
+            'data' => [
+                'cantidad' => $newCantidad,
+                'totalProducto' => $totalProducto,
+                'totalCarrito' => $totalCarrito,
+            ],
+        ]);        
+    }    
     public function confirmarCarrito(){
         $Total= $this->request->getPost('TOTAL');
         //echo($Total);
         return view ('/compras',['TOTAL' => $Total]);
 
     }
-
 }
