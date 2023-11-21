@@ -25,9 +25,17 @@ class Login extends BaseController
             $session->set('usuario', $usuarioEncontrado['usuario']);
             $session->set('tipo', $usuarioEncontrado['tipo']);
             $session->set('id', $usuarioEncontrado['id']);
-
             
-    
+            $datosUsuario = [
+                'nombre' => $usuarioEncontrado['nombre'],
+                'email' => $usuarioEncontrado['email'],
+                'usuario' => $usuarioEncontrado['usuario'],
+                'direccion' => $usuarioEncontrado['direccion'],
+                'codigo_postal' => $usuarioEncontrado['codigo_postal'],
+            ];
+            
+            // Almacena los datos del usuario en la sesión
+            $session->set('datosUsuario', $datosUsuario);    
             // Redirigir al usuario a la página deseada
             $pagina_destino = $this->request->getGet('pagina_destino'); // Obtén la página de destino de la URL
             if ($pagina_destino) {

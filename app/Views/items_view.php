@@ -3,105 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="<?= base_url('css/itemsview.css'); ?>">
     <title>Listado De Clientes</title>
-    <script>
-    var inactivityTimeout; // Variable para almacenar el temporizador de inactividad
-
-    // Función para reiniciar el temporizador de inactividad
-    function resetInactivityTimeout() {
-      clearTimeout(inactivityTimeout); // Limpiamos el temporizador anterior
-      inactivityTimeout = setTimeout(logout, 180000); // 60000 ms = 1 minuto
-    }
-
-    // Función para redirigir a la página de cierre de sesión
-    function logout() {
-      window.location.href = '<?= base_url("inicio/logout"); ?>';
-    }
-
-    // Inicializa el temporizador de inactividad
-    resetInactivityTimeout();
-
-    // Agrega eventos de detección de actividad del usuario
-    document.addEventListener('mousemove', resetInactivityTimeout);
-    document.addEventListener('keydown', resetInactivityTimeout);
-  </script>
-    <style>
-        /* Estilo general */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
-
-.container {
-    width: 60%;
-    margin: 2em auto;
-    background-color: #fff;
-    padding: 2em;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-table, th, td {
-    border: 1px solid #ddd;
-}
-
-th, td {
-    padding: 15px;
-    text-align: left;
-}
-
-th {
-    background-color: #f2f2f2;
-}
-
-tr:hover {
-    background-color: #f5f5f5;
-}
-
-/* Estilo para el botón Editar (Verde) */
-a.edit, button.edit {
-    background-color: #4CAF50;
-    color: white;
-    padding: 8px 12px;
-    border: none; /* Eliminar bordes por defecto para el botón */
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    margin-right: 10px;  /* Margen a la derecha para separar de "Eliminar" */
-    display: block;  /* Hace que el botón ocupe toda la línea */
-    margin-bottom: 5px;  /* Separación vertical entre botones */
-    cursor: pointer; /* Cambiar el cursor a mano al pasar por encima */
-    text-decoration: none;
-}
-
-a.edit:hover, button.edit:hover {
-    background-color: #45a049;  /* Un verde más oscuro cuando pasas el cursor */
-}
-
-/* Estilo para el botón Eliminar (Rojo) */
-a.delete, button.delete {
-    background-color: #f44336;
-    color: white;
-    padding: 8px 12px;
-    border: none; /* Eliminar bordes por defecto para el botón */
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    display: block;  /* Hace que el botón ocupe toda la línea */
-    margin-top: 5px;  /* Separación vertical entre botones */
-    cursor: pointer; /* Cambiar el cursor a mano al pasar por encima */
-}
-
-a.delete:hover, button.delete:hover {
-    background-color: #f21c0d;  /* Un rojo más oscuro cuando pasas el cursor */
-}
-
-    </style>
 </head>
+
 <body>
 <table>
     <tr>

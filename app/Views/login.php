@@ -20,7 +20,7 @@
             min-height: 100vh;
         }
     </style>
-    <link rel="stylesheet" href="css/login.css">
+<link rel="stylesheet" type="text/css" href="<?= base_url('css/login.css'); ?>">
 </head>
 
 <body>

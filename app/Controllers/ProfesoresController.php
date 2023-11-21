@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\ProductoModel;
 use App\Models\ProfesoresModel;
+use App\Models\ProfesorCompradoModel;
 use CodeIgniter\Controller;
 
 class ProfesoresController extends Controller
@@ -17,16 +18,6 @@ class ProfesoresController extends Controller
     public function create()
     {
         $model = new ProfesoresModel();
-
-        // Procesando la imagen
-        $file = $this->request->getFile('imagen');
-        if ($file->isValid() && !$file->hasMoved()) {
-            $newName = $file->getRandomName();
-            $file->move(ROOTPATH . 'public/uploads', $newName);
-            $imagenPath = 'uploads/' . $newName;
-        } else {
-            $imagenPath = ''; // o puedes poner una ruta predeterminada
-        }
 
         $data = [
             'nombre' => $this->request->getPost('nombre'),
@@ -54,18 +45,41 @@ class ProfesoresController extends Controller
         return view('profesores', $data);
     }
     public function procesarCompra($id_profesor)
-{
-    // Lógica para procesar la compra
+    {
+        // Lógica para procesar la compra
 
-    // Obtén los detalles del profesor
-    /*$model = new ProfesoresModel();
-    $data['profesor'] = $model->find($id_profesor); // Cambiado de obtenerMisProfesores a find
+        // Obtén los detalles del profesor
+        $model = new ProfesoresModel();
+        $data['profesor'] = $model->find($id_profesor);
 
-    // Puedes realizar otras acciones relacionadas con la compra aquí
+        // Asegúrate de que el profesor fue encontrado antes de intentar acceder al costo
+        if ($data['profesor']) {
+            $coste = $data['profesor']['coste'];
 
-    // Carga la vista panel_cliente con los datos del profesor
-    return view('panel_cliente', $data);*/
-    echo "hola";
-}
+            // Puedes hacer algo con el costo aquí si es necesario
+        } else {
+            // Manejar el caso donde el profesor no fue encontrado
+        }
 
+        // Obtén el ID del usuario desde la sesión
+        $session = session();
+        $id_usuario = $session->get('id');
+
+        // Realiza la inserción en la tabla profesor_comprado
+        $profesorCompradoModel = new ProfesorCompradoModel();
+        $datosCompra = [
+            'id' => $id_usuario,
+            'id_profesor' => $id_profesor,
+            'coste' => $coste,
+
+            // Otros campos relacionados con la compra si es necesario
+        ];
+
+        $profesorCompradoModel->insert($datosCompra);
+
+        // Puedes realizar otras acciones relacionadas con la compra aquí
+
+        // Carga la vista panel_cliente con los datos del profesor
+        return view('panel_cliente', $data);
+    }
 }

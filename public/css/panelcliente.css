@@ -137,3 +137,22 @@ strong {
 .paginacion:hover {
     opacity: 1;
 }
+.profesor {
+    text-align: center;
+}
+
+.profesor h3 {
+    color: #007bff;
+    margin-top: 10px;
+}
+
+.profesor img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.profesor p {
+    margin-bottom: 5px;
+}

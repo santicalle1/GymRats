@@ -4,29 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="<?= base_url('css/profesores_view.css'); ?>"
+    <link rel="stylesheet" type="text/css" href="<?= base_url('css/profesores_view.css'); ?>">
     <title>Profesores</title>
-    <script>
-        var inactivityTimeout; // Variable para almacenar el temporizador de inactividad
-
-        // Función para reiniciar el temporizador de inactividad
-        function resetInactivityTimeout() {
-            clearTimeout(inactivityTimeout); // Limpiamos el temporizador anterior
-            inactivityTimeout = setTimeout(logout, 180000); // 60000 ms = 1 minuto
-        }
-
-        // Función para redirigir a la página de cierre de sesión
-        function logout() {
-            window.location.href = '<?= base_url("inicio/logout"); ?>';
-        }
-
-        // Inicializa el temporizador de inactividad
-        resetInactivityTimeout();
-
-        // Agrega eventos de detección de actividad del usuario
-        document.addEventListener('mousemove', resetInactivityTimeout);
-        document.addEventListener('keydown', resetInactivityTimeout);
-    </script>
 </head>
 
 <body>

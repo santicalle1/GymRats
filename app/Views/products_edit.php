@@ -2,75 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="stylesheet" type="text/css" href="<?= base_url('css/productsedit.css'); ?>">
     <title>Editar Productos</title>
-    <script>
-    var inactivityTimeout; // Variable para almacenar el temporizador de inactividad
-
-    // Función para reiniciar el temporizador de inactividad
-    function resetInactivityTimeout() {
-      clearTimeout(inactivityTimeout); // Limpiamos el temporizador anterior
-      inactivityTimeout = setTimeout(logout, 180000); // 60000 ms = 1 minuto
-    }
-
-    // Función para redirigir a la página de cierre de sesión
-    function logout() {
-      window.location.href = '<?= base_url("inicio/logout"); ?>';
-    }
-
-    // Inicializa el temporizador de inactividad
-    resetInactivityTimeout();
-
-    // Agrega eventos de detección de actividad del usuario
-    document.addEventListener('mousemove', resetInactivityTimeout);
-    document.addEventListener('keydown', resetInactivityTimeout);
-  </script>
-    <style>
-    .form-container {
-        max-width: 600px;
-        margin: 30px auto;
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .form-group {
-        margin-bottom: 15px;
-    }
-
-    label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: bold;
-    }
-
-    input[type="text"],
-    input[type="number"],
-    textarea,
-    select {
-        width: 100%;
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
-
-    button.btn {
-        padding: 10px 15px;
-        background-color: #007BFF;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-
-    button.btn:hover {
-        background-color: #0056b3;
-    }
-    
-</style>
 </head>
+
 <body>
 <div class="form-container">
     <form method="post" action="<?= base_url('productos/update/' . esc($product['id_producto'])); ?>">
