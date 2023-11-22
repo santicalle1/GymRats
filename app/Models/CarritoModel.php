@@ -21,7 +21,7 @@ class CarritoModel extends Model
     protected $validationRules    = [
         'id'          => 'required|integer',
         'id_producto' => 'required|integer',
-        'cantidad'    => 'required|integer'
+        'cantidad'    => 'required|integer',
     ];
     protected $validationMessages = [];
     protected $skipValidation     = false;

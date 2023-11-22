@@ -10,26 +10,19 @@ class Inicio extends BaseController
     {
         return view('inicio');
     }
-    public function sesion()
-{
-    $session = session();
-
-
-    $session->set(['_ci_vars' => ['time' => time(), 'ttl' => 15]]);
-
-    $data['usuario'] = $session->get('usuario');
-
-    return view('inicio', $data);
-}
-    
-    public function logout()
+        public function sesion()
+        {
+            $session = session();
+            $data['usuario'] = $session->get('usuario');
+            return view('inicio', $data);
+        }
+        public function logout()
     {
+        // Cerrar sesión
+        session()->destroy();
 
-        $session = session();
-    
-
-        $session->destroy();
+        // Redirigir al usuario a la página de inicio
         return redirect()->to(base_url('inicio'));
     }
-    
+        
 }

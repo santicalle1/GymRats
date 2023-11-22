@@ -3,31 +3,72 @@
 namespace App\Controllers;
 
 use CodeIgniter\Controller;
+use App\Models\DireccionModel;
+use App\Models\ComprasModel;
+use App\Models\DetalleCompraModel;
+use App\Models\CalleModel;
+use App\Models\BarrioModel;
+use App\Models\CiudadModel;
+use App\Models\ProvinciaModel;
+use App\Models\CarritoModel;
+use App\Models\ProductoModel;
 
 class Compras extends BaseController
-{ 
+{
+
     public function index()
     {
-        return view('compras');
+        return view('compras'); // Asegúrate de tener una vista llamada 'compras.php'
     }
 
+    public function procesarCompra()
+    {
+        $direccionModel = new DireccionModel();
+        $compraModel = new ComprasModel();
+        $detallecompraModel = new DetalleCompraModel();
+        $calleModel = new CalleModel();
+        $barrioModel = new BarrioModel();
+        $ciudadModel = new CiudadModel();
+        $provinciaModel = new ProvinciaModel();
+        $carritoModel = new CarritoModel();
+        $productoModel = new ProductoModel();
 
-    public function procesarCompra($id_profesor) {
-        // Verifica si el usuario ha iniciado sesión
-        $id = session()->get('id');
+        $provincia = $this->request->getPost('provincia');
+        $ciudad = $this->request->getPost('ciudad');
+        $nombre = $this->request->getPost('barrio');
+        $calle = $this->request->getPost('calle');
+        $numero_calle = $this->request->getPost('numero_calle');
+        $codigo_postal = $this->request->getPost('codigo_postal');
+        $descripcion_casa = $this->request->getPost('descripcion_casa');
+        $total = $this->request->getPost('total');
         
-        if (!$id) {
-            return redirect()->to('/login')->with('error', 'Por favor, inicie sesión primero.');
-        }
+    // Insertar provincia
+    $id_provincia = $provinciaModel->insertProvincia($provincia);
+
+    // Insertar ciudad
+    $id_ciudad = $ciudadModel->insertCiudad($ciudad, $id_provincia, $codigo_postal);
+
+    // Insertar barrio
+    $id_barrio = $barrioModel->insertBarrio($id_ciudad, $nombre);
+
+    // Insertar calle
+    $id_calle = $calleModel->insertCalle($calle);
     
-        // Aquí deberías agregar lógica para eliminar al profesor del conjunto general y agregarlo al conjunto de "mis profesores"
-    
-        // Redirige a la vista de mis profesores con el ID del profesor procesado
-        return redirect()->to('/mis_profesores')->with('id_profesor', $id_profesor);
-    }
+    $id= session()->get('id');
+    // Insertar dirección y guardar la id en $id_direccion
+    $id_envio = $direccionModel->insertDireccion($id, $id_ciudad, $id_calle, $numero_calle, $codigo_postal, $id_barrio, $descripcion_casa);
 
+    $cantidad = $carritoModel->select('cantidad')
+    ->where('id', $id)
+    ->first();
 
+    $id_producto = 1;
+    $precio_unitario = 1;
 
+    $id_compra = $compraModel->insertCompra($total, $id, $id_envio, $id_calle, $id_ciudad, $numero_calle);
 
-    
+    $id_detalle = $detallecompraModel->insertDetalle($id_producto, $id_compra, $id, $cantidad, $precio_unitario);
+
+    return view('inicio');
+}
 }

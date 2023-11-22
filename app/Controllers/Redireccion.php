@@ -33,10 +33,9 @@ class Redireccion extends BaseController
     }
     public function rutinas()
     {
-        $session = session();
-        $usuario = $session->get('usuario');
+        
 
-        if ($usuario) {
+        if (session('id')) {
             // Si el usuario está logueado, redirigir a la vista de rutinas
             return redirect()->to(base_url('rutinas'));
         } else {

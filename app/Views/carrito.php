@@ -112,9 +112,9 @@
                                 <form method="POST" action="<?= base_url('/vaciarCarrito') ?>">
                                     <button type="submit">Vaciar carrito</button>
                                 </form>
-                                <form method="POST" action="<?= base_url('/confirmarCarrito') ?>">
+                                <form method="POST" action="<?= base_url('/compras') ?>">
                                 <input name="TOTAL" id="TOTAL" value="<?= $total ?>" hidden />
-                                    <button type="submit">Comprar ahora</button>
+                                <button type="submit" style="background-color: #28a745; color: #fff; padding: 15px; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;" class="comprar-ahora-button">Comprar ahora</button>
                                 </form>
                             </div>
                         </div>
