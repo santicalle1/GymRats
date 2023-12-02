@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GymRats</title>
     <link rel="stylesheet" type="text/css" href="<?= base_url('css/header.css'); ?>">
 </head>
-
 <body>
     <header>
         <!-- Logo -->
@@ -36,15 +34,45 @@
             $session = session();
             $usuario = $session->get('usuario');
             ?>
-            <?php if (!$usuario): ?>
-                <a class="iniciar-button" id="login-banner" href="<?= base_url("/login"); ?>">Iniciar Sesión</a>
+            <?php if (!$usuario) : ?>
+                <a class="iniciar-button" href="<?= base_url("/login"); ?>">Iniciar Sesión</a>
             <?php else: ?>
                 <a class="panel-button" href="<?= base_url("Redireccion/panel"); ?>">Mi Cuenta</a>
-                <a class="panel-button" id="logout-banner" href="<?= base_url("./inicio/logout"); ?>">Cerrar Sesión</a>
-            <?php endif; ?>
+                <a class="panel-button" href="<?= base_url("./inicio/logout"); ?>">Salir</a>
+                <div id="bienvenida">
+                    <p>Hola, <?= $usuario; ?></p>
+                </div>
 
+            <?php endif; ?>
         </ul>
     </div>
-</body>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        // Obtiene el botón "Productos"
+        const productosButton = document.getElementById("productosButton");
+        // Obtiene el botón "Tienda"
+        const tiendaButton = document.getElementById("tiendabutton");
+        // Agrega un evento de clic al botón "Productos" para redirigir a "Tienda"
+        productosButton.addEventListener("click", function () {
+            window.location.href = "<?= base_url("./Redireccion/tienda"); ?>";
+        });
+
+        // Obtiene la URL actual
+        const currentURL = window.location.href;
+
+        // Comprueba si la URL es exactamente igual a "/tienda" (para la página "tienda")
+        if (currentURL.includes("/tienda") || currentURL.includes("/objetosgym") || currentURL.includes("/ropa") || currentURL.includes("/suplementos")) {
+            // Muestra el botón "Productos" si estás en la página "tienda"
+            productosButton.style.display = "block";
+            // Oculta el botón "Tienda" en la página "tienda"
+            tiendaButton.style.display = "none";
+        } else {
+            // Oculta el botón "Productos" en otras páginas
+            productosButton.style.display = "none";
+            // Muestra el botón "Tienda" en otras páginas
+            tiendaButton.style.display = "block";
+        }
+    </script>
+</body>
 </html>
