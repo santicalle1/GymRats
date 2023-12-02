@@ -77,9 +77,12 @@ class Redireccion extends BaseController
                 // Es un administrador
                 return redirect()->to(base_url('panel_admin'));
 
-            } 
-            return redirect()->to(base_url('panel_cliente'));
-
+            } elseif ($tipo == 0) {
+                // Es un cliente
+                return redirect()->to(base_url('panel_cliente'));
+            }
+            return redirect()->to(base_url('panel_profesores'));
+            
         } else {
             // Si no está logueado, redirigir a la página de inicio de sesión
             return redirect()->to(base_url('login'));

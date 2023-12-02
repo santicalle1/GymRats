@@ -8,10 +8,11 @@
     <title>GymRats</title>
     <link rel="stylesheet" type="text/css" href="<?= base_url('css/profesores.css'); ?>">
     <script src="https://www.paypal.com/sdk/js?client-id=AZQBCaHQ4lHq6OI-mMRoxPv8nHioysdo_lnwAWuXxHgD31c5-3Nvw-fs0_WTL_-ghOvt8WeoipePRltE"></script>
-</head>
-<?php
+    <?php
     include('header.php');
     ?>
+</head>
+
 <body>
     <div class="contenedor-profesores">
         <?php foreach ($profesores as $profesor): ?>
@@ -45,12 +46,26 @@
         onCancel: function(data) {
             alert('Pago cancelado');
         },
-// ...
+        onApprove: function(data, actions) {
+            actions.order.capture().then(function(details) {
+                // Hace una solicitud para procesar la compra en el servidor
+                // Aquí debes incluir el id_profesor para identificar al profesor específico
+                fetch('<?= base_url("ProfesoresController/procesarCompra/{$profesor['id_profesor']}") ?>', {
+                        method: 'GET',
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Redirige a la vista de mis profesores con los detalles necesarios
+                        window.location.href = "<?= base_url("ProfesoresController/unprofe/{$profesor['id_profesor']}") ?>";
 
-onApprove: function(data, actions) {
-    
-    window.location.href = "<?= base_url("panel_cliente/{$profesor['id_profesor']}") ?>";
-}
+                    })
+                    .catch(error => {
+                        console.error('Error al procesar la compra:', error);
+                        // Manejar el error según sea necesario
+                    });
+            });
+            window.location.href = "<?= base_url("ProfesoresController/unprofe/{$profesor['id_profesor']}") ?>";
+        }
     }).render('#paypal-button-container-<?= $profesor['id_profesor'] ?>').then(function() {
         // document.querySelector('#paypal-button-container-<?= $profesor['id_profesor'] ?> .paypal-button').click(); // Comentamos esta línea
     });

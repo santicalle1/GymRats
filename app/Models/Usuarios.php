@@ -27,4 +27,11 @@ class Usuarios extends Model
         $result = $this->select('tipo')->where('usuario', $usuario)->first();
         return isset($result['tipo']) && $result['tipo'] == 1;
     }
+
+    public function esProfesor($usuario)
+    {
+        $result = $this->select('tipo')->where('usuario', $usuario)->first();
+        return isset($result['tipo']) && $result['tipo'] == 2;
+    }
+
 }

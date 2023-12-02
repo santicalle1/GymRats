@@ -17,7 +17,6 @@
 <body>
 <?php
         $session = session();
-        $session->set(['_ci_vars' => ['time' => time(), 'ttl' => 15]]);
         $usuario = $session->get('usuario');
         ?>
   <div class="dj-banner">

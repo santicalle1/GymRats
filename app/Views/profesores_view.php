@@ -10,12 +10,21 @@
 
 <body>
 
-    <form class="profesor-form" action="<?= base_url('/profesores/create') ?>" method="POST"
+    <form class="profesor-form" action="<?= base_url('/profesorescontroller/create') ?>" method="POST"
         enctype="multipart/form-data">
         <a href="panel_admin" class="back-button">&larr; Volver</a>
         <div class="form-group">
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre" required>
+        </div>
+
+        <div class="form-group">
+            <label for="tipo">Tipo de usuario:</label>
+            <select name="tipo" id="tipo">
+                <option value="1">Administrador</option>
+                <option value="2">Profesor</option>
+
+            </select>
         </div>
 
         <div class="form-group">
@@ -46,12 +55,7 @@
 
         <div class="form-group">
             <label for="mail">Email:</label>
-            <input type="email" id="mail" name="mail" required>
-        </div>
-
-        <div class="form-group">
-            <label for="salario">Salario:</label>
-            <input type="number" id="salario" name="salario" step="0.01" required>
+            <input name="email" required type="email" class="form-control" id="email" placeholder="Email">
         </div>
 
         <div class="form-group">
@@ -60,15 +64,32 @@
         </div>
 
         <div class="form-group">
-            <label for="dificultad">Dificultad:</label>
-            <input type="text" id="dificultad" name="dificultad" required>
+            <label type="text" id="dificultad" name="dificultad" required>Dificultad</label>
+            <select name="dificultad" id="dificultad">
+                <option value="Facil">Facil</option>
+                <option value="Intermedio">Intermedio</option>
+                <option value="Dificil">Dificil</option>
+            </select>
         </div>
 
         <div class="form-group">
             <label for="imagen">Imagen:</label>
             <input type="file" id="imagen" name="imagen">
         </div>
+        <div class="form-group">
+            <label for="usuario">Nombre de usuario:</label>
+            <input type="text" id="usuario" name="usuario" required>
+        </div>
 
+        <div class="form-group">
+            <label for="contrasena">Contraseña:</label>
+            <input type="password" id="contrasena" name="contrasena" required>
+        </div>
+
+        <div class="form-group">
+            <label for="codigo_postal">Código Postal:</label>
+            <input type="text" id="codigo_postal" name="codigo_postal" required>
+        </div>
         <div class="form-group">
             <input type="submit" value="Agregar Profesor">
         </div>

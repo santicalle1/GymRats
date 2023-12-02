@@ -19,6 +19,15 @@
         align-items: center;
         background-position: center center;
         }
+
+         /* Estilo para el icono de mostrar/ocultar contraseña */
+         #show-password-icon {
+            cursor: pointer;
+            position: relative;
+            left: 145px;
+            top: -52px;
+            color: #888;
+        }
     </style>
     <link rel="stylesheet" href="css\register.css">
 </head>
@@ -43,10 +52,7 @@
                 <div class="mb-3">
                     <label for="contrasena" class="form-label">Contraseña:</label>
                     <input name="contrasena" required type="password" class="form-control" id="contrasena" placeholder="Contraseña">
-                </div>
-                <div class="mb-3">
-                    <label for="direccion" class="form-label">Direccion:</label>
-                    <input name="direccion" required type="text" class="form-control" id="direccion" placeholder="Direccion">
+                    <span id="show-password-icon" onclick="togglePasswordVisibility()">👁️‍🗨️</span><br>
                 </div>
                 <div class="mb-3">
                     <label for="codigo_postal" class="form-label">Codigo Postal:</label>
@@ -67,6 +73,19 @@
                 <?php if (session()->getFlashdata('mensaje')) : ?>
                     <p class="error-message"><?= session()->getFlashdata('mensaje') ?></p>
                 <?php endif; ?>
+
+                <script>
+            function togglePasswordVisibility() {
+                const passwordInput = document.getElementById('contrasena');
+                const icon = document.getElementById('show-password-icon');
+
+                // Cambia el tipo de input entre 'password' y 'text' para alternar la visibilidad
+                passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+
+                // Cambia el icono en consecuencia
+                icon.textContent = passwordInput.type === 'password' ? '👁️' : '👁️‍🗨️';
+            }
+        </script>
             </form>
         </div>
     </div>

@@ -87,6 +87,7 @@
     <input type="hidden" name="id_carrito" value="<?= esc($producto['id_carrito']) ?>">
     <div class="input-group">
         <label for="cantidad-<?= esc($producto['id_carrito']) ?>">Cantidad:</label>
+        <!-- Ajusta el atributo max para reflejar el stock del producto -->
         <input type="number" name="cantidad" class="cantidad-input" value="<?= esc($producto['cantidad']) ?>" min="1" max="<?= esc($producto['stock']) ?>">
     </div>
     <button type="submit" class="update-button">Actualizar Cantidad</button>
@@ -112,9 +113,9 @@
                                 <form method="POST" action="<?= base_url('/vaciarCarrito') ?>">
                                     <button type="submit">Vaciar carrito</button>
                                 </form>
-                                <form method="POST" action="<?= base_url('/confirmarCarrito') ?>">
+                                <form method="POST" action="<?= base_url('/compras') ?>">
                                 <input name="TOTAL" id="TOTAL" value="<?= $total ?>" hidden />
-                                    <button type="submit">Comprar ahora</button>
+                                <button type="submit" style="background-color: #28a745; color: #fff; padding: 15px; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;" class="comprar-ahora-button">Comprar ahora</button>
                                 </form>
                             </div>
                         </div>
@@ -129,13 +130,21 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 
-<script>
+    <script>
     $(document).ready(function () {
         $('.update-button').on('click', function (event) {
             event.preventDefault();
 
             const form = $(this).closest('.update-form');
             const formData = form.serialize();
+            const newCantidad = parseInt(form.find('.cantidad-input').val());
+            const stockDisponible = parseInt(form.find('.cantidad-input').attr('max'));
+
+            // Verifica que la nueva cantidad sea un número positivo y no mayor que el stock disponible
+            if (isNaN(newCantidad) || newCantidad <= 0 || newCantidad > stockDisponible) {
+                alert('Por favor, ingrese una cantidad válida dentro del rango del stock disponible.');
+                return;
+            }
 
             $.ajax({
                 url: form.attr('action'),
@@ -150,49 +159,6 @@
 
                         cantidadInput.val(data.data.cantidad);
                         totalProductoContainer.text(`Total Producto: $${data.data.totalProducto}`);
-                        totalCarritoElement.text(`Total Carrito: $${data.data.totalCarrito}`);
-
-                        const messageContainer = form.siblings('.message-container');
-                        messageContainer.html(`<p class="success-message">Cantidad actualizada exitosamente. Nueva cantidad: ${data.data.cantidad}, Nuevo total: $${data.data.totalProducto}</p>`);
-                    } else {
-                        const messageContainer = form.siblings('.message-container');
-                        messageContainer.html(`<p class="error-message">${data.message}</p>`);
-                    }
-                },
-                error: function (error) {
-                    console.error('Error:', error);
-                }
-            });
-        });
-    });
-</script>
-
-<script>
-    $(document).ready(function () {
-        $('.update-button').on('click', function (event) {
-            event.preventDefault();
-
-            const form = $(this).closest('.update-form');
-            const formData = form.serialize();
-
-            $.ajax({
-                url: form.attr('action'),
-                method: 'POST',
-                data: formData,
-                dataType: 'json',
-                success: function (data) {
-                    if (data.success) {
-                        const cantidadInput = form.find('.cantidad-input');
-                        const totalProductoContainer = form.find('.total-producto');
-                        const totalCarritoElement = $('.total-carrito strong');
-
-                        // Actualiza solo el valor del input
-                        cantidadInput.val(data.data.cantidad);
-
-                        // Actualiza el texto en el contenedor del total del producto
-                        totalProductoContainer.text(`Total Producto: $${data.data.totalProducto}`);
-
-                        // Actualiza el texto en el contenedor del total del carrito
                         totalCarritoElement.text(`Total Carrito: $${data.data.totalCarrito}`);
 
                         const messageContainer = form.siblings('.message-container');

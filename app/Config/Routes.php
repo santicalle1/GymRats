@@ -50,6 +50,8 @@ $routes->get('redireccion/profesores', 'Redireccion::profesores'); // Redirecci�
 $routes->get('redireccion/rutinas', 'Redireccion::rutinas'); // Redirección a rutinas
 $routes->get('redireccion/panel', 'Panel::panel_admin'); // Redirección al panel de administrador
 $routes->get('redireccion/panel', 'Panel::panel_cliente'); // Redirección al panel del cliente
+$routes->get('redireccion/panel', 'Panel::panel_profesores'); // Redirección al panel del profesor
+$routes->get('panel_profesores', 'Panel_profesores::index'); // Redirección al panel del profesor
 
 // Rutas relacionadas con el carrito y la sesión
 $routes->get('inicio/logout', 'Inicio::logout'); // Cierre de sesión
@@ -72,6 +74,10 @@ $routes->get('/panel_cliente', 'ClientPanel::profile'); // Perfil del cliente
 $routes->get('agregar_productos', 'ProductoController::agregar'); // Agregar productos
 $routes->get('producto/agregar', 'ProductoController::agregar'); // Agregar producto (duplicado)
 $routes->post('producto/agregar', 'ProductoController::agregar'); // Proceso de agregar producto
+
+//Rutas relacionadas con el panel del profesor
+$routes->post('panel_profesores/agregar-rutina/(:num)', 'UsuarioProfesor::agregarRutina/$1');
+
 
 // Rutas relacionadas con la tienda y categorías
 $routes->get('tienda/detalles/(:num)', 'Tienda::detalles/$1'); // Detalles de producto

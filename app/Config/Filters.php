@@ -21,6 +21,9 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
+        'Sessionadmin'       => App\Filters\Sessionadmin::class,
+        'Sessionuser'       => App\Filters\Sessionuser::class,
+        'Sessionprofesores'    => App\Filters\Sessionprofesores::class,
     ];
 
     /**
@@ -60,5 +63,16 @@ class Filters extends BaseConfig
      * Example:
      * 'isLoggedIn' => ['before' => ['account/*', 'profiles/*']]
      */
-    public array $filters = [];
+    public array $filters = [
+//         "Sessionadmin" => [
+//             "before" => [
+//                 '/','inicio','register','register/do_register','terminos','politica','tienda','profesores',"redireccion/tienda",'redireccion/profesores',"redireccion/rutinas","redireccion/panel","redireccion/panel","redireccion/panel",'inicio/logout','carrito','/agregarAlCarrito','/eliminarProducto','/vaciarCarrito','updateCantidad/(:num)','/confirmarCarrito','panel_admin','items_view','items_edit(:num)','items/delete/(:num)','/panel_cliente','agregar_productos','producto/agregar','tienda/detalles/(:num)','tienda','suplementos','objetosgym','ropa','/contacto','/contacto/enviar','products_view','products/edit/(:num)','products/delete/(:num)','/agregar_profesor','/profesores/create','modificar_profesor','update_profesor/(:num)','delete_profesor/(:num)','editar_profesor/(:num)','/tienda/(:segment)','/compras','/compras/procesar/{id_profesor}',
+];
+//         ],
+//         "Sessionuser" => [
+//             "before" => [
+//                 '/'
+//             ]
+//         ]
+//     ];
 }

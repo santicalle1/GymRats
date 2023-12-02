@@ -19,10 +19,16 @@ class Register extends Controller
         $nombre = $this->request->getPost('nombre');
         $email = $this->request->getPost('email');
         $contrasena = $this->request->getPost('contrasena');
-        $usuario = $this->request->getPost('usuario');       
+        $usuario = $this->request->getPost('usuario');
         $direccion = $this->request->getPost('direccion');
         $codigopostal = $this->request->getPost('codigo_postal');
         $telefono = $this->request->getPost('telefono');
+        $tipo = $this->request->getPost('tipo');
+
+        // Validar que el tipo sea un valor permitido (0 o 2)
+        if (!in_array($tipo, ['0', '2'])) {
+            return redirect()->to(base_url('/register'))->with('mensaje', 'Valor de tipo no permitido.');
+        }
 
         $existingUser = $userModel->where('usuario', $usuario)->first();
 
@@ -34,11 +40,12 @@ class Register extends Controller
             $data = [
                 'nombre' => $nombre,
                 'email' => $email,
-                'contrasena' => $contrasena,               
+                'contrasena' => $contrasena,
                 'usuario' => $usuario,
                 'direccion' => $direccion,
                 'codigo_postal' => $codigopostal,
-                'telefono' => $telefono
+                'telefono' => $telefono,
+                'tipo' => $tipo,
             ];
 
             $result = $userModel->insert($data);

@@ -8,7 +8,7 @@ class ProfesoresModel extends Model
 {
     protected $table = 'profesores';
     protected $primaryKey = 'id_profesor';
-    protected $allowedFields = ['nombre', 'especialidad', 'fecha_de_contrato', 'titulos', 'horarios', 'telefono', 'mail', 'salario', 'coste', 'dificultad', 'imagen'];
+    protected $allowedFields = ['nombre','id', 'especialidad', 'fecha_de_contrato', 'titulos', 'horarios', 'telefono', 'coste', 'dificultad', 'imagen'];
 
     public function get_all_profesores() {
         return $this->db->get('profesores')->result();
@@ -23,9 +23,10 @@ class ProfesoresModel extends Model
     }
     public function obtenerMisProfesores($id)
     {
-        // Aquí implementa la lógica para obtener la lista de profesores comprados por el usuario
-        // Puedes hacer una consulta a la base de datos u obtener los datos de donde los almacenes
-        
         return $this->where('id_profesor', $id)->find();
+    }
+    public function obtenerIdProfesor($id_profesor)
+    {
+        return $this->where('id_profesor', $id_profesor)->find();
     }
 }

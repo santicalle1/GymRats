@@ -21,7 +21,7 @@ class CarritoModel extends Model
     protected $validationRules    = [
         'id'          => 'required|integer',
         'id_producto' => 'required|integer',
-        'cantidad'    => 'required|integer'
+        'cantidad'    => 'required|integer',
     ];
     protected $validationMessages = [];
     protected $skipValidation     = false;
@@ -58,4 +58,26 @@ class CarritoModel extends Model
         return $this->update(['id_carrito' => $id_carrito], $data);
     }
     
+    public function obtenerDatosCarrito($id)
+{
+   return $this->db->table($this->table)
+        ->select('carrito.id_producto, producto.precio')
+        ->join('producto', 'carrito.id_producto = producto.id_producto')
+        ->where('carrito.id', $id)
+        ->get()
+        ->getResultArray();
+}
+public function obteneridcarrito($id)
+{
+    return $this
+        ->where('id', $id)
+        ->findALL();
+   
+}   
+
+public function eliminarcarrito($id_carrito)
+{
+$this-> where ('id_carrito',$id_carrito ) -> delete();
+}   
+
 }

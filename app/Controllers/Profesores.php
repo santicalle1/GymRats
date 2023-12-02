@@ -1,5 +1,4 @@
 <?php namespace App\Controllers;
-
 use App\Models\ProfesoresModel;
 
 class Profesores extends BaseController

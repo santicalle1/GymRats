@@ -172,7 +172,7 @@ class App extends BaseConfig
      *
      * @deprecated use Config\Session::$expiration instead.
      */
-    public int $sessionExpiration = 7200;
+    /*public int $sessionExpiration = 7000;*/
 
     /**
      * --------------------------------------------------------------------------
@@ -386,7 +386,7 @@ class App extends BaseConfig
      *
      * @deprecated Use `Config\Security` $expire property instead of using this property.
      */
-    public int $CSRFExpire = 7200;
+    /*public int $CSRFExpire = 7200;*/
 
     /**
      * --------------------------------------------------------------------------
