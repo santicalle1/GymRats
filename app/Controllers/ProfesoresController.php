@@ -83,17 +83,23 @@ class ProfesoresController extends Controller
     
         // Registra la información en la tabla de rutinas
         $rutinaModel = new RutinaModel();
-    
         $dataRutina = [
             'id' => $id_usuario,
             'id_profesor' => $id_profesor,
-            'tipo_rutina' => $tipo_rutina = 1,
+            'tipo_rutina' => 1
         ];
-    
         $rutinaModel->insert($dataRutina);
     
-        // Redirige a la vista de mis profesores con los detalles necesarios
-        return redirect()->to('panel_cliente');
+        // Obtén los detalles del profesor comprado
+        $model = new ProfesoresModel();
+        $data['profesor'] = $model->find($id_profesor);
+    
+        // Obtén los datos del usuario (reemplaza esto con la lógica real según tu implementación)
+        $userModel = new UserModel();
+        $data['userData'] = $userModel->find($id_usuario);
+    
+        // Redirige a la vista de panel_cliente con los detalles necesarios
+        return view('panel_cliente', $data);
     }
     
 
@@ -130,4 +136,31 @@ class ProfesoresController extends Controller
 
         return view('panel_cliente', $data);
     }
+    public function eliminarProfesor($id_profesor)
+{
+    // Obtén el ID del usuario desde la sesión o de donde sea necesario
+    $id_usuario = session()->get('id');
+
+    // Aquí deberías realizar la lógica para eliminar al profesor de la base de datos
+    $model = new RutinaModel();
+
+    // Ajusta la condición de eliminación para que coincida con tu estructura de la tabla
+    $result = $model->where(['id' => $id_usuario, 'id_profesor' => $id_profesor])->delete();
+
+    // Limpiar la sesión del profesor
+    $session = session();
+    $session->remove('id_profesor');
+
+    // Responde con JSON (puedes ajustar según tus necesidades)
+    return $this->response->setJSON(['success' => $result]); // Devuelve el resultado de la eliminación
+}
+
+public function salirDelPanel()
+{
+    return redirect()->to(base_url('/inicio'));
+}
+
+
+
+
 }

@@ -1,3 +1,14 @@
+<?php
+$session = session();
+$id_profesor = $session->get('id_profesor');
+
+// Obtén los detalles del profesor si hay un ID almacenado en la sesión
+if ($id_profesor) {
+    $model = new ProfesoresModel();
+    $profesor = $model->find($id_profesor);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,6 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Panel Cliente</title>
     <link rel="stylesheet" type="text/css" href="<?= base_url('css/panelcliente.css'); ?>">
+
 </head>
 
 <body>
@@ -28,43 +40,33 @@
 
     <!----Agregue una tabla a un documento---->
     <div class="body">
-        <!--- Barra lateral Izquierda---------->
+        <!-- Barra lateral Izquierda -->
         <nav class="side-bar-left">
             <li>
                 <h2>Mis Profesores</h2>
 
-                <?php if (session()->has('success')): ?>
-                    <p>
-                        <?= session('success') ?>
-                    </p>
-                <?php endif; ?>
-
                 <!-- Aquí puedes mostrar la lista de profesores comprados -->
                 <?php if (isset($profesor) && is_array($profesor)): ?>
-    <div class="profesor">
-        <h3><?= esc($profesor['nombre']) ?></h3>
-        <img src="<?= base_url() . '/' . esc($profesor['imagen']) ?>" alt="" width="100">
-        <p><strong>Dificultad:</strong> <?= esc($profesor['dificultad']) ?></p>
-        <p><strong>Horario:</strong> <?= esc($profesor['horarios']) ?></p>
-    </div>
-<?php else: ?>
-    <p>No se encontraron profesores.</p>
-<?php endif; ?>
-
+                    <div class="profesor">
+                        <h3><?= esc($profesor['nombre']) ?></h3>
+                        <img src="<?= base_url() . '/' . esc($profesor['imagen']) ?>" alt="" width="100">
+                        <p><strong>Dificultad:</strong> <?= esc($profesor['dificultad']) ?></p>
+                        <p><strong>Horario:</strong> <?= esc($profesor['horarios']) ?></p>
+                        <button onclick="eliminarProfesor(<?= esc($profesor['id_profesor']) ?>)">Eliminar</button>
+                    </div>
+                <?php else: ?>
+                    <p>No se encontraron profesores.</p>
+                <?php endif; ?>
 
             </li>
 
-
-            <!------Dashboard-->
-
-            <!----------Salir---->
-            <li>
-                <a href="inicio">
-                    <i class="fa fa-power-off"></i>
-                    <span>Salir</span>
-                </a>
-            </li>
-
+            <!-- Salir -->
+<li>
+<a href="<?= base_url('ProfesoresController/salirDelPanel') ?>" onclick="return confirmarSalir();">
+        <i class="fa fa-power-off"></i>
+        <span>Salir</span>
+    </a>
+</li>
 
             </ul>
 
@@ -88,7 +90,29 @@
 
     </div>
     </div>
+    <script>
+function eliminarProfesor(idProfesor) {
+    // Aquí puedes realizar una llamada AJAX para eliminar el profesor
+    fetch('<?= base_url("ProfesoresController/eliminarProfesor/") ?>' + idProfesor, {
+            method: 'GET',
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Redirige a la vista de mis profesores después de eliminar
+            window.location.href = "<?= base_url('ProfesoresController/salirDelPanel') ?>";
+        })
+        .catch(error => {
+            console.error('Error al eliminar el profesor:', error);
+            // Maneja el error según sea necesario
+        });
+}
 
+function confirmarSalir() {
+    // Preguntar al usuario si realmente desea salir
+    return confirm('¿Está seguro de que desea salir del panel?');
+}
+
+</script>
 </body>
-    
+
 </html>

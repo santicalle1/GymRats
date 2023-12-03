@@ -43,7 +43,6 @@ $routes->get('politica', 'Politica::index'); // Página de política de privacid
 // Rutas relacionadas con la tienda y profesores
 $routes->get('tienda', 'Tienda::index'); // Página principal de la tienda
 $routes->get('profesores', 'ProfesoresController::index'); // Página de profesores
-$routes ->get('panel_cliente', 'profesoresController::unprofe');
 
 // Rutas de redirección
 $routes->get('redireccion/tienda', 'Redireccion::tienda'); // Redirección a la tienda
@@ -77,6 +76,7 @@ $routes->get('modificar_rutinas', 'Rutinas::indexx'); // Vista de Rutinas
 
 // Rutas relacionadas con el panel del cliente
 $routes->get('/panel_cliente', 'ClientPanel::profile'); // Perfil del cliente
+$routes->get('ProfesoresController/salirDelPanel', 'ProfesoresController::salirDelPanel');
 
 // Rutas relacionadas con la tienda y categorías
 $routes->get('tienda/detalles/(:num)', 'Tienda::detalles/$1'); // Detalles de producto
