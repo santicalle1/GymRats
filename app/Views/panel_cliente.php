@@ -41,21 +41,16 @@
 
                 <!-- Aquí puedes mostrar la lista de profesores comprados -->
                 <?php if (isset($profesor) && is_array($profesor)): ?>
-                    <div class="profesor">
-                        <h3>
-                            <?= esc($profesor['nombre']) ?>
-                        </h3>
-                        <img src="<?= base_url() . '/' . esc($profesor['imagen']) ?>" alt="" width="100">
-                        <p><strong>Dificultad:</strong>
-                            <?= esc($profesor['dificultad']) ?>
-                        </p>
-                        <p><strong>Horario:</strong>
-                            <?= esc($profesor['horarios']) ?>
-                        </p>
-                    </div>
-                <?php else: ?>
-                    <p>No se encontraron profesores.</p>
-                <?php endif; ?>
+    <div class="profesor">
+        <h3><?= esc($profesor['nombre']) ?></h3>
+        <img src="<?= base_url() . '/' . esc($profesor['imagen']) ?>" alt="" width="100">
+        <p><strong>Dificultad:</strong> <?= esc($profesor['dificultad']) ?></p>
+        <p><strong>Horario:</strong> <?= esc($profesor['horarios']) ?></p>
+    </div>
+<?php else: ?>
+    <p>No se encontraron profesores.</p>
+<?php endif; ?>
+
 
             </li>
 
@@ -81,23 +76,12 @@
 
         <div class="body">
             <div class="client-panel">
-                <h2>Datos del Cliente</h2>
+            <h2>Datos del Cliente</h2>
 
-                <p><strong>Nombre:</strong>
-                    <?= esc($datosUsuario['nombre']) ?>
-                </p>
-                <p><strong>Email:</strong>
-                    <?= esc($datosUsuario['email']) ?>
-                </p>
-                <p><strong>Usuario:</strong>
-                    <?= esc($datosUsuario['usuario']) ?>
-                </p>
-                <p><strong>Direccion:</strong>
-                    <?= esc($datosUsuario['direccion']) ?>
-                </p>
-                <p><strong>Codigo Postal:</strong>
-                    <?= esc($datosUsuario['codigo_postal']) ?>
-                </p>
+<p><strong>Nombre:</strong> <?= esc($userData['nombre']) ?></p>
+<p><strong>Email:</strong> <?= esc($userData['email']) ?></p>
+<p><strong>Usuario:</strong> <?= esc($userData['usuario']) ?></p>
+<p><strong>Codigo Postal:</strong> <?= esc($userData['codigo_postal']) ?></p>
             </div>
         </div>
 
@@ -106,5 +90,5 @@
     </div>
 
 </body>
-
+    
 </html>

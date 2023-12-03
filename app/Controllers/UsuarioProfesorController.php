@@ -10,24 +10,9 @@ class UsuarioProfesorController extends Controller
 {
     public function agregarRutina()
     {
-        $rutinaModel = new Rutina();
         $descripcionRutinaModel = new DescripcionRutina();
-
-        // Datos de la rutina
-        $dataRutina = [
-            'id_usuario' => $this->request->getPost('id_usuario'),
-            'id_profesor' => $this->request->getPost('id_profesor'),
-            'nombre_rutina' => $this->request->getPost('nombre_rutina'),
-            'duracion' => $this->request->getPost('duracion'),
-            'dificultad' => $this->request->getPost('dificultad'),
-        ];
-
-        // Insertar rutina y obtener el ID generado
-        $idRutina = $rutinaModel->insert($dataRutina);
-
-        // Datos de la descripción de la rutina
-        $dataDescripcion = [
-            'id_rutina' => $idRutina,
+            $dataDescripcion = [
+            'id_rutina' => $this->request->getPost('id_rutina'),
             'ejercicios' => $this->request->getPost('ejercicio'),
             'repeticiones' => $this->request->getPost('repeticiones'),
             'series' => $this->request->getPost('series'),

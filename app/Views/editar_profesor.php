@@ -5,28 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Profesor</title>
     <link rel="stylesheet" type="text/css" href="<?= base_url('css/editar_p.css'); ?>">
-
-    <script>
-    var inactivityTimeout; // Variable para almacenar el temporizador de inactividad
-
-    // Función para reiniciar el temporizador de inactividad
-    function resetInactivityTimeout() {
-      clearTimeout(inactivityTimeout); // Limpiamos el temporizador anterior
-      inactivityTimeout = setTimeout(logout, 180000); // 60000 ms = 1 minuto
-    }
-
-    // Función para redirigir a la página de cierre de sesión
-    function logout() {
-      window.location.href = '<?= base_url("inicio/logout"); ?>';
-    }
-
-    // Inicializa el temporizador de inactividad
-    resetInactivityTimeout();
-
-    // Agrega eventos de detección de actividad del usuario
-    document.addEventListener('mousemove', resetInactivityTimeout);
-    document.addEventListener('keydown', resetInactivityTimeout);
-  </script>
 </head>
 <body>
 
@@ -46,15 +24,6 @@
 
     <label for="horarios">Horarios:</label>
     <textarea id="horarios" name="horarios" required><?= $profesor['horarios'] ?></textarea>
-
-    <label for="telefono">Teléfono:</label>
-    <input type="tel" id="telefono" name="telefono" value="<?= $profesor['telefono'] ?>" required>
-
-    <label for="mail">Email:</label>
-    <input type="email" id="mail" name="mail" value="<?= $profesor['mail'] ?>" required>
-
-    <label for="salario">Salario:</label>
-    <input type="number" id="salario" name="salario" step="0.01" value="<?= $profesor['salario'] ?>" required>
 
     <label for="coste">Coste:</label>
     <input type="number" id="coste" name="coste" step="0.01" value="<?= $profesor['coste'] ?>" required>

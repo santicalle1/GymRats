@@ -31,7 +31,7 @@
         <!--- Barra lateral Izquierda---------->
         <nav class="side-bar-left">
             <li>
-                <h2>Mis Profesores</h2>
+                <h2>Mis alumnos</h2>
 
                 <?php if (session()->has('success')): ?>
                     <p>
@@ -70,10 +70,8 @@
         </nav>
         <form action="<?= base_url("usuarioProfesorController/agregarRutina/" . session()->get('id_profesor')); ?>"
             method="post">
-            <label for="id_usuario">ID del Usuario:</label>
-            <input type="text" name="id_usuario" required><br>
-            <!-- Puedes ajustar el tipo según tu lógica de asignación -->
-
+            <label for="id_rutina">ID de la Rutina:</label>
+            <input type="text" name=id_rutina required><br>
             <label for="nombre_rutina">Nombre de la Rutina:</label>
             <input type="text" name="nombre_rutina" required><br>
 
@@ -95,6 +93,7 @@
                 <tbody>
                     <!-- Puedes agregar más filas según sea necesario -->
                     <tr>
+
                         <td><input type="text" name="ejercicio[]" required></td>
                         <td><input type="text" name="peso[]" required></td>
                         <td><input type="text" name="series[]" required></td>
@@ -102,24 +101,6 @@
                     </tr>
                 </tbody>
             </table>
-
-            <button type="button" onclick="agregarFila()">Agregar Fila</button>
-
-            <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-            <script>
-                function agregarFila() {
-                    var nuevaFila = "<tr>" +
-                        "<td><input type='text' name='ejercicio[]' required></td>" +
-                        "<td><input type='text' name='peso[]' required></td>" +
-                        "<td><input type='text' name='series[]' required></td>" +
-                        "<td><input type='text' name='repeticiones[]' required></td>" +
-                        "</tr>";
-
-                    $("table tbody").append(nuevaFila);
-                }
-            </script>
-
             <label for="dificultad">Dificultad:</label>
             <select name="dificultad" required>
                 <option value="facil">Fácil</option>

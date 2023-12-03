@@ -53,6 +53,7 @@ class Rutinas extends BaseController
         
         // Obtén los datos actualizados del formulario
         $data = [
+            'tipo_rutina' => $request->getPost('tipo_rutina'),
             'nombre_rutina' => $request->getPost('nombre_rutina'),
             'descripcion' => $request->getPost('descripcion'),
             'duracion' => $request->getPost('duracion'),

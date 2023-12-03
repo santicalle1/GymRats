@@ -19,9 +19,6 @@
                     <th>Fecha de Contrato</th>
                     <th>Titulos</th>
                     <th>Horarios</th>
-                    <th>Telefono</th>
-                    <th>Mail</th>
-                    <th>Salario</th>
                     <th>Coste</th>
                     <th>Dificultad</th>
                     <th>Imagen</th>
@@ -37,9 +34,6 @@
                         <td><?= $profesor['fecha_de_contrato'] ?></td>
                         <td><?= $profesor['titulos'] ?></td>
                         <td><?= $profesor['horarios'] ?></td>
-                        <td><?= $profesor['telefono'] ?></td>
-                        <td><?= $profesor['mail'] ?></td>
-                        <td><?= $profesor['salario'] ?></td>
                         <td><?= $profesor['coste'] ?></td>
                         <td><?= $profesor['dificultad'] ?></td>
                         <td><?= $profesor['imagen'] ?></td>

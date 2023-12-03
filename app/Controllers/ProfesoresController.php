@@ -80,21 +80,22 @@ class ProfesoresController extends Controller
     {
         // Obtén el ID del usuario desde la sesión o de donde sea necesario
         $id_usuario = session()->get('id');
-
+    
         // Registra la información en la tabla de rutinas
         $rutinaModel = new RutinaModel();
-
+    
         $dataRutina = [
             'id' => $id_usuario,
             'id_profesor' => $id_profesor,
-            // Agrega otros campos de la rutina según sea necesario
+            'tipo_rutina' => $tipo_rutina = 1,
         ];
-
+    
         $rutinaModel->insert($dataRutina);
-
+    
         // Redirige a la vista de mis profesores con los detalles necesarios
-        return redirect()->to(base_url("ProfesoresController/misProfesores"))->with('success', 'Compra procesada exitosamente');
+        return redirect()->to('panel_cliente');
     }
+    
 
 
     public function index()

@@ -32,9 +32,6 @@ class Profesores extends BaseController
         'fecha_de_contrato' => $this->request->getPost('fecha_de_contrato'),
         'titulos' => $this->request->getPost('titulos'),
         'horarios' => $this->request->getPost('horarios'),
-        'telefono' => $this->request->getPost('telefono'),
-        'mail' => $this->request->getPost('mail'),
-        'salario' => $this->request->getPost('salario'),
         'coste' => $this->request->getPost('coste'),
         'dificultad' => $this->request->getPost('dificultad'),
         'imagen' => $imagenPath
