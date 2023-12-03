@@ -158,16 +158,13 @@ public function salirDelPanel()
 {
     return redirect()->to(base_url('/inicio'));
 }
+public function mostrarVistaProfesor()
+    {
+        $id_profesor = session()->get('id');
 
-public function mostrarProfesorPorIdRutina($id_rutina)
-{
-    $id = session()->get('id'); 
-    
-    $rutinaModel = new RutinaModel();
-    $data['profesor'] = $rutinaModel->obtenerProfesorPorIdRutina($id_rutina, $id);
+        $rutinaModel = new RutinaModel();
+        $id_rutinas = $rutinaModel->obtenerIdRutinaPorIdProfesor($id_profesor);
 
-    return view('panel_cliente', $data);
-}
-
-
+        return view('panel_profesores', $id_rutinas);
+    }
 }

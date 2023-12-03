@@ -73,7 +73,8 @@ $routes->post('producto/agregar', 'ProductoController::agregar'); // Proceso de 
 $routes->get('agregar_rutinas', 'RutinasController::index'); // Vista de Rutinas
 $routes->get('/rutinas', 'RutinasController::indexx'); // Carga las rutinas de agregar_rutinas a la vista rutinas
 $routes->get('modificar_rutinas', 'Rutinas::indexx'); // Vista de Rutinas
-
+//rutas ralacionadas con el panel de profesores
+$routes->get('profesores', 'ProfesoresController:: mostrarVistaProfesor'); // Página de profesores
 // Rutas relacionadas con el panel del cliente
 $routes->get('/panel_cliente', 'ClientPanel::profile'); // Perfil del cliente
 $routes->get('ProfesoresController/salirDelPanel', 'ProfesoresController::salirDelPanel');

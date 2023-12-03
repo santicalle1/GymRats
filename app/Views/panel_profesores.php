@@ -31,26 +31,19 @@
         <!--- Barra lateral Izquierda---------->
         <nav class="side-bar-left">
             <li>
-                <h2>Mis alumnos</h2>
+                <h2>Rutinas asociadas al profesor</h2>
 
-                <?php if (session()->has('success')): ?>
-                    <p>
-                        <?= session('success') ?>
-                    </p>
-                <?php endif; ?>
-
-                <!-- Aquí puedes mostrar la lista de profesores comprados -->
-                <?php if (isset($profesor) && is_array($profesor)): ?>
-                    <div class="profesor">
-                        <h3>
-                            <?= esc($profesor['id']) ?>
-                        </h3>
-
-                    </div>
+                <?php if (!empty($id_rutinas)): ?>
+                    <ul>
+                        <?php foreach ($id_rutinas as $id_rutina): ?>
+                            <li>ID Rutina:
+                                <?= $id_rutina['id_rutina'] ?>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
                 <?php else: ?>
-                    <p>No se encontraron alumnos.</p>
+                    <p>No hay rutinas asociadas al profesor.</p>
                 <?php endif; ?>
-
             </li>
 
 
