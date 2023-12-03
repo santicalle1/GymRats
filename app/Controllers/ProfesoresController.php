@@ -76,7 +76,7 @@ class ProfesoresController extends Controller
             }
         }
     }
-    public function unprofe($id_profesor)
+    public function unprofe($profesor)
     {
         // Obtén el ID del usuario desde la sesión o de donde sea necesario
         $id_usuario = session()->get('id');
@@ -85,16 +85,16 @@ class ProfesoresController extends Controller
         $rutinaModel = new RutinaModel();
         $dataRutina = [
             'id' => $id_usuario,
-            'id_profesor' => $id_profesor,
+            'id_profesor' => $profesor,
             'tipo_rutina' => 1
         ];
         $rutinaModel->insert($dataRutina);
     
         // Obtén los detalles del profesor comprado
         $model = new ProfesoresModel();
-        $data['profesor'] = $model->find($id_profesor);
+        $data['profesor'] = $model->find($profesor); // Utiliza el ID del profesor recibido como parámetro
     
-        // Obtén los datos del usuario (reemplaza esto con la lógica real según tu implementación)
+        // Obtén los datos del usuario
         $userModel = new UserModel();
         $data['userData'] = $userModel->find($id_usuario);
     
@@ -103,7 +103,6 @@ class ProfesoresController extends Controller
     }
     
 
-
     public function index()
     {
         $model = new ProfesoresModel();
@@ -111,10 +110,10 @@ class ProfesoresController extends Controller
         return view('profesores', $data);
     }
 
-    public function procesarCompra($id_profesor)
+    public function procesarCompra($profesor)
     {
         $model = new ProfesoresModel();
-        $data['profesor'] = $model->find($id_profesor);
+        $data['profesor'] = $model->find($profesor);
 
         if ($data['profesor']) {
             $coste = $data['profesor']['coste'];
@@ -128,7 +127,7 @@ class ProfesoresController extends Controller
         $profesorCompradoModel = new ProfesorCompradoModel();
         $datosCompra = [
             'id_usuario' => $id_usuario,
-            'id_profesor' => $id_profesor,
+            'id_profesor' => $profesor,
             'coste' => $coste,
         ];
 
@@ -160,7 +159,15 @@ public function salirDelPanel()
     return redirect()->to(base_url('/inicio'));
 }
 
+public function mostrarProfesorPorIdRutina($id_rutina)
+{
+    $id = session()->get('id'); 
+    
+    $rutinaModel = new RutinaModel();
+    $data['profesor'] = $rutinaModel->obtenerProfesorPorIdRutina($id_rutina, $id);
 
+    return view('panel_cliente', $data);
+}
 
 
 }

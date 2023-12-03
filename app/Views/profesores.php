@@ -50,13 +50,13 @@
             actions.order.capture().then(function(details) {
                 // Hace una solicitud para procesar la compra en el servidor
                 // Aquí debes incluir el id_profesor para identificar al profesor específico
-                fetch('<?= base_url("ProfesoresController/procesarCompra/{$profesor['id_profesor']}") ?>', {
+                fetch('<?= base_url("ProfesoresController/procesarCompra/{$profesor['id']}") ?>', {
                         method: 'GET',
                     })
                     .then(response => response.json())
                     .then(data => {
                         // Redirige a la vista de mis profesores con los detalles necesarios
-                        window.location.href = "<?= base_url("ProfesoresController/unprofe/{$profesor['id_profesor']}") ?>";
+                        window.location.href = "<?= base_url("ProfesoresController/unprofe/{$profesor['id']}") ?>";
 
                     })
                     .catch(error => {
@@ -64,7 +64,7 @@
                         // Manejar el error según sea necesario
                     });
             });
-            window.location.href = "<?= base_url("ProfesoresController/unprofe/{$profesor['id_profesor']}") ?>";
+            window.location.href = "<?= base_url("ProfesoresController/unprofe/{$profesor['id']}") ?>";
         }
     }).render('#paypal-button-container-<?= $profesor['id_profesor'] ?>').then(function() {
         // document.querySelector('#paypal-button-container-<?= $profesor['id_profesor'] ?> .paypal-button').click(); // Comentamos esta línea

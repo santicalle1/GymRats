@@ -23,10 +23,12 @@ class ProfesoresModel extends Model
     }
     public function obtenerMisProfesores($id)
     {
-        return $this->where('id_profesor', $id)->find();
+        return $this->where('id_profesor', $id)->find('id');
     }
-    public function obtenerIdProfesor($id_profesor)
+
+    public function obtenerIdProfesor($profesor)
     {
-        return $this->where('id_profesor', $id_profesor)->find();
+        return $this->where('id', $profesor)->find();
     }
+
 }
