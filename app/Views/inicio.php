@@ -25,7 +25,7 @@
       <div class="dj-text">
         <h1><b>Creatina</b></h1>
         <p>Creatina 100% Pura y Nutritiva</p>
-        <a href="<?= base_url("/Redireccion/tienda"); ?>" class="btn-comprar" id="btn-comprar">Compra Ahora</a>
+        <a href="<?= base_url("/Redireccion/tienda"); ?>" class="btn-comprar" id="btn-comprar">Compra Ahora</a>     
       </div>
     </div>
   </div>
@@ -90,6 +90,26 @@
       include('footer.php');
     ?>
     </footer>
+    <script src="https://kit.fontawesome.com/81581fb069.js" crossorigin="anonymous">
+      // Agrega un evento de clic al botón Comprar Ahora
+      document.getElementById('btn-comprar').addEventListener('click', function(event) {
+        // Evita que el enlace se abra por defecto
+        event.preventDefault();
+
+        // Verifica si la variable de sesión user_id está definida en PHP
+        // Si está definida, significa que el usuario está autenticado
+        // Si no está definida, el usuario no está autenticado
+        <?php if (isset($_SESSION['user_id'])) : ?>
+          // El usuario está autenticado, redirige a la vista de tienda
+          window.location.href = '<?= base_url("/tienda"); ?>';
+        <?php else : ?>
+          // El usuario no está autenticado, redirige a la página de inicio de sesión
+          window.location.href = '<?= base_url("/login"); ?>';
+        <?php endif; ?>
+      });
+    </script>
+
+
 </body>
 
 </html>

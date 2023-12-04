@@ -37,7 +37,7 @@
             <?php if (!$usuario) : ?>
                 <a class="iniciar-button" href="<?= base_url("/login"); ?>">Iniciar Sesión</a>
             <?php else: ?>
-                <a class="panel-button" href="<?= base_url("Redireccion/panel"); ?>">Mi Cuenta</a>
+                <a class="panel-button" href="<?= base_url("alfajor"); ?>">Mi Cuenta</a>
                 <a class="panel-button" href="<?= base_url("./inicio/logout"); ?>">Salir</a>
                 <div id="bienvenida">
                     <p>Hola, <?= $usuario; ?></p>

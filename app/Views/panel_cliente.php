@@ -32,53 +32,51 @@
         <!-- Barra lateral Izquierda -->
         <nav class="side-bar-left">
             <li>
-<?= $profesor ? '<div>
-    <h1>Información del Profesor</h1>
-    <p>ID del Profesor: ' . $profesor['id_profesor'] . '</p>
-    <p>Nombre: ' . $profesor['nombre'] . '</p>
-    <!-- Agrega más campos según la estructura de tu tabla "profesores" -->
-</div>' : '<p>No se encontraron datos del profesor para la rutina seleccionada.</p>' ?>
+                <h2>Mis Profesores</h2>
 
-<!-- Agrega un var_dump() para imprimir los datos del profesor -->
-<div>
-    <h2>Var Dump de $profesor:</h2>
-    <pre><?php var_dump($profesor); ?></pre>
-</div>
+               <?php if (isset($profesor['nombre'])): ?>
+    <div class="profesor">
+        <h3><?= esc($profesor['nombre']) ?></h3>
+        <?php if (isset($profesor['imagen'])): ?>
+            <img src="<?= base_url() . '/' . esc($profesor['imagen']) ?>" alt="" width="100">
+        <?php endif; ?>
+        <?php if (isset($profesor['dificultad'])): ?>
+            <p><strong>Dificultad:</strong> <?= esc($profesor['dificultad']) ?></p>
+        <?php endif; ?>
+        <?php if (isset($profesor['horarios'])): ?>
+            <p><strong>Horario:</strong> <?= esc($profesor['horarios']) ?></p>
+        <?php endif; ?>
+        <?php if (isset($profesor['id_profesor'])): ?>
+            <button onclick="eliminarProfesor(<?= esc($profesor['id_profesor']) ?>)">Eliminar</button>
+        <?php endif; ?>
+    </div>
+<?php else: ?>
+    <p>No se encontraron profesores.</p>
+<?php endif; ?>
+
+
 
             </li>
 
-            <!-- Salir -->
-            <li>
-                <a href="<?= base_url('ProfesoresController/salirDelPanel') ?>" onclick="return confirmarSalir();">
-                    <i class="fa fa-power-off"></i>
-                    <span>Salir</span>
-                </a>
-            </li>
+<li>
+<a href="<?= base_url('ProfesoresController/salirDelPanel') ?>" onclick="return confirmarSalir();">
+        <i class="fa fa-power-off"></i>
+        <span>Salir</span>
+    </a>
+</li>
 
             </ul>
 
         </nav>
-        <?php
-        $session = session();
-        $datosUsuario = $session->get('datosUsuario');
-        ?>
 
         <div class="body">
             <div class="client-panel">
-                <h2>Datos del Cliente</h2>
+            <h2>Datos del Cliente</h2>
 
-                <p><strong>Nombre:</strong>
-                    <?= esc($userData['nombre']) ?>
-                </p>
-                <p><strong>Email:</strong>
-                    <?= esc($userData['email']) ?>
-                </p>
-                <p><strong>Usuario:</strong>
-                    <?= esc($userData['usuario']) ?>
-                </p>
-                <p><strong>Codigo Postal:</strong>
-                    <?= esc($userData['codigo_postal']) ?>
-                </p>
+<p><strong>Nombre:</strong><?= session('nombre'); ?></p>
+<p><strong>Email:</strong><?= session('email'); ?></p>
+<p><strong>Usuario:</strong> <?= session('usuario'); ?></p>
+
             </div>
         </div>
 
@@ -86,28 +84,28 @@
     </div>
     </div>
     <script>
-        function eliminarProfesor(idProfesor) {
-            // Aquí puedes realizar una llamada AJAX para eliminar el profesor
-            fetch('<?= base_url("ProfesoresController/eliminarProfesor/") ?>' + idProfesor, {
-                method: 'GET',
-            })
-                .then(response => response.json())
-                .then(data => {
-                    // Redirige a la vista de mis profesores después de eliminar
-                    window.location.href = "<?= base_url('ProfesoresController/salirDelPanel') ?>";
-                })
-                .catch(error => {
-                    console.error('Error al eliminar el profesor:', error);
-                    // Maneja el error según sea necesario
-                });
-        }
+function eliminarProfesor(idProfesor) {
+    // Aquí puedes realizar una llamada AJAX para eliminar el profesor
+    fetch('<?= base_url("ProfesoresController/eliminarProfesor/") ?>' + idProfesor, {
+            method: 'GET',
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Redirige a la vista de mis profesores después de eliminar
+            window.location.href = "<?= base_url('ProfesoresController/salirDelPanel') ?>";
+        })
+        .catch(error => {
+            console.error('Error al eliminar el profesor:', error);
+            // Maneja el error según sea necesario
+        });
+}
 
-        function confirmarSalir() {
-            // Preguntar al usuario si realmente desea salir
-            return confirm('¿Está seguro de que desea salir del panel?');
-        }
+function confirmarSalir() {
+    // Preguntar al usuario si realmente desea salir
+    return confirm('¿Está seguro de que desea salir del panel?');
+}
 
-    </script>
+</script>
 </body>
 
 </html>

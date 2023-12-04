@@ -14,7 +14,6 @@
         <th>Nombre</th>
         <th>Email</th>
         <th>Usuario</th>
-        <th>Direccion</th>
         <th>Codigo Postal</th>
         <th>Telefono</th>
         <th>Tipo de Usuario</th>
@@ -29,7 +28,6 @@
                 <td><?= esc($item['email']); ?></td>
                 <td  style="visibility:collapse; display:none;"><?= esc($item['contrasena']); ?></td>
                 <td><?= esc($item['usuario']); ?></td>
-                <td><?= esc($item['direccion']); ?></td>
                 <td><?= esc($item['codigo_postal']); ?></td>
                 <td><?= esc($item['telefono']); ?></td>
                 <td><?= esc($item['tipo']); ?></td>

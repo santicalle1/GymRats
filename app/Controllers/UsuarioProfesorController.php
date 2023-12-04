@@ -11,6 +11,7 @@ class UsuarioProfesorController extends Controller
     public function agregarRutina()
     {
         $descripcionRutinaModel = new DescripcionRutina();
+        $id = $this->request->getPost('id');
             $dataDescripcion = [
             'id_rutina' => $this->request->getPost('id_rutina'),
             'ejercicios' => $this->request->getPost('ejercicio'),
@@ -19,7 +20,7 @@ class UsuarioProfesorController extends Controller
             'peso' => $this->request->getPost('peso'),
         ];
 
-        // Insertar la descripción de la rutina
+        $dataDescripcion['id'] = $id;
         $descripcionRutinaModel->insert($dataDescripcion);
 
         return redirect()->to('/panel_profesores')->with('success', 'La rutina ha sido agregada exitosamente.');

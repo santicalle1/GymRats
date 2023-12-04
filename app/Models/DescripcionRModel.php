@@ -15,4 +15,3 @@ class DescripcionRutina extends model{
     protected $primaryKey = 'id_detalle_rutina';
     protected $allowedfields = ['id_rutina', 'ejercicios', 'repeticiones', 'series', 'peso'];
 }
-

@@ -8,7 +8,7 @@ class Usuarios extends Model
 {
     protected $table = 'clientes';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['nombre', 'email', 'contrasena', 'usuario', 'direccion', 'codigo_postal', 'telefono', 'tipo'];
+    protected $allowedFields = ['nombre', 'email', 'contrasena', 'usuario', 'direccion', 'codigo_postal', 'telefono', 'tipo', 'id_ciudad', 'id_calle', 'numero_calle', 'id_barrio', 'id_profesor'];
 
     public function obtenerUsuarioPorNombre($usuario)
     {

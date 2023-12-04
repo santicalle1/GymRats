@@ -76,32 +76,34 @@ class ProfesoresController extends Controller
             }
         }
     }
-    public function unprofe($profesor)
-    {
-        // Obtén el ID del usuario desde la sesión o de donde sea necesario
-        $id_usuario = session()->get('id');
+    public function unprofe($id_profesor)
+{
+    // Obtén el ID del usuario desde la sesión o de donde sea necesario
+    $id_usuario = session()->get('id');
     
-        // Registra la información en la tabla de rutinas
-        $rutinaModel = new RutinaModel();
-        $dataRutina = [
-            'id' => $id_usuario,
-            'id_profesor' => $profesor,
-            'tipo_rutina' => 1
-        ];
-        $rutinaModel->insert($dataRutina);
+    // Registra la información en la tabla de rutinas
+    $rutinaModel = new RutinaModel();
+    $dataRutina = [
+        'id' => $id_usuario,
+        'id_profesor' => $id_profesor,
+        'tipo_rutina' => 1
+    ];
+    $rutinaModel->insert($dataRutina);
     
-        // Obtén los detalles del profesor comprado
-        $model = new ProfesoresModel();
-        $data['profesor'] = $model->find($profesor); // Utiliza el ID del profesor recibido como parámetro
+    // Obtén los detalles del profesor comprado
+    $model = new ProfesoresModel();
+    $data['profesor'] = $model->find($id_profesor);
     
-        // Obtén los datos del usuario
-        $userModel = new UserModel();
-        $data['userData'] = $userModel->find($id_usuario);
+    // Obtén los datos del usuario (reemplaza esto con la lógica real según tu implementación)
+    $userModel = new UserModel();
+    $data['userData'] = $userModel->find($id_usuario);
     
-        // Redirige a la vista de panel_cliente con los detalles necesarios
-        return view('panel_cliente', $data);
-    }
-    
+    $session = session();
+    $session->set('id_profesor', $id_profesor);
+
+    // Redirige a la vista de panel_cliente con los detalles necesarios
+    return view('panel_cliente', $data);
+}
 
     public function index()
     {
@@ -110,31 +112,77 @@ class ProfesoresController extends Controller
         return view('profesores', $data);
     }
 
-    public function procesarCompra($profesor)
-    {
+
+public function procesarCompra($id_profesor)
+{
         $model = new ProfesoresModel();
-        $data['profesor'] = $model->find($profesor);
-
-        if ($data['profesor']) {
-            $coste = $data['profesor']['coste'];
-        } else {
+        $data['profesor'] = $model->find($id_profesor);
+    
+        if (!$data['profesor']) {
             // Manejar el caso donde el profesor no fue encontrado
+            return redirect()->to(base_url('/inicio'))->with('mensaje', 'Profesor no encontrado');
         }
+    
+        // Guardar los detalles del profesor en una cookie
+        $this->response->setCookie('profesor_comprado', json_encode($data['profesor']), 3600); // La cookie expirará en una hora
 
-        $session = session();
-        $id_usuario = $session->get('id');
+    $coste = $data['profesor']['coste'];
 
-        $profesorCompradoModel = new ProfesorCompradoModel();
-        $datosCompra = [
-            'id_usuario' => $id_usuario,
-            'id_profesor' => $profesor,
-            'coste' => $coste,
-        ];
+    $session = session();
+    $id_usuario = $session->get('id');
 
-        $profesorCompradoModel->insert($datosCompra);
+       // Obtener los detalles del profesor comprado
+    $profesorModel = new ProfesoresModel();
+    $data['profesor'] = $profesorModel->find($id_profesor);
 
-        return view('panel_cliente', $data);
+    // Guardar todos los detalles del profesor en la sesión
+    $session->set('profesor_comprado', $data['profesor']);
+
+    // Nuevo código para insertar en la tabla rutinas
+    $rutinaModel = new RutinaModel();
+    $datosRutina = [
+        'id_usuario' => $id_usuario,
+        'id_profesor' => $id_profesor,
+        'tipo_rutina' => 1,
+        // ... otros campos de la rutina ...
+    ];
+
+   // Obtén los detalles del profesor comprado
+   $profesorModel = new ProfesoresModel();
+   $data['profesor'] = $profesorModel->find($id_profesor);
+
+   // Guardar todos los detalles del profesor en la sesión
+   $session = session();
+   $session->set('profesor_comprado', $data['profesor']);
+
+   // Redirige a la vista de panel_cliente con los detalles necesarios
+   return view('panel_cliente', $data);
+}
+
+public function panelCliente()
+{
+    // Obtener los detalles del profesor desde la cookie
+    $profesorCookie = $this->request->getCookie('profesor_comprado');
+
+    if (!$profesorCookie) {
+        // Si no hay detalles del profesor en la cookie, redirige o maneja la situación de otra manera
+        return redirect()->to(base_url('/inicio'))->with('mensaje', 'No se encontró información del profesor en la cookie');
     }
+
+    $profesor = json_decode($profesorCookie, true);
+
+    // Obtener los datos del usuario (reemplaza esto con la lógica real según tu implementación)
+    $userModel = new UserModel();
+    $id_usuario = $userModel->find(session()->get('id'));
+
+    $data['userData'] = $id_usuario;
+    $data['profesor'] = $profesor;
+
+    return view('panel_cliente', $data);
+}
+
+
+
     public function eliminarProfesor($id_profesor)
 {
     // Obtén el ID del usuario desde la sesión o de donde sea necesario
@@ -146,7 +194,6 @@ class ProfesoresController extends Controller
     // Ajusta la condición de eliminación para que coincida con tu estructura de la tabla
     $result = $model->where(['id' => $id_usuario, 'id_profesor' => $id_profesor])->delete();
 
-    // Limpiar la sesión del profesor
     $session = session();
     $session->remove('id_profesor');
 
@@ -158,13 +205,6 @@ public function salirDelPanel()
 {
     return redirect()->to(base_url('/inicio'));
 }
-public function mostrarVistaProfesor()
-    {
-        $id_profesor = session()->get('id');
 
-        $rutinaModel = new RutinaModel();
-        $id_rutinas = $rutinaModel->obtenerIdRutinaPorIdProfesor($id_profesor);
 
-        return view('panel_profesores', $id_rutinas);
-    }
 }

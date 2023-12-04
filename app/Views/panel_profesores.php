@@ -31,25 +31,28 @@
         <!--- Barra lateral Izquierda---------->
         <nav class="side-bar-left">
             <li>
-                <h2>Rutinas asociadas al profesor</h2>
+                <h2>Mis alumnos</h2>
 
-                <?php if (!empty($id_rutinas)): ?>
-                    <ul>
-                        <?php foreach ($id_rutinas as $id_rutina): ?>
-                            <li>ID Rutina:
-                                <?= $id_rutina['id_rutina'] ?>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                <?php else: ?>
-                    <p>No hay rutinas asociadas al profesor.</p>
+                <?php if (session()->has('success')): ?>
+                    <p>
+                        <?= session('success') ?>
+                    </p>
                 <?php endif; ?>
+
+                <!-- Aquí puedes mostrar la lista de profesores comprados -->
+                <?php if (isset($profesor) && is_array($profesor)): ?>
+                    <div class="profesor">
+                        <h3>
+                            <?= esc($profesor['id']) ?>
+                        </h3>
+
+                    </div>
+                <?php else: ?>
+                    <p>No se encontraron alumnos.</p>
+                <?php endif; ?>
+
             </li>
 
-
-            <!------Dashboard-->
-
-            <!----------Salir---->
             <li>
                 <a href="inicio">
                     <i class="fa fa-power-off"></i>
@@ -65,13 +68,6 @@
             method="post">
             <label for="id_rutina">ID de la Rutina:</label>
             <input type="text" name=id_rutina required><br>
-            <label for="nombre_rutina">Nombre de la Rutina:</label>
-            <input type="text" name="nombre_rutina" required><br>
-
-            <label for="duracion">Duración:</label>
-            <input type="text" name="duracion" required><br>
-
-            <!-- ... Otros campos de la rutina ... -->
 
             <label for="descripcion">Descripción:</label>
             <table>
@@ -84,9 +80,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Puedes agregar más filas según sea necesario -->
                     <tr>
-
                         <td><input type="text" name="ejercicio[]" required></td>
                         <td><input type="text" name="peso[]" required></td>
                         <td><input type="text" name="series[]" required></td>
@@ -104,6 +98,27 @@
             <input type="hidden" name="id_profesor" value="<?= session()->get('id'); ?>">
 
             <button type="submit">Agregar Rutina</button>
+
+            <!-- Tu código anterior -->
+
+<?php if (isset($profesor) && is_array($profesor)): ?>
+    <div class="profesor">
+        <h3><?= esc($profesor['id']) ?></h3>
+
+        <?php if (isset($rutina)): ?>
+            <p><strong>ID de la rutina asociada:</strong> <?= esc($rutina['id_rutina']) ?></p>
+            <p><strong>ID del usuario que compró:</strong> <?= esc($rutina['id_usuario']) ?></p>
+            <!-- Mostrar otras informaciones de la rutina -->
+        <?php else: ?>
+            <p>No se encontró información de la rutina.</p>
+        <?php endif; ?>
+    </div>
+<?php else: ?>
+    <p>No se encontraron alumnos.</p>
+<?php endif; ?>
+
+<!-- Resto de tu código -->
+
         </form>
 </body>
 

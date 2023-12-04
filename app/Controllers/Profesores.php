@@ -34,6 +34,7 @@ class Profesores extends BaseController
         'horarios' => $this->request->getPost('horarios'),
         'coste' => $this->request->getPost('coste'),
         'dificultad' => $this->request->getPost('dificultad'),
+        'id_rutina' => $this->request->getPost('id_rutina'),
         'imagen' => $imagenPath
     ];
 
