@@ -25,4 +25,5 @@ class UsuarioProfesorController extends Controller
 
         return redirect()->to('/panel_profesores')->with('success', 'La rutina ha sido agregada exitosamente.');
     }
+
 }

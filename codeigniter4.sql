@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-12-2023 a las 21:19:50
+-- Tiempo de generación: 06-12-2023 a las 00:05:43
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -93,7 +93,8 @@ CREATE TABLE `carrito` (
 --
 
 INSERT INTO `carrito` (`id_carrito`, `id`, `id_producto`, `cantidad`, `fecha_agregado`) VALUES
-(165, 18, 46, 2, '2023-12-02 21:46:04');
+(167, 18, 46, 1, '2023-12-04 00:34:11'),
+(168, 18, 47, 1, '2023-12-04 00:34:39');
 
 -- --------------------------------------------------------
 
@@ -138,34 +139,35 @@ CREATE TABLE `clientes` (
   `usuario` varchar(20) NOT NULL,
   `codigo_postal` varchar(10) NOT NULL,
   `telefono` varchar(20) NOT NULL,
-  `tipo` tinyint(1) NOT NULL,
-  `id_ciudad` int(11) DEFAULT NULL,
-  `id_calle` int(11) DEFAULT NULL,
-  `numero_calle` int(11) DEFAULT NULL,
-  `id_barrio` int(11) DEFAULT NULL
+  `tipo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `clientes`
 --
 
-INSERT INTO `clientes` (`id`, `nombre`, `email`, `contrasena`, `usuario`, `codigo_postal`, `telefono`, `tipo`, `id_ciudad`, `id_calle`, `numero_calle`, `id_barrio`) VALUES
-(3, 'Santiago', 'Moni@gmail.com', '$2y$10$KM3r4TPHTsjP803st5VaFejNxYDttsJJ0g6DDGUkYzMPdxr69ctpK', 'Santiago', '0', '', 1, 0, 0, 0, 0),
-(18, 'Tadeo', 'tadeo270148@gmail.com', '$2y$10$w7jZBAS66Xmu0yHCXCZlLun0GoETIZ4J6rW7W0C2TFV7t0uDrpr36', 'Tadeo', '0', '', 1, 0, 0, 0, 0),
-(21, 'Claudia', 'claudia@gmail.com', '$2y$10$Clxo2GQxXIu64SkKpKhyOeJtcTpjPxma9cmtisAzyN1n7HAGkNyEG', 'Clauditaxs', '5850', '+54 3571 565913', 0, 0, 0, 0, 0),
-(22, 'Daniela', 'gomzdaniela.edfisica@gmail.com', '$2y$10$IMMzO3CC9lgTu9VZ4qqO8uWxKYWIoBxeutMocLqWPk9OpVx5CrHDW', 'DaniGym', '5850', '+54 3571 312601', 0, 0, 0, 0, 0),
-(23, 'Rodrigo', 'rodolfito@alumnos.itr3.edu.ar', '$2y$10$TkzLEh.5Q4ryg9sOzYNPbe9Kv1XoCTYAGbxuGb8H/hch5/mIvVm9e', 'rodolfito', '5850', '+54 3571 773450', 0, 0, 0, 0, 0),
-(29, 'profesor', 'profe@gmail.com', '$2y$10$rOn8PR2go3PqKZwEKrWVH.ezbDu9v/wR2zdfISLWG.bHZqpjc4902', 'profesor', '5846', '56651', 2, NULL, NULL, NULL, NULL),
-(30, 'profesor1', 'profe1@gmail.com', '$2y$10$khVEYu9748rXl0nqGSCCpeO21vYxpkqI9mVv7uOfw.cZKWdRY3aF.', 'profesor1', 'gthge56', '62065102', 2, NULL, NULL, NULL, NULL),
-(31, 'profesor', 'profe1@gmail.com', '$2y$10$lY6sJ0p6grvQrfT5jBFf0u6DoGvMBri/Slb1MTNJ.9IKvlWKa0fha', 'profesor1', '56454', '556651', 2, NULL, NULL, NULL, NULL),
-(32, 'profesor', 'profe1@gmail.com', '$2y$10$4lfPHzQRFEdv.FVQGYJ5POX3QyWRKq0g8s6NkP.xukJYYIZWW5.ny', 'profesor1', '4545', '5165', 2, NULL, NULL, NULL, NULL),
-(33, 'profesor', 'profe2@gmail.com', '$2y$10$kguDpFVdu2e6ttLlpfQxAeGggwcMlQ/th.uVWPUR3yPgOYMnh8ze2', 'profe2', '549685', '656+1', 2, NULL, NULL, NULL, NULL),
-(34, 'santi', 'santi@gmail.com', '$2y$10$d59/mGR1snMCHTnb.USieOoLdYNmpJhwLP6cFlHlQSzTVR2FAC5nm', 'santi', '5656', '161', 2, NULL, NULL, NULL, NULL),
-(35, 'profesor', '911@gmail.com', '$2y$10$/j5Xp5xQYfV7JMkdhsEGTOl7.srqUmN.69IFDtGROTvgVMhk6YHU6', 'santip', '5165', '5156', 2, NULL, NULL, NULL, NULL),
-(36, 'profesor', 'sanetiaguitocallegari@gmail.com', '$2y$10$XSdyRAMLBAltcDNGRNLPouLbnwbSZydXxdcpwgPmM3xxIj0TUePvO', 'profesor', 'asc', '5626', 2, NULL, NULL, NULL, NULL),
-(37, 'profesor', 'santi@gmail.com', '$2y$10$h84EAzAY9D/VtZsPKx32gOYY9ckcQDJYyqScgO.29TLeHEN8hOqWe', 'santi', '5619', '15511515', 2, NULL, NULL, NULL, NULL),
-(38, 'hvgvhg', 'santig@gmail.com', '$2y$10$Hq1R39SCtWXjx/pwrENQCeg7.wwl8mznzG3hPeftor1UL4UQwGENa', 'sasa', '1065', '51651615', 2, NULL, NULL, NULL, NULL),
-(39, 'profesor', 'profe@gmail.com', '$2y$10$.LRnRVmFjvH.BLf1bYV8BezDNb.5qyOdvyLVwx2.ZMNjULLI.gSBS', 'jojo', '256', '56456465', 2, NULL, NULL, NULL, NULL);
+INSERT INTO `clientes` (`id`, `nombre`, `email`, `contrasena`, `usuario`, `codigo_postal`, `telefono`, `tipo`) VALUES
+(3, 'Santiago', 'Moni@gmail.com', '$2y$10$KM3r4TPHTsjP803st5VaFejNxYDttsJJ0g6DDGUkYzMPdxr69ctpK', 'Santiago', '0', '', 1),
+(18, 'Tadeo', 'tadeo270148@gmail.com', '$2y$10$w7jZBAS66Xmu0yHCXCZlLun0GoETIZ4J6rW7W0C2TFV7t0uDrpr36', 'Tadeo', '0', '', 1),
+(21, 'Claudia', 'claudia@gmail.com', '$2y$10$Clxo2GQxXIu64SkKpKhyOeJtcTpjPxma9cmtisAzyN1n7HAGkNyEG', 'Clauditaxs', '5850', '+54 3571 565913', 0),
+(22, 'Daniela', 'gomzdaniela.edfisica@gmail.com', '$2y$10$IMMzO3CC9lgTu9VZ4qqO8uWxKYWIoBxeutMocLqWPk9OpVx5CrHDW', 'DaniGym', '5850', '+54 3571 312601', 0),
+(23, 'Rodrigo', 'rodolfito@alumnos.itr3.edu.ar', '$2y$10$TkzLEh.5Q4ryg9sOzYNPbe9Kv1XoCTYAGbxuGb8H/hch5/mIvVm9e', 'rodolfito', '5850', '+54 3571 773450', 0),
+(29, 'profesor', 'profe@gmail.com', '$2y$10$rOn8PR2go3PqKZwEKrWVH.ezbDu9v/wR2zdfISLWG.bHZqpjc4902', 'profesor', '5846', '56651', 2),
+(30, 'profesor1', 'profe1@gmail.com', '$2y$10$khVEYu9748rXl0nqGSCCpeO21vYxpkqI9mVv7uOfw.cZKWdRY3aF.', 'profesor1', 'gthge56', '62065102', 2),
+(31, 'profesor', 'profe1@gmail.com', '$2y$10$lY6sJ0p6grvQrfT5jBFf0u6DoGvMBri/Slb1MTNJ.9IKvlWKa0fha', 'profesor1', '56454', '556651', 2),
+(32, 'profesor', 'profe1@gmail.com', '$2y$10$4lfPHzQRFEdv.FVQGYJ5POX3QyWRKq0g8s6NkP.xukJYYIZWW5.ny', 'profesor1', '4545', '5165', 2),
+(33, 'profesor', 'profe2@gmail.com', '$2y$10$kguDpFVdu2e6ttLlpfQxAeGggwcMlQ/th.uVWPUR3yPgOYMnh8ze2', 'profe2', '549685', '656+1', 2),
+(34, 'santi', 'santi@gmail.com', '$2y$10$d59/mGR1snMCHTnb.USieOoLdYNmpJhwLP6cFlHlQSzTVR2FAC5nm', 'santi', '5656', '161', 2),
+(35, 'profesor', '911@gmail.com', '$2y$10$/j5Xp5xQYfV7JMkdhsEGTOl7.srqUmN.69IFDtGROTvgVMhk6YHU6', 'santip', '5165', '5156', 2),
+(36, 'profesor', 'sanetiaguitocallegari@gmail.com', '$2y$10$XSdyRAMLBAltcDNGRNLPouLbnwbSZydXxdcpwgPmM3xxIj0TUePvO', 'profesor', 'asc', '5626', 2),
+(37, 'profesor', 'santi@gmail.com', '$2y$10$h84EAzAY9D/VtZsPKx32gOYY9ckcQDJYyqScgO.29TLeHEN8hOqWe', 'santi', '5619', '15511515', 2),
+(38, 'hvgvhg', 'santig@gmail.com', '$2y$10$Hq1R39SCtWXjx/pwrENQCeg7.wwl8mznzG3hPeftor1UL4UQwGENa', 'sasa', '1065', '51651615', 2),
+(39, 'profesor', 'profe@gmail.com', '$2y$10$.LRnRVmFjvH.BLf1bYV8BezDNb.5qyOdvyLVwx2.ZMNjULLI.gSBS', 'jojo', '256', '56456465', 2),
+(40, 'Tadeo', 'tadeo270148@gmail.com', '$2y$10$oPtZDYccDzK7KuHqQBZhfe4zvxk7nPAcrM5dgW3kgLi2e8fjBdXpG', 'Claudita', '5850', '+54 3571 312601', 2),
+(41, 'Kaka', 'kaka@gmail.com', '$2y$10$oMFpThsN/Nm60fsfD74x2OXsuf3rX2qr4XeX1Y9DJzcKzTOX9JhTS', 'Kaka', '5850', '+54 3571 874367', 2),
+(42, 'Kaka', 'tadeoboglione@gmail.com', '$2y$10$yjpgAa8lexke/mH5JzK0seCi8ORe0dwX0MAwxh0UCPiYi8FN0dRXq', 'Tadeo', '5850', '+54 3571 312601', 2),
+(43, 'Tadeo', 'tadeoboglione@gmail.com', '$2y$10$uYInPWz69fTNv/wF4eHfNekf0Ls9AfkNPox/XAmEALeXMDXgsvLTe', 'Tadeo', '5850', '+54 3571 874367', 2),
+(44, 'profesor', 'santi@gmail.com', '$2y$10$LaUYU8W6vixLbVt7bJtaNO2QlEiKZu3reJKAmljfhjB/XBuD/.tv6', 'profe1', '19819', '15151615', 2);
 
 -- --------------------------------------------------------
 
@@ -247,7 +249,6 @@ CREATE TABLE `detalledecompra` (
 --
 
 INSERT INTO `detalledecompra` (`id_detalle`, `id_producto`, `id_compra`, `id`, `cantidad`, `precio_unitario`) VALUES
-(9, 1, 11, 18, 2, 1),
 (10, 46, 12, 18, 1, 70000),
 (11, 47, 12, 18, 2, 12750),
 (12, 49, 12, 18, 1, 60000),
@@ -266,10 +267,10 @@ INSERT INTO `detalledecompra` (`id_detalle`, `id_producto`, `id_compra`, `id`, `
 CREATE TABLE `detalle_rutina` (
   `id_detalle_rutina` int(11) NOT NULL,
   `id_rutina` int(11) NOT NULL,
-  `ejercicios` varchar(255) NOT NULL,
-  `repeticiones` varchar(255) NOT NULL,
-  `series` varchar(255) NOT NULL,
-  `peso` varchar(255) NOT NULL
+  `ejercicios` text NOT NULL,
+  `repeticiones` text NOT NULL,
+  `series` text NOT NULL,
+  `peso` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -344,7 +345,7 @@ CREATE TABLE `producto` (
 
 INSERT INTO `producto` (`id_producto`, `nombre`, `precio`, `stock`, `imagen`, `descripcion`, `categoria`, `descuento`) VALUES
 (46, 'Bicicleta Estatica', 70000.00, 2, 'uploads/1700665431_2c8ca5eb792987611881.jpg', 'es rapida', 'oferta', 30.00),
-(47, 'Straps Negros', 12750.00, 0, 'uploads/1700665496_4702b6f42b00c66ac9ec.webp', 'son comodos', 'oferta', 15.00),
+(47, 'Straps Negros', 12750.00, 6, 'uploads/1700665496_4702b6f42b00c66ac9ec.webp', 'son comodos', 'oferta', 15.00),
 (48, 'Creatina Sabor Vainilla', 11000.00, 6, 'uploads/1700665596_eeeb78f96d11191061ce.webp', '1,5 kg para genio en esta disiplina', 'suplementos', 0.00),
 (49, 'Polea ', 60000.00, 4, 'uploads/1700665673_107a658b6e93fd5fd818.png', 'es espacioso, recomendable tener espacio', 'gimnasio', 0.00),
 (50, '2 Mancuernas 10 kg', 10000.00, 6, 'uploads/1700665762_b55339b39bd6f571cb51.jpg', 'recomendable', 'gimnasio', 0.00),
@@ -375,20 +376,10 @@ CREATE TABLE `profesores` (
 --
 
 INSERT INTO `profesores` (`id_profesor`, `nombre`, `especialidad`, `fecha_de_contrato`, `titulos`, `horarios`, `coste`, `dificultad`, `imagen`, `id`) VALUES
-(1, 'h', 'h', '2023-11-23 03:00:00', 'h', '00:00:00', 0, '', 'uploads/1701300878_eb241b5248ad99213fff.webp', NULL),
-(2, 'Tadeo', 'Yoga', '2023-11-16 03:00:00', 'ggg', '00:00:00', 100002, 'ezzzzzzzz', 'uploads/1701301071_47bc2e0abe41cc0b32f3.jpg', NULL),
-(4, 'Kaka', 'comer', '2023-11-29 03:00:00', 'vvvvvvv', '00:00:00', 565, 'hard', '', NULL),
-(5, 'profesor', 'sxcs', '1998-02-12 03:00:00', 'ds', '00:00:56', 10, 'Intermedio', 'uploads/1701418390_6cb080ec65c8dcd49a52.jpg', NULL),
-(6, 'profesor', '5156', '0000-00-00 00:00:00', '515', '00:16:51', 465, 'Intermedio', 'uploads/1701418518_3062d7c1a166f16c9aa7.jpg', NULL),
-(7, 'profesor', 's', '0000-00-00 00:00:00', 'd', '00:00:00', 10000, 'Intermedio', 'uploads/1701418687_3ae8a083ede9da74dce8.jpg', NULL),
-(8, 'profesor', 's', '0000-00-00 00:00:00', 'ss', '00:00:45', 100, 'Intermedio', 'uploads/1701419014_fc290d6c03bf689b3d23.jpg', NULL),
-(9, 'profesor', '1', '0000-00-00 00:00:00', '5615', '01:56:15', 10, 'Dificil', 'uploads/1701458256_5e6fe5b1a029ad5de3ad.jpg', NULL),
-(10, 'santi', '10', '0000-00-00 00:00:00', '5615', '00:00:00', 56, 'Intermedio', 'uploads/1701458776_af33b6d66855cc0f4bc8.jpg', 34),
-(11, 'profesor', '00', '2000-02-20 03:00:00', '56', '00:00:00', 1, 'Facil', 'uploads/1701459068_68de9611d0cca29633f2.jpg', 35),
-(12, 'profesor', 'd', '2022-12-30 03:00:00', 'd', '00:00:00', 0, 'Intermedio', 'uploads/1701550466_a9adf932c3728a04923b.jpg', 36),
-(13, 'profesor', 'ciclismo', '0000-00-00 00:00:00', '56165', '00:01:51', 10, 'Intermedio', 'uploads/1701632619_11c64f7c7d970738827d.jpg', 37),
-(14, 'hvgvhg', 'gt', '2023-02-20 03:00:00', 'kjhj', '00:00:00', 2, 'dificil', '', 38),
-(15, 'profesor', '215', '0000-00-00 00:00:00', '56156', '00:56:15', 2, 'Intermedio', 'uploads/1701634663_73f5ca78ef7b0c6d8757.jpg', 39);
+(17, 'Kaka', 'Futbol', '2023-12-03 23:11:26', 'Futbolista', '10:00:00', 1000, 'Intermedio', 'uploads/1701635961_c83140b246c93ab9a4fc.webp', 41),
+(18, 'Kaka', 'gggggggggg', '2023-12-13 03:00:00', 'g', '00:00:00', 11, 'Facil', 'uploads/1701636408_fd062bf029f0cf179dac.jpg', 42),
+(19, 'Tadeo', 'h', '2023-12-07 03:00:00', 'g', '00:00:00', 111, 'Facil', 'uploads/1701645195_f28edfa64d120ee1e968.jpg', 43),
+(20, 'profesor', '10', '2022-12-31 03:00:00', '564', '00:15:15', 5, 'Intermedio', 'uploads/1701755098_9a8cdda0856a46faf6e9.jpg', 44);
 
 -- --------------------------------------------------------
 
@@ -425,7 +416,7 @@ INSERT INTO `provincia` (`id_provincia`, `provincia`) VALUES
 
 CREATE TABLE `rutinas` (
   `id_rutina` int(11) NOT NULL,
-  `descripcion` text NOT NULL,
+  `descripcion` text DEFAULT NULL,
   `nombre_rutina` varchar(255) DEFAULT NULL,
   `duracion` varchar(255) DEFAULT NULL,
   `dificultad` varchar(255) DEFAULT NULL,
@@ -442,9 +433,19 @@ CREATE TABLE `rutinas` (
 INSERT INTO `rutinas` (`id_rutina`, `descripcion`, `nombre_rutina`, `duracion`, `dificultad`, `descargas`, `id`, `id_profesor`, `tipo_rutina`) VALUES
 (12, 'ffffffffffffffffffff', 'Fafa', 'Corta', 'Intermedio', 0, 18, NULL, 0),
 (13, 'Corta', 'gg', 'Corta', 'hard', 1, 3, NULL, 0),
-(14, '', NULL, NULL, NULL, 0, 18, '9', 0),
-(16, '', NULL, NULL, NULL, 0, 23, '4', 1),
-(26, '', NULL, NULL, NULL, 0, 23, '9', 1);
+(109, 'ggg', 'g', 'ggg', 'gggg', 0, 18, NULL, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `solicitud`
+--
+
+CREATE TABLE `solicitud` (
+  `id_solicitud` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
+  `id_profesor` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -583,6 +584,12 @@ ALTER TABLE `rutinas`
   ADD PRIMARY KEY (`id_rutina`);
 
 --
+-- Indices de la tabla `solicitud`
+--
+ALTER TABLE `solicitud`
+  ADD PRIMARY KEY (`id_solicitud`);
+
+--
 -- Indices de la tabla `tipo_rutina`
 --
 ALTER TABLE `tipo_rutina`
@@ -614,7 +621,7 @@ ALTER TABLE `calle`
 -- AUTO_INCREMENT de la tabla `carrito`
 --
 ALTER TABLE `carrito`
-  MODIFY `id_carrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
+  MODIFY `id_carrito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
 
 --
 -- AUTO_INCREMENT de la tabla `ciudad`
@@ -626,7 +633,7 @@ ALTER TABLE `ciudad`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT de la tabla `compras`
@@ -645,6 +652,12 @@ ALTER TABLE `contacto`
 --
 ALTER TABLE `detalledecompra`
   MODIFY `id_detalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT de la tabla `detalle_rutina`
+--
+ALTER TABLE `detalle_rutina`
+  MODIFY `id_detalle_rutina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `direccion`
@@ -668,7 +681,7 @@ ALTER TABLE `producto`
 -- AUTO_INCREMENT de la tabla `profesores`
 --
 ALTER TABLE `profesores`
-  MODIFY `id_profesor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_profesor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `provincia`
@@ -680,7 +693,13 @@ ALTER TABLE `provincia`
 -- AUTO_INCREMENT de la tabla `rutinas`
 --
 ALTER TABLE `rutinas`
-  MODIFY `id_rutina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_rutina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
+
+--
+-- AUTO_INCREMENT de la tabla `solicitud`
+--
+ALTER TABLE `solicitud`
+  MODIFY `id_solicitud` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Restricciones para tablas volcadas

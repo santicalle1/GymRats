@@ -39,17 +39,22 @@
                     </p>
                 <?php endif; ?>
 
-                <!-- Aquí puedes mostrar la lista de profesores comprados -->
-                <?php if (isset($profesor) && is_array($profesor)): ?>
-                    <div class="profesor">
-                        <h3>
-                            <?= esc($profesor['id']) ?>
-                        </h3>
 
-                    </div>
+                <?php if ($usuarios): ?>
+                    <h2>Usuarios Asociados:</h2>
+                    <ul>
+                        <?php foreach ($usuarios as $usuario): ?>
+                            <li>
+                                Usuario:
+                                <?= $usuario->usuario ?>
+                                <a href="<?= base_url('armar_rutinas/') . esc($usuario->id) ?>">Armar rutina</a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
                 <?php else: ?>
-                    <p>No se encontraron alumnos.</p>
+                    <p>No hay usuarios asociados a este profesor.</p>
                 <?php endif; ?>
+
 
             </li>
 
@@ -64,62 +69,6 @@
             </ul>
 
         </nav>
-        <form action="<?= base_url("usuarioProfesorController/agregarRutina/" . session()->get('id_profesor')); ?>"
-            method="post">
-            <label for="id_rutina">ID de la Rutina:</label>
-            <input type="text" name=id_rutina required><br>
-
-            <label for="descripcion">Descripción:</label>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Ejercicio</th>
-                        <th>Peso</th>
-                        <th>Series</th>
-                        <th>Repeticiones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><input type="text" name="ejercicio[]" required></td>
-                        <td><input type="text" name="peso[]" required></td>
-                        <td><input type="text" name="series[]" required></td>
-                        <td><input type="text" name="repeticiones[]" required></td>
-                    </tr>
-                </tbody>
-            </table>
-            <label for="dificultad">Dificultad:</label>
-            <select name="dificultad" required>
-                <option value="facil">Fácil</option>
-                <option value="intermedio">Intermedio</option>
-                <option value="dificil">Difícil</option>
-            </select><br>
-
-            <input type="hidden" name="id_profesor" value="<?= session()->get('id'); ?>">
-
-            <button type="submit">Agregar Rutina</button>
-
-            <!-- Tu código anterior -->
-
-<?php if (isset($profesor) && is_array($profesor)): ?>
-    <div class="profesor">
-        <h3><?= esc($profesor['id']) ?></h3>
-
-        <?php if (isset($rutina)): ?>
-            <p><strong>ID de la rutina asociada:</strong> <?= esc($rutina['id_rutina']) ?></p>
-            <p><strong>ID del usuario que compró:</strong> <?= esc($rutina['id_usuario']) ?></p>
-            <!-- Mostrar otras informaciones de la rutina -->
-        <?php else: ?>
-            <p>No se encontró información de la rutina.</p>
-        <?php endif; ?>
-    </div>
-<?php else: ?>
-    <p>No se encontraron alumnos.</p>
-<?php endif; ?>
-
-<!-- Resto de tu código -->
-
-        </form>
 </body>
 
 </html>

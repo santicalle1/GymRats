@@ -72,6 +72,11 @@ strong {
     transition: 500ms background;
     white-space: nowrap;
     overflow: hidden;
+    border-bottom: 1px solid #333; /* Agregamos un borde inferior */
+}
+
+.side-bar-left ul li:last-child {
+    border-bottom: none; /* Quitamos el borde inferior al último elemento */
 }
 
 .side-bar-left ul li a {
@@ -137,22 +142,8 @@ strong {
 .paginacion:hover {
     opacity: 1;
 }
+
 .profesor {
     text-align: center;
-}
-
-.profesor h3 {
-    color: #007bff;
-    margin-top: 10px;
-}
-
-.profesor img {
-    max-width: 100%;
-    height: auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.profesor p {
-    margin-bottom: 5px;
+    margin-top: 10px; /* Agregamos un espacio superior entre profesores */
 }

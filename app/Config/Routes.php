@@ -50,6 +50,7 @@ $routes->get('redireccion/profesores', 'Redireccion::profesores'); // Redirecci�
 $routes->get('redireccion/rutinas', 'Redireccion::rutinas'); // Redirección a rutinas
 $routes->get('redireccion/panel', 'Panel::panel_admin'); // Redirección al panel de administrador
 $routes->get('redireccion/panel', 'Panel::panel_cliente'); // Redirección al panel del cliente
+$routes->get('panelcliente', 'Panel::panel'); // Redirección al panel del cliente
 
 // Rutas relacionadas con el carrito y la sesión
 $routes->get('inicio/logout', 'Inicio::logout'); // Cierre de sesión
@@ -73,11 +74,13 @@ $routes->post('producto/agregar', 'ProductoController::agregar'); // Proceso de 
 $routes->get('agregar_rutinas', 'RutinasController::index'); // Vista de Rutinas
 $routes->get('/rutinas', 'RutinasController::indexx'); // Carga las rutinas de agregar_rutinas a la vista rutinas
 $routes->get('modificar_rutinas', 'Rutinas::indexx'); // Vista de Rutinas
-//rutas ralacionadas con el panel de profesores
-$routes->get('profesores', 'ProfesoresController:: mostrarVistaProfesor'); // Página de profesores
+
 // Rutas relacionadas con el panel del cliente
 $routes->get('/panel_cliente', 'ClientPanel::profile'); // Perfil del cliente
 $routes->get('ProfesoresController/salirDelPanel', 'ProfesoresController::salirDelPanel');
+$routes->get('profesores/solicitar-rutina/(:num)', 'ProfesoresController::solicitarRutina/$1');
+$routes->get('armar_rutinas/(:num)', 'Panel::index/$1');
+$routes->post('armar_rutinas/', 'Panel::armarrutina');
 
 // Rutas relacionadas con la tienda y categorías
 $routes->get('tienda/detalles/(:num)', 'Tienda::detalles/$1'); // Detalles de producto
@@ -91,7 +94,7 @@ $routes->get('verificarStock/(:num)/(:num)', 'Tienda::verificarStock/$1/$2'); //
 $routes->get('/contacto', 'Contact::index'); // Página de contacto
 $routes->post('/contacto/enviar', 'Contact::enviar'); // Envío de formulario de contacto
 
-// Rutas relacionadas con productos (sin implementar)
+// Rutas relacionadas con productos
 $routes->get('products_view', 'Productos::index'); // Vista de productos
 $routes->get('products/edit/(:num)', 'Productos::edit/$1'); // Edición de productos
 $routes->post('products/delete/(:num)', 'Productos::delete/$1'); // Eliminación de productos
@@ -99,10 +102,10 @@ $routes->post('products/delete/(:num)', 'Productos::delete/$1'); // Eliminación
 // Rutas relacionadas con profesores
 $routes->get('/agregar_profesor', 'ProfesoresController::addForm'); // Formulario para agregar profesor
 $routes->post('/profesores/create', 'ProfesoresController::create'); // Proceso de agregar profesor
-$routes->get('modificar_profesor', 'Profesores::modificar_profesor'); // Modificar profesor (sin implementar)
+$routes->get('modificar_profesor', 'Profesores::modificar_profesor'); // Modificar profesor
 $routes->post('update_profesor/(:num)', 'Profesores::update_profesor/$1'); // Actualizar profesor
 $routes->get('delete_profesor/(:num)', 'Profesores::delete_profesor/$1'); // Eliminar profesor
-$routes->get('editar_profesor/(:num)', 'Profesores::edit/$1'); // Editar profesor (sin implementar)
+$routes->get('editar_profesor/(:num)', 'Profesores::edit/$1'); // Editar profesor
 $routes->match(['get', 'post'], 'actualizar_profesor/(:num)', 'Profesores::update_profesor/$1'); // Actualizar profesor
 
 // Rutas relacionadas con la vista de productos por categoría

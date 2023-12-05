@@ -8,7 +8,7 @@ class Usuarios extends Model
 {
     protected $table = 'clientes';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['nombre', 'email', 'contrasena', 'usuario', 'direccion', 'codigo_postal', 'telefono', 'tipo', 'id_ciudad', 'id_calle', 'numero_calle', 'id_barrio', 'id_profesor'];
+    protected $allowedFields = ['nombre', 'email', 'contrasena', 'usuario', 'direccion', 'codigo_postal', 'telefono', 'tipo'];
 
     public function obtenerUsuarioPorNombre($usuario)
     {
@@ -32,6 +32,10 @@ class Usuarios extends Model
     {
         $result = $this->select('tipo')->where('usuario', $usuario)->first();
         return isset($result['tipo']) && $result['tipo'] == 2;
+    }
+    public function obtenerUsuarioPorId($id)
+    {
+        return $this->find($id);
     }
 
 }
